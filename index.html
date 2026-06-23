@@ -264,22 +264,20 @@
     function stopTimer() { timerRunning = false; clearInterval(timerInterval); document.getElementById('timer-start').style.display = 'inline-block'; document.getElementById('timer-pause').style.display = 'none'; }
     function showToast(m) { var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(function() { t.classList.remove('show'); }, 2000); }
 
-    // === ИСПРАВЛЕННАЯ КНОПКА ПОДЕЛИТЬСЯ ===
+    // === ШЕРИНГ С ГЛУБОКОЙ ССЫЛКОЙ ===
     function shareRecipe(r) {
-        var text = '🍳 ' + r.name + '\n⏱ ' + (r.time || '') + '\n\n📋 Ингредиенты:\n' + (r.ing || '') + '\n\n📝 Приготовление:\n' + (r.instr || '').replace(/\s*\[\d+\s*мин\]/g, '');
-        // Пробуем через VK Bridge (нативный шаринг)
-        vkBridge.send('VKWebAppShare', { text: text })
+        var appUrl = 'https://vk.com/app54646829#recipe_' + r.id;
+        var text = '🍳 ' + r.name + '\n⏱ ' + (r.time || '') + '\n\n📋 Открой полный рецепт в приложении:\n' + appUrl;
+        vkBridge.send('VKWebAppShare', { text: text, link: appUrl })
         .then(function() {})
         .catch(function() {
-            // Если не сработало — копируем в буфер
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(function() { showToast('📋 Рецепт скопирован! Отправьте другу'); });
+                navigator.clipboard.writeText(text).then(function() { showToast('📋 Ссылка скопирована! Отправьте другу'); });
             } else {
-                // Фоллбэк для старых браузеров
                 var ta = document.createElement('textarea');
                 ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
                 document.body.appendChild(ta); ta.select();
-                try { document.execCommand('copy'); showToast('📋 Рецепт скопирован!'); } catch(e) { showToast('Не удалось поделиться'); }
+                try { document.execCommand('copy'); showToast('📋 Ссылка скопирована!'); } catch(e) { showToast('Не удалось поделиться'); }
                 document.body.removeChild(ta);
             }
         });
@@ -364,6 +362,21 @@
 
     var density = { flour: { glass: 160, tbsp: 10 }, sugar: { glass: 200, tbsp: 13 }, salt: { glass: 320, tbsp: 20 }, butter: { glass: 190, tbsp: 12 }, oil: { glass: 180, tbsp: 12 }, milk: { glass: 200, tbsp: 15 }, water: { glass: 200, tbsp: 15 }, rice: { glass: 180, tbsp: 12 }, buckwheat: { glass: 170, tbsp: 11 } };
     function convert() { var a = parseFloat(document.getElementById('conv-amount').value) || 0, f = document.getElementById('conv-from').value, p = document.getElementById('conv-product').value, r = document.getElementById('conv-result'); if (a <= 0) { r.textContent = 'Введите кол-во'; return; } var d = density[p]; if (f === 'gram') { r.innerHTML = a + ' г = ' + (a/d.glass).toFixed(2) + ' ст'; } else { var g = a * d[f]; r.innerHTML = a + ' шт = ' + Math.round(g) + ' г'; } }
+
+    // === ГЛУБОКАЯ ССЫЛКА ПРИ ЗАПУСКЕ ===
+    function checkDeepLink() {
+        var hash = window.location.hash;
+        if (hash && hash.startsWith('#recipe_')) {
+            var recipeId = hash.replace('#recipe_', '');
+            var r = findRecipeById(recipeId);
+            if (r) {
+                var source = recipeId.startsWith('b') ? 'builtin' : 'my';
+                setTimeout(function() { showDetail(recipeId, source); }, 500);
+            }
+        }
+    }
+    checkDeepLink();
+
     updateMain();
 </script>
 </body>
