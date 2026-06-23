@@ -2,7 +2,11 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Мои рецепты</title>
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <style>
@@ -35,7 +39,7 @@
         body.dark .nav-btn.prev { background: var(--card); color: var(--text); border-color: var(--border); }
         body.dark .timer-btn.reset { background: var(--tag-bg); color: var(--text); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); max-width: 500px; margin: 0 auto; min-height: 100vh; color: var(--text); -webkit-font-smoothing: antialiased; transition: background 0.3s, color 0.3s; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); max-width: 500px; margin: 0 auto; min-height: 100vh; color: var(--text); -webkit-font-smoothing: antialiased; transition: background 0.3s, color 0.3s; -webkit-overflow-scrolling: touch; }
         .screen { display: none; padding: 20px 16px; animation: fadeIn 0.25s ease; }
         .screen.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -70,7 +74,7 @@
         .limit-banner { background: linear-gradient(135deg, #FFF3CD, #FFE69C); border-radius: var(--radius); padding: 16px; text-align: center; margin-top: 12px; font-size: 14px; font-weight: 600; color: #856404; }
         .hidden { display: none !important; } .empty-state { text-align: center; padding: 40px 20px; color: #bbb; } .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
         .search-box { margin-bottom: 12px; position: relative; } .search-box .input { padding-left: 40px; } .search-box .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #999; pointer-events: none; }
-        .tabs { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; } .tabs::-webkit-scrollbar { height: 0; } .tab { padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; background: var(--tag-bg); color: #666; border: none; user-select: none; } .tab.active { background: var(--orange); color: white; }
+        .tabs { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; } .tabs::-webkit-scrollbar { height: 0; } .tab { padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; background: var(--tag-bg); color: #666; border: none; user-select: none; } .tab.active { background: var(--orange); color: white; }
         .detail-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; } .detail-header h2 { flex: 1; }
         .detail-heart { width: 44px; height: 44px; min-width: 44px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; } .detail-heart.liked { background: var(--red); border-color: var(--red); color: white; }
         .detail-actions { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
@@ -116,7 +120,17 @@
     <div class="screen" id="screen-substitutes"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🔄 Замена ингредиентов</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="sub-search" placeholder="Поиск..." oninput="filterSubstitutes()"></div><div id="substitutes-list"></div></div>
 
 <script>
-    vkBridge.send('VKWebAppInit');
+    // Безопасная инициализация для iOS
+    try {
+        vkBridge.send('VKWebAppInit').then(function() {
+            console.log('VK Bridge initialized');
+        }).catch(function(e) {
+            console.log('VK Bridge init error:', e);
+        });
+    } catch(e) {
+        console.log('VK Bridge not available, running in standalone mode');
+    }
+
     var recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
     var isPremium = JSON.parse(localStorage.getItem('premium') || 'false');
     var favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -264,23 +278,25 @@
     function stopTimer() { timerRunning = false; clearInterval(timerInterval); document.getElementById('timer-start').style.display = 'inline-block'; document.getElementById('timer-pause').style.display = 'none'; }
     function showToast(m) { var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(function() { t.classList.remove('show'); }, 2000); }
 
-    // === ШЕРИНГ С ГЛУБОКОЙ ССЫЛКОЙ ===
     function shareRecipe(r) {
         var appUrl = 'https://vk.com/app54646829#recipe_' + r.id;
         var text = '🍳 ' + r.name + '\n⏱ ' + (r.time || '') + '\n\n📋 Открой полный рецепт в приложении:\n' + appUrl;
-        vkBridge.send('VKWebAppShare', { text: text, link: appUrl })
-        .then(function() {})
-        .catch(function() {
+        try {
+            vkBridge.send('VKWebAppShare', { text: text, link: appUrl }).then(function() {}).catch(function() {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).then(function() { showToast('📋 Ссылка скопирована!'); });
+                } else {
+                    var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+                    document.body.appendChild(ta); ta.select();
+                    try { document.execCommand('copy'); showToast('📋 Ссылка скопирована!'); } catch(e) { showToast('Не удалось'); }
+                    document.body.removeChild(ta);
+                }
+            });
+        } catch(e) {
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(function() { showToast('📋 Ссылка скопирована! Отправьте другу'); });
-            } else {
-                var ta = document.createElement('textarea');
-                ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-                document.body.appendChild(ta); ta.select();
-                try { document.execCommand('copy'); showToast('📋 Ссылка скопирована!'); } catch(e) { showToast('Не удалось поделиться'); }
-                document.body.removeChild(ta);
+                navigator.clipboard.writeText(text).then(function() { showToast('📋 Ссылка скопирована!'); });
             }
-        });
+        }
     }
 
     function getAllAvailableRecipes() { var a = []; for (var i = 0; i < recipes.length; i++) a.push({r: recipes[i], source: 'my'}); var m = isPremium ? builtinRecipes.length : 10; for (var j = 0; j < m && j < builtinRecipes.length; j++) a.push({r: builtinRecipes[j], source: 'builtin'}); return a; }
@@ -350,20 +366,23 @@
         currentScreen = 'detail';
     }
     function payWithVotes() {
-        vkBridge.send('VKWebAppOpenInvoice', { app_id: 54646829, action: 'pay-to-service', item_name: 'Безлимитный доступ к рецептам', item_price: 36, item_description: 'Открывает все 20 рецептов и снимает ограничения' })
-        .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо! Безлимит активирован!'); navigateTo('main'); } })
-        .catch(function(error) { console.log(JSON.stringify(error)); alert('Оплата временно недоступна.'); });
+        try {
+            vkBridge.send('VKWebAppOpenInvoice', { app_id: 54646829, action: 'pay-to-service', item_name: 'Безлимитный доступ', item_price: 36, item_description: 'Все 20 рецептов без ограничений' })
+            .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо! Безлимит активирован!'); navigateTo('main'); } })
+            .catch(function(e) { console.log(JSON.stringify(e)); alert('Оплата временно недоступна.'); });
+        } catch(e) { alert('Оплата временно недоступна.'); }
     }
     function payWithVKPay() {
-        vkBridge.send('VKWebAppOpenPayForm', { app_id: 54646829, action: 'transfer-to-user', item_name: 'Безлимитный доступ к рецептам', item_price: 250, item_description: 'Открывает все 20 рецептов и снимает ограничения' })
-        .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо! Безлимит активирован!'); navigateTo('main'); } })
-        .catch(function(error) { console.log(JSON.stringify(error)); alert('Оплата временно недоступна.'); });
+        try {
+            vkBridge.send('VKWebAppOpenPayForm', { app_id: 54646829, action: 'transfer-to-user', item_name: 'Безлимитный доступ', item_price: 250, item_description: 'Все 20 рецептов без ограничений' })
+            .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо! Безлимит активирован!'); navigateTo('main'); } })
+            .catch(function(e) { console.log(JSON.stringify(e)); alert('Оплата временно недоступна.'); });
+        } catch(e) { alert('Оплата временно недоступна.'); }
     }
 
     var density = { flour: { glass: 160, tbsp: 10 }, sugar: { glass: 200, tbsp: 13 }, salt: { glass: 320, tbsp: 20 }, butter: { glass: 190, tbsp: 12 }, oil: { glass: 180, tbsp: 12 }, milk: { glass: 200, tbsp: 15 }, water: { glass: 200, tbsp: 15 }, rice: { glass: 180, tbsp: 12 }, buckwheat: { glass: 170, tbsp: 11 } };
     function convert() { var a = parseFloat(document.getElementById('conv-amount').value) || 0, f = document.getElementById('conv-from').value, p = document.getElementById('conv-product').value, r = document.getElementById('conv-result'); if (a <= 0) { r.textContent = 'Введите кол-во'; return; } var d = density[p]; if (f === 'gram') { r.innerHTML = a + ' г = ' + (a/d.glass).toFixed(2) + ' ст'; } else { var g = a * d[f]; r.innerHTML = a + ' шт = ' + Math.round(g) + ' г'; } }
 
-    // === ГЛУБОКАЯ ССЫЛКА ПРИ ЗАПУСКЕ ===
     function checkDeepLink() {
         var hash = window.location.hash;
         if (hash && hash.startsWith('#recipe_')) {
