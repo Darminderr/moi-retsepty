@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Мои рецепты</title>
-    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+    <script>
+        // Определяем устройство ДО загрузки всего остального
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        var isAndroid = /Android/.test(navigator.userAgent);
+        var isDesktop = !isIOS && !isAndroid;
+        // На iOS не грузим VK Bridge — он может вызывать ошибку
+        if (!isIOS) {
+            document.write('<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"><\/script>');
+        }
+    </script>
     <style>
         :root {
             --orange: #FF6B00; --orange-light: #FFF3E6; --green: #4CAF50; --green-light: #E8F5E9;
@@ -84,13 +93,16 @@
         .progress-bar { width: 100%; height: 8px; background: #e0e0e0; border-radius: 4px; margin: 8px 0; overflow: hidden; } .progress-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 0.3s; }
         .step-check { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; cursor: pointer; } .step-check .dot { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; } .step-check .dot.done { background: var(--green); border-color: var(--green); color: white; } .step-check .step-label { font-size: 14px; color: var(--text-light); } .step-check .step-label.done { text-decoration: line-through; color: #aaa; }
         .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 999; opacity: 0; transition: opacity 0.3s; pointer-events: none; } .toast.show { opacity: 1; }
+        .ios-warning { background: #FFF3CD; color: #856404; padding: 10px 14px; border-radius: 12px; font-size: 12px; text-align: center; margin-bottom: 12px; display: none; }
+        body.ios .ios-warning { display: block; }
     </style>
 </head>
-<body>
+<body class="">
     <div class="toast" id="toast"></div>
 
     <div class="screen active" id="screen-main">
         <div class="main-top-row"><div class="icon">🍳</div><div class="text"><h1>Мои рецепты</h1><div class="subtitle">Готовь как шеф · Храни идеи</div></div><div class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌙</div></div>
+        <div class="ios-warning">⚠️ Запущено в режиме совместимости с iOS. Оплата временно недоступна.</div>
         <button class="btn btn-random" onclick="randomRecipe()">🎲 Что приготовить?</button><div id="random-result-container"></div>
         <button class="btn btn-add" onclick="navigateTo('add')">➕ Новый рецепт</button>
         <button class="btn btn-list" onclick="showMyRecipes()">📖 Мои рецепты <span style="color:var(--orange)" id="count">0</span></button>
@@ -117,7 +129,13 @@
     <div class="screen" id="screen-substitutes"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🔄 Замена ингредиентов</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="sub-search" placeholder="Поиск..." oninput="filterSubstitutes()"></div><div id="substitutes-list"></div></div>
 
 <script>
-    vkBridge.send('VKWebAppInit');
+    // Инициализация только для Android/ПК
+    if (!isIOS && typeof vkBridge !== 'undefined') {
+        vkBridge.send('VKWebAppInit');
+    }
+    // На iOS добавляем класс для стилей
+    if (isIOS) { document.body.classList.add('ios'); }
+
     var recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
     var isPremium = JSON.parse(localStorage.getItem('premium') || 'false');
     var favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -271,6 +289,7 @@
     function filterFavorites() { var q = document.getElementById('search-fav').value.toLowerCase(); document.querySelectorAll('#favorites-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
 
     function showPayOptions() {
+        if (isIOS) { alert('Оплата временно недоступна на iOS. Откройте приложение на Android или ПК.'); return; }
         var h = '<div style="text-align:center;padding:20px;">';
         h += '<h3 style="margin-bottom:16px;">Выберите способ оплаты</h3>';
         h += '<button class="btn" style="background:linear-gradient(135deg,#7C3AED,#9B5DE5);color:white;" onclick="payWithVotes()">🟣 Оплатить голосами ВК — 36 голосов</button>';
@@ -283,11 +302,13 @@
         currentScreen = 'detail';
     }
     function payWithVotes() {
+        if (isIOS || typeof vkBridge === 'undefined') { alert('Оплата недоступна.'); return; }
         vkBridge.send('VKWebAppOpenInvoice', { app_id: 54646829, action: 'pay-to-service', item_name: 'Безлимитный доступ', item_price: 36, item_description: 'Все 20 рецептов' })
         .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо!'); navigateTo('main'); } })
         .catch(function() { alert('Оплата недоступна.'); });
     }
     function payWithVKPay() {
+        if (isIOS || typeof vkBridge === 'undefined') { alert('Оплата недоступна.'); return; }
         vkBridge.send('VKWebAppOpenPayForm', { app_id: 54646829, action: 'transfer-to-user', item_name: 'Безлимитный доступ', item_price: 250, item_description: 'Все 20 рецептов' })
         .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо!'); navigateTo('main'); } })
         .catch(function() { alert('Оплата недоступна.'); });
