@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Мои рецепты</title>
     <style>
         :root {
@@ -42,13 +43,13 @@
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .spinning { animation: spin 0.5s ease-in-out; }
         .main-top-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-        .icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--orange), #FF8C42); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; box-shadow: 0 4px 12px rgba(255,107,0,0.3); }
+        .icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--orange), #FF8C42); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; box-shadow: 0 4px 12px rgba(255,107,0,0.3); flex-shrink: 0; }
         .main-top-row .text { flex: 1; } .main-top-row h1 { font-size: 22px; font-weight: 700; } .subtitle { font-size: 13px; color: var(--text-light); }
-        .theme-toggle { width: 44px; height: 44px; min-width: 44px; border-radius: 14px; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-        .back-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--orange); font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 16px; padding: 8px 0; user-select: none; } .back-btn::before { content: '←'; font-size: 18px; }
-        .card { background: var(--card); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow); cursor: pointer; transition: all 0.2s; border: 1px solid var(--border); display: flex; align-items: center; gap: 12px; } .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); } .card .card-content { flex: 1; min-width: 0; } .card h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .card .meta { font-size: 12px; color: var(--text-light); display: flex; gap: 8px; } .card .meta span { background: var(--orange-light); color: var(--orange); padding: 2px 8px; border-radius: 20px; font-weight: 500; }
-        .heart-btn { width: 40px; height: 40px; min-width: 40px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.2s; z-index: 2; user-select: none; } .heart-btn.liked { background: var(--red); border-color: var(--red); color: white; }
-        .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 16px; margin-bottom: 10px; border: none; border-radius: var(--radius); font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; text-align: center; box-shadow: var(--shadow); } .btn:active { transform: scale(0.97); }
+        .theme-toggle { width: 44px; height: 44px; min-width: 44px; border-radius: 14px; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; touch-action: manipulation; }
+        .back-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--orange); font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 16px; padding: 8px 0; user-select: none; touch-action: manipulation; } .back-btn::before { content: '←'; font-size: 18px; }
+        .card { background: var(--card); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow); cursor: pointer; transition: all 0.2s; border: 1px solid var(--border); display: flex; align-items: center; gap: 12px; touch-action: manipulation; } .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); } .card .card-content { flex: 1; min-width: 0; } .card h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .card .meta { font-size: 12px; color: var(--text-light); display: flex; gap: 8px; } .card .meta span { background: var(--orange-light); color: var(--orange); padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+        .heart-btn { width: 40px; height: 40px; min-width: 40px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.2s; z-index: 2; user-select: none; touch-action: manipulation; } .heart-btn.liked { background: var(--red); border-color: var(--red); color: white; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 16px; margin-bottom: 10px; border: none; border-radius: var(--radius); font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; text-align: center; box-shadow: var(--shadow); touch-action: manipulation; } .btn:active { transform: scale(0.97); }
         .btn-add { background: linear-gradient(135deg, var(--orange), #FF8C42); color: white; font-size: 17px; }
         .btn-list { background: var(--card); color: var(--text); border: 1px solid var(--border); }
         .btn-recipes { background: var(--green-light); color: var(--green); } .btn-fav { background: var(--red-light); color: var(--red); }
@@ -62,27 +63,28 @@
         .btn-save { background: var(--green); color: white; }
         .btn-small { width: auto; padding: 10px 20px; margin: 0; box-shadow: none; font-size: 14px; }
         .input-group { margin-bottom: 12px; } .input-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-light); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius); font-size: 15px; background: var(--card); font-family: inherit; color: var(--text); } .input:focus { outline: none; border-color: var(--orange); } textarea.input { height: 100px; resize: vertical; min-height: 80px; }
-        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; } .tag { background: var(--orange-light); color: var(--orange); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; user-select: none; }
+        .input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius); font-size: 15px; background: var(--card); font-family: inherit; color: var(--text); -webkit-appearance: none; appearance: none; } .input:focus { outline: none; border-color: var(--orange); } textarea.input { height: 100px; resize: vertical; min-height: 80px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; } .tag { background: var(--orange-light); color: var(--orange); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; user-select: none; touch-action: manipulation; }
         .recipe-detail h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; } .recipe-detail .badge { display: inline-block; background: var(--orange-light); color: var(--orange); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
         .recipe-detail .section { margin-bottom: 20px; } .recipe-detail .section h3 { font-size: 15px; font-weight: 700; color: var(--orange); margin-bottom: 8px; text-transform: uppercase; }
-        .random-result { background: var(--card); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow); border: 2px solid var(--purple-light); text-align: center; cursor: pointer; } .random-result .dice { font-size: 40px; margin-bottom: 8px; } .random-result h3 { font-size: 18px; margin-bottom: 4px; } .random-result .hint { font-size: 13px; color: var(--text-light); }
+        .random-result { background: var(--card); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow); border: 2px solid var(--purple-light); text-align: center; cursor: pointer; touch-action: manipulation; } .random-result .dice { font-size: 40px; margin-bottom: 8px; } .random-result h3 { font-size: 18px; margin-bottom: 4px; } .random-result .hint { font-size: 13px; color: var(--text-light); }
         .limit-banner { background: linear-gradient(135deg, #FFF3CD, #FFE69C); border-radius: var(--radius); padding: 16px; text-align: center; margin-top: 12px; font-size: 14px; font-weight: 600; color: #856404; }
         .hidden { display: none !important; } .empty-state { text-align: center; padding: 40px 20px; color: #bbb; } .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
         .search-box { margin-bottom: 12px; position: relative; } .search-box .input { padding-left: 40px; } .search-box .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: #999; pointer-events: none; }
-        .tabs { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; } .tabs::-webkit-scrollbar { height: 0; } .tab { padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; background: var(--tag-bg); color: #666; border: none; user-select: none; } .tab.active { background: var(--orange); color: white; }
+        .tabs { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; } .tabs::-webkit-scrollbar { height: 0; } .tab { padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; background: var(--tag-bg); color: #666; border: none; user-select: none; touch-action: manipulation; } .tab.active { background: var(--orange); color: white; }
         .detail-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; } .detail-header h2 { flex: 1; }
-        .detail-heart { width: 44px; height: 44px; min-width: 44px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; } .detail-heart.liked { background: var(--red); border-color: var(--red); color: white; }
+        .detail-heart { width: 44px; height: 44px; min-width: 44px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; touch-action: manipulation; } .detail-heart.liked { background: var(--red); border-color: var(--red); color: white; }
         .detail-actions { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
-        .conv-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 12px; flex-wrap: wrap; } .conv-row .input-group { flex: 1; min-width: 120px; margin-bottom: 0; } .conv-btn { background: var(--teal); color: white; padding: 14px 20px; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600; cursor: pointer; height: 48px; } .conv-result { background: var(--card); border-radius: var(--radius); padding: 16px; margin-top: 12px; box-shadow: var(--shadow); font-size: 18px; font-weight: 700; text-align: center; color: var(--teal); } .conv-table { width: 100%; border-collapse: collapse; margin-top: 16px; } .conv-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 14px; } .conv-table td:last-child { text-align: right; font-weight: 600; color: var(--teal); }
-        .cooking-container { text-align: center; } .cooking-header { margin-bottom: 24px; } .cooking-header h2 { font-size: 28px; font-weight: 700; } .cooking-header .step-counter { font-size: 14px; color: var(--text-light); margin-top: 4px; } .cooking-step { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); border: 2px solid var(--border); margin-bottom: 20px; min-height: 120px; display: flex; align-items: center; justify-content: center; } .cooking-step .step-text { font-size: 24px; font-weight: 600; line-height: 1.4; } .cooking-timer { font-size: 48px; font-weight: 700; color: var(--orange); margin: 16px 0; } .cooking-timer.running { color: var(--green); } .timer-controls { display: flex; gap: 8px; justify-content: center; align-items: center; margin-bottom: 20px; flex-wrap: wrap; } .timer-input { width: 60px; padding: 10px; border-radius: 10px; border: 2px solid var(--border); text-align: center; font-size: 16px; background: var(--card); color: var(--text); font-family: inherit; } .timer-btn { padding: 12px 24px; border-radius: var(--radius); border: none; font-size: 16px; font-weight: 600; cursor: pointer; } .timer-btn.start { background: var(--green); color: white; } .timer-btn.pause { background: var(--orange); color: white; } .timer-btn.reset { background: #f0f0f0; color: var(--text); } .nav-buttons { display: flex; gap: 10px; margin-top: 16px; } .nav-btn { flex: 1; padding: 16px; border-radius: var(--radius); border: none; font-size: 16px; font-weight: 600; cursor: pointer; } .nav-btn.prev { background: var(--card); color: var(--text); border: 1px solid var(--border); } .nav-btn.next { background: var(--orange); color: white; } .nav-btn.finish { background: var(--green); color: white; }
-        .shop-item, .fridge-result { display: flex; align-items: center; gap: 12px; background: var(--card); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; box-shadow: var(--shadow); border: 1px solid var(--border); cursor: pointer; } .shop-item.checked { opacity: 0.5; } .shop-item.checked .shop-text { text-decoration: line-through; } .shop-checkbox { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; } .shop-checkbox.done { background: var(--green); border-color: var(--green); color: white; } .shop-text { flex: 1; font-size: 15px; font-weight: 500; } .shop-delete { color: var(--red); cursor: pointer; font-size: 20px; padding: 4px; } .shop-actions { display: flex; gap: 8px; margin-top: 16px; } .shop-actions .btn { width: auto; padding: 12px 20px; font-size: 14px; }
+        .conv-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 12px; flex-wrap: wrap; } .conv-row .input-group { flex: 1; min-width: 120px; margin-bottom: 0; } .conv-btn { background: var(--teal); color: white; padding: 14px 20px; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600; cursor: pointer; height: 48px; touch-action: manipulation; } .conv-result { background: var(--card); border-radius: var(--radius); padding: 16px; margin-top: 12px; box-shadow: var(--shadow); font-size: 18px; font-weight: 700; text-align: center; color: var(--teal); } .conv-table { width: 100%; border-collapse: collapse; margin-top: 16px; } .conv-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 14px; } .conv-table td:last-child { text-align: right; font-weight: 600; color: var(--teal); }
+        .cooking-container { text-align: center; } .cooking-header { margin-bottom: 24px; } .cooking-header h2 { font-size: 28px; font-weight: 700; } .cooking-header .step-counter { font-size: 14px; color: var(--text-light); margin-top: 4px; } .cooking-step { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); border: 2px solid var(--border); margin-bottom: 20px; min-height: 120px; display: flex; align-items: center; justify-content: center; } .cooking-step .step-text { font-size: 24px; font-weight: 600; line-height: 1.4; } .cooking-timer { font-size: 48px; font-weight: 700; color: var(--orange); margin: 16px 0; } .cooking-timer.running { color: var(--green); } .timer-controls { display: flex; gap: 8px; justify-content: center; align-items: center; margin-bottom: 20px; flex-wrap: wrap; } .timer-input { width: 60px; padding: 10px; border-radius: 10px; border: 2px solid var(--border); text-align: center; font-size: 16px; background: var(--card); color: var(--text); font-family: inherit; -webkit-appearance: none; appearance: none; } .timer-btn { padding: 12px 24px; border-radius: var(--radius); border: none; font-size: 16px; font-weight: 600; cursor: pointer; touch-action: manipulation; } .timer-btn.start { background: var(--green); color: white; } .timer-btn.pause { background: var(--orange); color: white; } .timer-btn.reset { background: #f0f0f0; color: var(--text); } .nav-buttons { display: flex; gap: 10px; margin-top: 16px; } .nav-btn { flex: 1; padding: 16px; border-radius: var(--radius); border: none; font-size: 16px; font-weight: 600; cursor: pointer; touch-action: manipulation; } .nav-btn.prev { background: var(--card); color: var(--text); border: 1px solid var(--border); } .nav-btn.next { background: var(--orange); color: white; } .nav-btn.finish { background: var(--green); color: white; }
+        .shop-item, .fridge-result { display: flex; align-items: center; gap: 12px; background: var(--card); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; box-shadow: var(--shadow); border: 1px solid var(--border); cursor: pointer; touch-action: manipulation; } .shop-item.checked { opacity: 0.5; } .shop-item.checked .shop-text { text-decoration: line-through; } .shop-checkbox { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; touch-action: manipulation; } .shop-checkbox.done { background: var(--green); border-color: var(--green); color: white; } .shop-text { flex: 1; font-size: 15px; font-weight: 500; } .shop-delete { color: var(--red); cursor: pointer; font-size: 20px; padding: 4px; touch-action: manipulation; } .shop-actions { display: flex; gap: 8px; margin-top: 16px; } .shop-actions .btn { width: auto; padding: 12px 20px; font-size: 14px; }
         .fridge-result h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; } .fridge-result .match { font-size: 13px; color: var(--green); font-weight: 600; }
-        .plan-card { background: var(--card); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; box-shadow: var(--shadow); border: 1px solid var(--border); display: flex; align-items: center; gap: 12px; cursor: pointer; } .plan-day { font-weight: 700; font-size: 14px; min-width: 40px; color: var(--orange); } .plan-recipe { flex: 1; font-size: 15px; } .plan-recipe.empty { color: var(--text-light); font-style: italic; } .plan-delete { color: var(--red); cursor: pointer; font-size: 18px; padding: 4px; }
+        .plan-card { background: var(--card); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; box-shadow: var(--shadow); border: 1px solid var(--border); display: flex; align-items: center; gap: 12px; cursor: pointer; touch-action: manipulation; } .plan-day { font-weight: 700; font-size: 14px; min-width: 40px; color: var(--orange); } .plan-recipe { flex: 1; font-size: 15px; } .plan-recipe.empty { color: var(--text-light); font-style: italic; } .plan-delete { color: var(--red); cursor: pointer; font-size: 18px; padding: 4px; touch-action: manipulation; }
         .sub-item { background: var(--card); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; box-shadow: var(--shadow); border: 1px solid var(--border); } .sub-item h3 { font-size: 16px; font-weight: 600; color: var(--orange); } .sub-item p { font-size: 14px; color: var(--text-light); margin-top: 4px; }
         .progress-bar { width: 100%; height: 8px; background: #e0e0e0; border-radius: 4px; margin: 8px 0; overflow: hidden; } .progress-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 0.3s; }
-        .step-check { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; cursor: pointer; } .step-check .dot { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; } .step-check .dot.done { background: var(--green); border-color: var(--green); color: white; } .step-check .step-label { font-size: 14px; color: var(--text-light); } .step-check .step-label.done { text-decoration: line-through; color: #aaa; }
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 999; opacity: 0; transition: opacity 0.3s; pointer-events: none; } .toast.show { opacity: 1; }
+        .step-check { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; cursor: pointer; touch-action: manipulation; } .step-check .dot { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; } .step-check .dot.done { background: var(--green); border-color: var(--green); color: white; } .step-check .step-label { font-size: 14px; color: var(--text-light); } .step-check .step-label.done { text-decoration: line-through; color: #aaa; }
+        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 999; opacity: 0; transition: opacity 0.3s; pointer-events: none; max-width: 90%; } .toast.show { opacity: 1; }
+        .select-input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius); font-size: 15px; background: var(--card); font-family: inherit; color: var(--text); -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; }
     </style>
 </head>
 <body>
@@ -107,8 +109,8 @@
     <div class="screen" id="screen-detail"><div class="back-btn" onclick="goBack()">Назад</div><div class="recipe-detail" id="detail-content"></div></div>
     <div class="screen" id="screen-builtin"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:8px;">🍽 Готовые рецепты</h2><div class="tabs" id="category-tabs"><button class="tab active" onclick="filterBuiltinByCategory('all', this)">Все</button><button class="tab" onclick="filterBuiltinByCategory('breakfast', this)">🍳</button><button class="tab" onclick="filterBuiltinByCategory('soup', this)">🍜</button><button class="tab" onclick="filterBuiltinByCategory('salad', this)">🥗</button><button class="tab" onclick="filterBuiltinByCategory('main', this)">🍖</button><button class="tab" onclick="filterBuiltinByCategory('dessert', this)">🍰</button><button class="tab" onclick="filterBuiltinByCategory('drink', this)">🍹</button></div><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-builtin" placeholder="Поиск..." oninput="filterBuiltin()"></div><div id="builtin-list"></div><div class="limit-banner hidden" id="builtin-lock">🔒 Бесплатно 10. Купи безлимит!</div></div>
     <div class="screen" id="screen-favorites"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:4px;">❤️ Избранное</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-fav" placeholder="Поиск..." oninput="filterFavorites()"></div><div id="favorites-list"></div><div class="empty-state" id="fav-empty-state"><div class="icon">❤️</div><p>Нет избранных</p></div></div>
-    <div class="screen" id="screen-converter"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:20px;">⚖️ Конвертер мер</h2><div class="conv-row"><div class="input-group"><label>Кол-во</label><input class="input" id="conv-amount" type="number" value="1" min="0.1" step="0.1"></div><div class="input-group"><label>Из</label><select class="input" id="conv-from" onchange="convert()"><option value="glass">Стакан</option><option value="tbsp">Ст.ложка</option><option value="tsp">Ч.ложка</option><option value="gram">Граммы</option></select></div></div><div class="conv-row"><div class="input-group"><label>Продукт</label><select class="input" id="conv-product" onchange="convert()"><option value="flour">Мука</option><option value="sugar">Сахар</option><option value="salt">Соль</option><option value="butter">Масло слив.</option><option value="oil">Масло раст.</option><option value="milk">Молоко</option><option value="water">Вода</option><option value="rice">Рис</option><option value="buckwheat">Гречка</option></select></div><button class="conv-btn" onclick="convert()">Перевести</button></div><div class="conv-result" id="conv-result">Выберите продукт</div></div>
-    <div class="screen" id="screen-cooking"><div class="back-btn" onclick="stopTimer(); goBackFromCooking()">⬅ Выйти</div><div class="cooking-container"><div class="cooking-header"><h2 id="cooking-title"></h2><div class="step-counter" id="step-counter"></div></div><div class="cooking-step"><div class="step-text" id="step-text"></div></div><div class="cooking-timer" id="cooking-timer">00:00</div><div class="timer-controls"><input type="number" id="timer-minutes" value="5" min="0" max="99" class="timer-input" placeholder="Мин"><span>:</span><input type="number" id="timer-seconds" value="0" min="0" max="59" class="timer-input" placeholder="Сек"><button class="timer-btn start" id="timer-start" onclick="startTimer()">▶</button><button class="timer-btn pause" id="timer-pause" onclick="pauseTimer()" style="display:none;">⏸</button><button class="timer-btn reset" onclick="resetTimer()">↺</button></div><div class="nav-buttons"><button class="nav-btn prev" id="btn-prev" onclick="prevStep()">⬅ Назад</button><button class="nav-btn next" id="btn-next" onclick="nextStep()">Далее ➡</button><button class="nav-btn finish" id="btn-finish" onclick="finishCooking()" style="display:none;">✅ Готово!</button></div></div></div>
+    <div class="screen" id="screen-converter"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:20px;">⚖️ Конвертер мер</h2><div class="conv-row"><div class="input-group"><label>Кол-во</label><input class="input" id="conv-amount" type="text" inputmode="decimal" value="1"></div><div class="input-group"><label>Из</label><select class="select-input" id="conv-from" onchange="convert()"><option value="glass">Стакан</option><option value="tbsp">Ст.ложка</option><option value="tsp">Ч.ложка</option><option value="gram">Граммы</option></select></div></div><div class="conv-row"><div class="input-group"><label>Продукт</label><select class="select-input" id="conv-product" onchange="convert()"><option value="flour">Мука</option><option value="sugar">Сахар</option><option value="salt">Соль</option><option value="butter">Масло слив.</option><option value="oil">Масло раст.</option><option value="milk">Молоко</option><option value="water">Вода</option><option value="rice">Рис</option><option value="buckwheat">Гречка</option></select></div><button class="conv-btn" onclick="convert()">Перевести</button></div><div class="conv-result" id="conv-result">Выберите продукт</div></div>
+    <div class="screen" id="screen-cooking"><div class="back-btn" onclick="stopTimer(); goBackFromCooking()">⬅ Выйти</div><div class="cooking-container"><div class="cooking-header"><h2 id="cooking-title"></h2><div class="step-counter" id="step-counter"></div></div><div class="cooking-step"><div class="step-text" id="step-text"></div></div><div class="cooking-timer" id="cooking-timer">00:00</div><div class="timer-controls"><input type="text" inputmode="numeric" id="timer-minutes" value="5" maxlength="2" class="timer-input" placeholder="Мин"><span>:</span><input type="text" inputmode="numeric" id="timer-seconds" value="0" maxlength="2" class="timer-input" placeholder="Сек"><button class="timer-btn start" id="timer-start" onclick="startTimer()">▶</button><button class="timer-btn pause" id="timer-pause" onclick="pauseTimer()" style="display:none;">⏸</button><button class="timer-btn reset" onclick="resetTimer()">↺</button></div><div class="nav-buttons"><button class="nav-btn prev" id="btn-prev" onclick="prevStep()">⬅ Назад</button><button class="nav-btn next" id="btn-next" onclick="nextStep()">Далее ➡</button><button class="nav-btn finish" id="btn-finish" onclick="finishCooking()" style="display:none;">✅ Готово!</button></div></div></div>
     <div class="screen" id="screen-shopping"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🧾 Список покупок</h2><div id="shopping-list"></div><div class="empty-state" id="shop-empty-state"><div class="icon">🧾</div><p>Список пуст</p></div><div class="shop-actions" id="shop-actions" style="display:none;"><button class="btn" style="background:#f0f0f0;color:var(--text);" onclick="clearChecked()">🗑 Убрать купленное</button><button class="btn" style="background:var(--red);color:white;" onclick="clearAllShopping()">Очистить</button></div></div>
     <div class="screen" id="screen-fridge"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:8px;">🔍 Что в холодильнике?</h2><p style="font-size:14px;color:var(--text-light);margin-bottom:16px;">Введите ингредиенты через запятую</p><input class="input" id="fridge-input" placeholder="Например: курица, гречка, лук" oninput="searchFridge()"><div id="fridge-results" style="margin-top:12px;"></div><div class="empty-state" id="fridge-empty"><div class="icon">🔍</div><p>Введите ингредиенты</p></div></div>
     <div class="screen" id="screen-planner"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">📅 План на неделю</h2><div id="planner-list"></div></div>
@@ -116,240 +118,253 @@
     <div class="screen" id="screen-substitutes"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🔄 Замена ингредиентов</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="sub-search" placeholder="Поиск..." oninput="filterSubstitutes()"></div><div id="substitutes-list"></div></div>
 
 <script>
-    // ===== VK BRIDGE ДЛЯ iOS =====
-    (function() {
-        try {
-            if (typeof vkBridge !== 'undefined') {
-                vkBridge.send('VKWebAppInit')
-                    .then(function() {
-                        try { vkBridge.send('VKWebAppLoadingCompleted', { ok: true }); } catch(e) {}
-                        console.log('✅ VK Bridge готов');
-                    })
-                    .catch(function(e) { console.warn('VK init error:', e); });
-            } else {
-                var s = document.createElement('script');
-                s.src = 'https://vk.com/js/api/xd_connection.js?2';
-                s.onload = function() {
-                    if (typeof vkBridge !== 'undefined') {
-                        vkBridge.send('VKWebAppInit')
-                            .then(function() {
-                                try { vkBridge.send('VKWebAppLoadingCompleted', { ok: true }); } catch(e) {}
-                                console.log('✅ VK Bridge загружен');
-                            })
-                            .catch(function(e) { console.warn('VK init error:', e); });
-                    }
-                };
-                document.head.appendChild(s);
-            }
-        } catch(e) { console.warn('VK error:', e); }
-    })();
-
-    // ===== ОСНОВНОЙ КОД =====
-    var recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
-    var isPremium = JSON.parse(localStorage.getItem('premium') || 'false');
-    var favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    var shoppingList = JSON.parse(localStorage.getItem('shoppingList') || '[]');
-    var weekPlan = JSON.parse(localStorage.getItem('weekPlan') || '{"mon":null,"tue":null,"wed":null,"thu":null,"fri":null,"sat":null,"sun":null}');
-    var isDark = JSON.parse(localStorage.getItem('darkTheme') || 'false');
-    var currentScreen = 'main', navigationStack = ['main'];
-    var currentDetailRecipeId = null, currentDetailSource = null, currentCategory = 'all';
-    var cookingRecipe = null, cookingSteps = [], currentStep = 0;
-    var timerSeconds = 0, timerInterval = null, timerRunning = false;
-    var pickerDay = null, completedSteps = [];
-
-    if (isDark) { document.body.classList.add('dark'); document.getElementById('theme-btn').textContent = '☀️'; }
-    else { document.getElementById('theme-btn').textContent = '🌙'; }
-    function toggleTheme() { isDark = !isDark; localStorage.setItem('darkTheme', JSON.stringify(isDark)); if (isDark) { document.body.classList.add('dark'); document.getElementById('theme-btn').textContent = '☀️'; } else { document.body.classList.remove('dark'); document.getElementById('theme-btn').textContent = '🌙'; } }
-
-    var builtinRecipes = [
-        { id: 'b1', name: "Ленивая овсянка в банке", category: "breakfast", ing: "Овсяные хлопья — 4 ст.л.\nЙогурт натуральный — 150 мл\nМёд — 1 ч.л.\nЯгоды — 50 г", instr: "1. Насыпьте хлопья в банку. [1 мин]\n2. Залейте йогуртом, добавьте мёд. [1 мин]\n3. Выложите ягоды. [1 мин]\n4. Закройте и в холодильник на 6+ часов. [0 мин]\n5. Утром готово!", time: "5 мин + ночь" },
-        { id: 'b2', name: "Сырники за 10 минут", category: "breakfast", ing: "Творог 9% — 200 г\nЯйцо — 1 шт\nМука — 2 ст.л. + для обваливания\nСахар — 1 ст.л.\nВанильный сахар — 1 ч.л.\nМасло растительное — для жарки", instr: "1. Разомните творог. [2 мин]\n2. Добавьте яйцо, сахар, муку. [2 мин]\n3. Сформируйте шарики, обваляйте в муке. [3 мин]\n4. Жарьте по 2-3 мин с каждой стороны. [5 мин]", time: "10 мин" },
-        { id: 'b3', name: "Яичница в хлебе", category: "breakfast", ing: "Хлеб — 2 ломтика\nЯйца — 2 шт\nСыр — 30 г\nМасло сливочное — 10 г", instr: "1. Вырежьте отверстие в хлебе. [1 мин]\n2. Обжарьте хлеб на масле. [1 мин]\n3. Разбейте яйцо в отверстие. [1 мин]\n4. Посыпьте сыром, жарьте 3-4 мин. [4 мин]", time: "7 мин" },
-        { id: 'b4', name: "Сырный суп с курицей", category: "soup", ing: "Куриное филе — 300 г\nКартофель — 3 шт\nПлавленый сыр — 2 шт\nМорковь, лук — по 1 шт", instr: "1. Сварите курицу 15 мин. [15 мин]\n2. Добавьте картофель, 10 мин. [10 мин]\n3. Обжарьте лук и морковь. [4 мин]\n4. Добавьте сыр, помешивая. [3 мин]\n5. Посолите, варите 5 мин. [5 мин]", time: "35 мин" },
-        { id: 'b5', name: "Ленивые голубцы", category: "main", ing: "Фарш — 500 г\nКапуста — 300 г\nРис — 100 г\nТоматная паста — 2 ст.л.", instr: "1. Отварите рис 7 мин. [7 мин]\n2. Смешайте фарш, капусту, рис. [5 мин]\n3. Сформируйте котлеты. [5 мин]\n4. Залейте соусом. [3 мин]\n5. Тушите 30 мин. [30 мин]", time: "45 мин" },
-        { id: 'b6', name: "Курица в сметане", category: "main", ing: "Куриные бёдра — 6 шт\nСметана — 200 г\nЧеснок — 3 зубчика", instr: "1. Натрите бёдра солью и паприкой. [2 мин]\n2. Смешайте сметану с чесноком. [2 мин]\n3. Залейте бёдра. [1 мин]\n4. Запекайте при 180°C 35-40 мин. [35 мин]", time: "40 мин" },
-        { id: 'b7', name: "Цезарь домашний", category: "salad", ing: "Куриная грудка — 1 шт\nСалат Айсберг — 200 г\nПомидоры черри — 100 г\nПармезан — 50 г", instr: "1. Обжарьте курицу, нарежьте. [12 мин]\n2. Порвите салат. [2 мин]\n3. Добавьте помидоры, сухарики. [2 мин]\n4. Заправьте соусом. [2 мин]", time: "20 мин" },
-        { id: 'b8', name: "Шарлотка", category: "dessert", ing: "Яблоки — 4 шт\nЯйца — 3 шт\nМука — 200 г\nСахар — 200 г", instr: "1. Нарежьте яблоки дольками. [5 мин]\n2. Взбейте яйца с сахаром. [5 мин]\n3. Добавьте муку. [2 мин]\n4. Залейте яблоки тестом. [1 мин]\n5. Выпекайте 30 мин при 180°C. [30 мин]", time: "45 мин" },
-        { id: 'b9', name: "Макароны по-флотски", category: "main", ing: "Макароны — 300 г\nФарш — 300 г\nЛук — 1 шт", instr: "1. Отварите макароны. [10 мин]\n2. Обжарьте лук и фарш. [7 мин]\n3. Смешайте. [2 мин]", time: "20 мин" },
-        { id: 'b10', name: "Оладьи на кефире", category: "breakfast", ing: "Кефир — 250 мл\nЯйцо — 1 шт\nМука — 200 г\nСахар — 2 ст.л.\nСода — 0,5 ч.л.", instr: "1. Смешайте кефир, яйцо, сахар. [2 мин]\n2. Добавьте соду, муку. [2 мин]\n3. Жарьте по 2 мин. [10 мин]", time: "15 мин" },
-        { id: 'b11', name: "Греческий салат", category: "salad", ing: "Помидоры — 3 шт\nОгурцы — 2 шт\nФета — 150 г", instr: "1. Нарежьте овощи. [5 мин]\n2. Добавьте сыр и маслины. [2 мин]\n3. Заправьте маслом. [1 мин]", time: "10 мин" },
-        { id: 'b12', name: "Куриный суп", category: "soup", ing: "Курица — 1 шт\nЛапша — 100 г\nКартофель — 2 шт", instr: "1. Сварите курицу 20 мин. [20 мин]\n2. Добавьте картофель, 10 мин. [10 мин]\n3. Добавьте лапшу, 5 мин. [5 мин]", time: "35 мин" },
-        { id: 'b13', name: "Блинчики тонкие", category: "breakfast", ing: "Молоко — 500 мл\nЯйца — 2 шт\nМука — 250 г\nСахар — 1 ст.л.", instr: "1. Взбейте яйца с сахаром. [2 мин]\n2. Добавьте молоко, муку. [3 мин]\n3. Жарьте по 1 мин. [15 мин]", time: "30 мин" },
-        { id: 'b14', name: "Пюре картофельное", category: "main", ing: "Картофель — 1 кг\nМолоко — 200 мл\nМасло — 50 г", instr: "1. Отварите 20 мин. [20 мин]\n2. Разомните. [5 мин]\n3. Добавьте молоко и масло. [3 мин]", time: "30 мин" },
-        { id: 'b15', name: "Гуляш из говядины", category: "main", ing: "Говядина — 500 г\nЛук — 2 шт\nТоматная паста — 2 ст.л.", instr: "1. Обжарьте мясо. [10 мин]\n2. Добавьте лук. [5 мин]\n3. Залейте водой с пастой. [2 мин]\n4. Тушите 1,5 ч. [90 мин]", time: "2 ч" },
-        { id: 'b16', name: "Салат Мимоза", category: "salad", ing: "Консервы рыбные — 1 б.\nЯйца — 4 шт\nСыр — 100 г", instr: "1. Отварите яйца, разделите. [10 мин]\n2. Выложите слоями. [10 мин]\n3. В холодильник на 2 ч. [0 мин]", time: "30 мин + 2 ч" },
-        { id: 'b17', name: "Кекс в кружке", category: "dessert", ing: "Мука — 4 ст.л.\nСахар — 3 ст.л.\nКакао — 2 ст.л.\nЯйцо — 1 шт\nМолоко — 3 ст.л.", instr: "1. Смешайте сухие ингредиенты. [1 мин]\n2. Добавьте яйцо, молоко. [1 мин]\n3. В микроволновку на 2 мин. [2 мин]", time: "5 мин" },
-        { id: 'b18', name: "Домашний лимонад", category: "drink", ing: "Лимоны — 2 шт\nСахар — 100 г\nВода — 1 л", instr: "1. Снимите цедру, выжмите сок. [5 мин]\n2. Сварите сироп. [5 мин]\n3. Смешайте, остудите. [1 мин]", time: "10 мин + охл." },
-        { id: 'b19', name: "Банановые панкейки", category: "breakfast", ing: "Банан — 1 шт\nЯйцо — 1 шт\nМука — 3 ст.л.", instr: "1. Разомните банан. [2 мин]\n2. Добавьте яйцо, муку. [2 мин]\n3. Жарьте по 2 мин. [8 мин]", time: "12 мин" },
-        { id: 'b20', name: "Соус Песто", category: "main", ing: "Базилик — 50 г\nОрехи — 30 г\nПармезан — 50 г\nМасло — 80 мл", instr: "1. В блендер всё. [2 мин]\n2. Измельчите. [3 мин]\n3. Добавьте сыр. [1 мин]", time: "10 мин" }
-    ];
-
-    var substitutes = [
-        { from: "Сметана", to: "Греческий йогурт", note: "1:1" }, { from: "Майонез", to: "Сметана + горчица", note: "2:1" },
-        { from: "Яйцо", to: "Банан", note: "1 яйцо = 1/2 банана" }, { from: "Сливочное масло", to: "Растительное", note: "100 г = 80 мл" },
-        { from: "Молоко", to: "Вода + масло", note: "200 мл = 180 + 20 г" }, { from: "Мука", to: "Овсяная мука", note: "1:1" },
-        { from: "Сахар", to: "Мёд", note: "100 г = 80 г" }, { from: "Творог", to: "Рикотта", note: "1:1" },
-        { from: "Чеснок", to: "Порошок", note: "1 зуб. = 1/4 ч.л." }, { from: "Лимонный сок", to: "Уксус", note: "1 ст.л. = 1 ч.л." },
-        { from: "Разрыхлитель", to: "Сода + уксус", note: "1 ч.л. = 1/2 + 1 ч.л." }, { from: "Пармезан", to: "Твёрдый сыр", note: "1:1" }
-    ];
-
-    function getAllRecipes() { return recipes.concat(builtinRecipes); }
-    function findRecipeById(id) { var a = getAllRecipes(); for (var i = 0; i < a.length; i++) { if (a[i].id === id) return a[i]; } return null; }
-    function savePlan() { localStorage.setItem('weekPlan', JSON.stringify(weekPlan)); }
-    function showPlanner() { navigateTo('planner'); renderPlanner(); }
-    function renderPlanner() { var list = document.getElementById('planner-list'); list.innerHTML = ''; var days = ['mon','tue','wed','thu','fri','sat','sun']; var dn = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс']; for (var i = 0; i < days.length; i++) { var d = days[i], rid = weekPlan[d], r = rid ? findRecipeById(rid) : null; var card = document.createElement('div'); card.className = 'plan-card'; card.innerHTML = '<div class="plan-day">' + dn[i] + '</div><div class="plan-recipe' + (r ? '' : ' empty') + '">' + (r ? r.name : 'Не выбрано') + '</div>' + (r ? '<div class="plan-delete" onclick="event.stopPropagation(); removeFromPlan(\'' + d + '\')">✕</div>' : ''); card.onclick = function(day) { return function() { openPicker(day); }; }(d); list.appendChild(card); } }
-    function removeFromPlan(day) { weekPlan[day] = null; savePlan(); renderPlanner(); }
-    function openPicker(day) { pickerDay = day; document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-picker').classList.add('active'); currentScreen = 'picker'; document.getElementById('picker-search').value = ''; renderPicker(); }
-    function closePicker() { document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-planner').classList.add('active'); currentScreen = 'planner'; renderPlanner(); }
-    function renderPicker(filter) { var list = document.getElementById('picker-list'), all = getAllRecipes(); list.innerHTML = ''; for (var i = 0; i < all.length; i++) { if (filter && all[i].name.toLowerCase().indexOf(filter) === -1) continue; var card = document.createElement('div'); card.className = 'fridge-result'; card.innerHTML = '<h3>' + all[i].name + '</h3><div style="font-size:13px;color:var(--text-light);">' + (all[i].time || '') + '</div>'; card.onclick = function(rid) { return function() { weekPlan[pickerDay] = rid; savePlan(); closePicker(); }; }(all[i].id); list.appendChild(card); } }
-    function filterPicker() { renderPicker(document.getElementById('picker-search').value.toLowerCase()); }
-    function showSubstitutes() { navigateTo('substitutes'); renderSubstitutes(); }
-    function renderSubstitutes(filter) { var list = document.getElementById('substitutes-list'); list.innerHTML = ''; for (var i = 0; i < substitutes.length; i++) { if (filter && substitutes[i].from.toLowerCase().indexOf(filter) === -1) continue; var div = document.createElement('div'); div.className = 'sub-item'; div.innerHTML = '<h3>' + substitutes[i].from + ' → ' + substitutes[i].to + '</h3><p>' + substitutes[i].note + '</p>'; list.appendChild(div); } }
-    function filterSubstitutes() { renderSubstitutes(document.getElementById('sub-search').value.toLowerCase()); }
-    function saveShoppingList() { localStorage.setItem('shoppingList', JSON.stringify(shoppingList)); updateMain(); }
-    function addToShoppingList(t) { if (!t) return; var lines = t.split('\n'), added = 0; for (var i = 0; i < lines.length; i++) { var l = lines[i].trim(); if (!l) continue; var ex = false; for (var j = 0; j < shoppingList.length; j++) { if (shoppingList[j].text === l) { ex = true; break; } } if (!ex) { shoppingList.push({ text: l, checked: false }); added++; } } if (added > 0) { saveShoppingList(); showToast('✅ +' + added); } else { showToast('Уже в списке'); } }
-    function toggleShopItem(i) { shoppingList[i].checked = !shoppingList[i].checked; saveShoppingList(); renderShoppingList(); }
-    function deleteShopItem(i) { shoppingList.splice(i, 1); saveShoppingList(); renderShoppingList(); }
-    function clearChecked() { shoppingList = shoppingList.filter(function(x) { return !x.checked; }); saveShoppingList(); renderShoppingList(); }
-    function clearAllShopping() { if (confirm('Очистить?')) { shoppingList = []; saveShoppingList(); renderShoppingList(); } }
-    function showShoppingList() { navigateTo('shopping'); renderShoppingList(); }
-    function renderShoppingList() { 
-        var l = document.getElementById('shopping-list'), e = document.getElementById('shop-empty-state'), a = document.getElementById('shop-actions'); 
-        l.innerHTML = ''; 
-        if (!shoppingList.length) { e.style.display = 'block'; a.style.display = 'none'; } 
-        else { e.style.display = 'none'; a.style.display = 'flex'; } 
-        for (var i = 0; i < shoppingList.length; i++) { 
-            var item = shoppingList[i]; 
-            var d = document.createElement('div'); 
-            d.className = 'shop-item' + (item.checked ? ' checked' : ''); 
-            d.innerHTML = '<div class="shop-checkbox' + (item.checked ? ' done' : '') + '" onclick="toggleShopItem(' + i + ')">' + (item.checked ? '✓' : '') + '</div><div class="shop-text">' + item.text + '</div><div class="shop-delete" onclick="deleteShopItem(' + i + ')">🗑</div>'; 
-            l.appendChild(d); 
-        } 
-    }
-    function showFridge() { navigateTo('fridge'); document.getElementById('fridge-input').value = ''; document.getElementById('fridge-results').innerHTML = ''; document.getElementById('fridge-empty').style.display = 'block'; }
-    function searchFridge() { var q = document.getElementById('fridge-input').value.toLowerCase().trim(); var results = document.getElementById('fridge-results'), empty = document.getElementById('fridge-empty'); if (!q) { results.innerHTML = ''; empty.style.display = 'block'; return; } var ui = q.split(',').map(function(s) { return s.trim().toLowerCase(); }).filter(function(s) { return s; }); var all = getAllRecipes(), matched = []; for (var i = 0; i < all.length; i++) { var r = all[i], rt = (r.ing || '').toLowerCase() + ' ' + r.name.toLowerCase(), f = 0; for (var j = 0; j < ui.length; j++) { if (rt.indexOf(ui[j]) !== -1) f++; } if (f > 0) matched.push({ recipe: r, found: f, total: ui.length }); } matched.sort(function(a, b) { return b.found - a.found; }); results.innerHTML = ''; if (!matched.length) { empty.style.display = 'block'; empty.innerHTML = '<div class="icon">😕</div><p>Ничего не найдено</p>'; } else { empty.style.display = 'none'; for (var k = 0; k < matched.length; k++) { var m = matched[k], r = m.recipe, src = r.id.startsWith('b') ? 'builtin' : 'my'; var div = document.createElement('div'); div.className = 'fridge-result'; div.innerHTML = '<h3>' + r.name + '</h3><div class="match">Совпало: ' + m.found + ' из ' + m.total + '</div>'; div.onclick = function(rid, rsrc) { return function() { showDetail(rid, rsrc); }; }(r.id, src); results.appendChild(div); } } }
-    function parseStepTime(t) { var m = t.match(/\[(\d+)\s*мин\]/); return m ? { text: t.replace(/\s*\[\d+\s*мин\]/, '').trim(), time: parseInt(m[1]) } : { text: t.trim(), time: 0 }; }
-    function startCooking(id, src) { var r = findRecipeById(id); if (!r || !r.instr) { alert('Нет инструкции'); return; } cookingRecipe = r; cookingSteps = r.instr.split('\n').filter(function(s) { return s.trim(); }); currentStep = 0; completedSteps = new Array(cookingSteps.length).fill(false); resetTimer(); document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-cooking').classList.add('active'); currentScreen = 'cooking'; window.scrollTo(0, 0); renderCookingStep(); }
-    function goBackFromCooking() { stopTimer(); document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-detail').classList.add('active'); currentScreen = 'detail'; window.scrollTo(0, 0); showDetailContent(); }
-    function renderCookingStep() { document.getElementById('cooking-title').textContent = cookingRecipe.name; document.getElementById('step-counter').textContent = 'Шаг ' + (currentStep + 1) + ' из ' + cookingSteps.length; var p = parseStepTime(cookingSteps[currentStep]); document.getElementById('step-text').textContent = p.text; if (p.time > 0 && !timerRunning) { timerSeconds = p.time * 60; document.getElementById('timer-minutes').value = p.time; document.getElementById('timer-seconds').value = 0; updateTimerDisplay(); } updateButtons(); }
-    function updateButtons() { var bp = document.getElementById('btn-prev'), bn = document.getElementById('btn-next'), bf = document.getElementById('btn-finish'); bp.style.display = currentStep === 0 ? 'none' : 'block'; bn.style.display = currentStep === cookingSteps.length - 1 ? 'none' : 'block'; bf.style.display = currentStep === cookingSteps.length - 1 ? 'block' : 'none'; if (currentStep === 0 && cookingSteps.length === 1) { bn.style.display = 'none'; bf.style.display = 'block'; } }
-    function nextStep() { completedSteps[currentStep] = true; if (currentStep < cookingSteps.length - 1) { currentStep++; resetTimer(); renderCookingStep(); } }
-    function prevStep() { if (currentStep > 0) { currentStep--; resetTimer(); renderCookingStep(); } }
-    function finishCooking() { stopTimer(); alert('Готово! 🎉'); navigateTo('main'); }
-    function updateTimerDisplay() { var m = Math.floor(Math.abs(timerSeconds) / 60), s = Math.abs(timerSeconds) % 60; document.getElementById('cooking-timer').textContent = (timerSeconds < 0 ? '-' : '') + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); }
-    function startTimer() { if (timerRunning) return; if (timerSeconds === 0) { var m = parseInt(document.getElementById('timer-minutes').value) || 0, s = parseInt(document.getElementById('timer-seconds').value) || 0; timerSeconds = m * 60 + s; if (timerSeconds <= 0) { alert('Укажите время'); return; } } timerRunning = true; document.getElementById('timer-start').style.display = 'none'; document.getElementById('timer-pause').style.display = 'inline-block'; document.getElementById('cooking-timer').classList.add('running'); timerInterval = setInterval(function() { timerSeconds--; updateTimerDisplay(); if (timerSeconds <= 0) { stopTimer(); showToast('⏰ Время!'); } }, 1000); updateTimerDisplay(); }
-    function pauseTimer() { if (!timerRunning) return; timerRunning = false; clearInterval(timerInterval); document.getElementById('timer-start').style.display = 'inline-block'; document.getElementById('timer-pause').style.display = 'none'; document.getElementById('cooking-timer').classList.remove('running'); }
-    function resetTimer() { stopTimer(); timerSeconds = 0; document.getElementById('timer-minutes').value = 5; document.getElementById('timer-seconds').value = 0; updateTimerDisplay(); }
-    function stopTimer() { timerRunning = false; clearInterval(timerInterval); document.getElementById('timer-start').style.display = 'inline-block'; document.getElementById('timer-pause').style.display = 'none'; }
-    function showToast(m) { var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(function() { t.classList.remove('show'); }, 2000); }
-    
-    function shareRecipe(r) {
-        var text = '🍳 ' + r.name + '\n⏱ ' + (r.time || '') + '\n\n📋 Ингредиенты:\n' + (r.ing || '') + '\n\n📝 Приготовление:\n' + (r.instr || '').replace(/\s*\[\d+\s*мин\]/g, '') + '\n\n📱 Открой в VK: https://vk.com/app54646829#recipe_' + r.id;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).then(function() { showToast('📋 Скопировано!'); });
+// ===== VK BRIDGE - ПРОСТАЯ ИНИЦИАЛИЗАЦИЯ =====
+(function() {
+    try {
+        if (typeof vkBridge !== 'undefined') {
+            vkBridge.send('VKWebAppInit')
+                .then(function() {
+                    try { vkBridge.send('VKWebAppLoadingCompleted', { ok: true }); } catch(e) {}
+                    console.log('✅ VK Bridge готов');
+                })
+                .catch(function(e) { console.warn('VK init error:', e); });
         } else {
-            var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-            document.body.appendChild(ta); ta.select();
-            try { document.execCommand('copy'); showToast('📋 Скопировано!'); } catch(e) {}
-            document.body.removeChild(ta);
+            var s = document.createElement('script');
+            s.src = 'https://vk.com/js/api/xd_connection.js?2';
+            s.onload = function() {
+                if (typeof vkBridge !== 'undefined') {
+                    vkBridge.send('VKWebAppInit')
+                        .then(function() {
+                            try { vkBridge.send('VKWebAppLoadingCompleted', { ok: true }); } catch(e) {}
+                            console.log('✅ VK Bridge загружен');
+                        })
+                        .catch(function(e) { console.warn('VK init error:', e); });
+                }
+            };
+            document.head.appendChild(s);
         }
-    }
+    } catch(e) { console.warn('VK error:', e); }
+})();
 
-    function getAllAvailableRecipes() { var a = []; for (var i = 0; i < recipes.length; i++) a.push({r: recipes[i], source: 'my'}); var m = isPremium ? builtinRecipes.length : 10; for (var j = 0; j < m && j < builtinRecipes.length; j++) a.push({r: builtinRecipes[j], source: 'builtin'}); return a; }
-    function randomRecipe() { var a = getAllAvailableRecipes(); if (!a.length) { alert('Нет рецептов.'); return; } var p = a[Math.floor(Math.random() * a.length)], r = p.r; document.getElementById('random-result-container').innerHTML = '<div class="random-result" onclick="showDetail(\'' + r.id + '\', \'' + p.source + '\')"><div class="dice spinning">🎲</div><h3>' + r.name + '</h3><div class="hint">' + (r.time || '') + ' · Нажмите</div></div>'; setTimeout(function() { var d = document.querySelector('#random-result-container .dice'); if (d) d.classList.remove('spinning'); }, 500); }
-    function saveData() { localStorage.setItem('recipes', JSON.stringify(recipes)); localStorage.setItem('premium', JSON.stringify(isPremium)); localStorage.setItem('favorites', JSON.stringify(favorites)); saveShoppingList(); savePlan(); }
-    function isFavorite(id) { return favorites.indexOf(id) !== -1; }
-    function toggleFavorite(id, event) { if (event) event.stopPropagation(); var i = favorites.indexOf(id); if (i === -1) favorites.push(id); else favorites.splice(i, 1); saveData(); updateMain(); if (currentScreen === 'list') showMyRecipes(); if (currentScreen === 'builtin') showBuiltin(); if (currentScreen === 'favorites') showFavorites(); if (currentScreen === 'detail' && currentDetailRecipeId === id) showDetailContent(); }
-    function getHeartHTML(id) { var l = isFavorite(id); return '<div class="heart-btn' + (l ? ' liked' : '') + '" onclick="toggleFavorite(\'' + id + '\', event)">' + (l ? '❤️' : '🤍') + '</div>'; }
-    function navigateTo(screen) { document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-' + screen).classList.add('active'); currentScreen = screen; navigationStack.push(screen); window.scrollTo(0, 0); if (screen === 'main') updateMain(); if (screen === 'builtin') showBuiltin(); if (screen === 'list') showMyRecipes(); if (screen === 'favorites') showFavorites(); if (screen === 'shopping') renderShoppingList(); if (screen === 'fridge') { document.getElementById('fridge-input').value = ''; document.getElementById('fridge-results').innerHTML = ''; document.getElementById('fridge-empty').style.display = 'block'; } if (screen === 'planner') renderPlanner(); if (screen === 'substitutes') renderSubstitutes(); }
-    function goBack() { navigationStack.pop(); var p = navigationStack[navigationStack.length - 1] || 'main'; document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-' + p).classList.add('active'); currentScreen = p; window.scrollTo(0, 0); if (p === 'main') updateMain(); if (p === 'builtin') showBuiltin(); if (p === 'list') showMyRecipes(); if (p === 'favorites') showFavorites(); if (p === 'shopping') renderShoppingList(); if (p === 'planner') renderPlanner(); if (p === 'substitutes') renderSubstitutes(); }
-    function updateMain() { document.getElementById('count').innerText = recipes.length; document.getElementById('fav-count').innerText = favorites.length; document.getElementById('shop-count').innerText = shoppingList.length; if (isPremium) document.getElementById('premium-btn').classList.add('hidden'); }
-    function addIngredient(ing) { var f = document.getElementById('ingredients'), c = f.value.trim(); if (c && !c.endsWith('\n')) c += '\n'; f.value = c + ing + ' — '; f.focus(); }
-    function saveRecipe() { if (!isPremium && recipes.length >= 5) { alert('Бесплатно 5 рецептов.'); return; } var n = document.getElementById('name').value.trim(); if (!n) { alert('Введи название'); return; } recipes.push({ id: 'r' + Date.now(), name: n, ing: document.getElementById('ingredients').value.trim(), instr: document.getElementById('instructions').value.trim(), time: document.getElementById('time').value.trim() }); saveData(); document.getElementById('name').value = ''; document.getElementById('ingredients').value = ''; document.getElementById('instructions').value = ''; document.getElementById('time').value = ''; alert('Сохранено!'); navigateTo('main'); }
-    function showMyRecipes() { navigateTo('list'); document.getElementById('search-my').value = ''; var l = document.getElementById('recipe-list'); l.innerHTML = ''; var e = document.getElementById('empty-state'); if (!recipes.length) e.classList.remove('hidden'); else e.classList.add('hidden'); for (var i = 0; i < recipes.length; i++) { var c = document.createElement('div'); c.className = 'card'; c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + recipes[i].id + '\', \'my\')"><h3>' + recipes[i].name + '</h3><div class="meta"><span>' + (recipes[i].time || '') + '</span></div></div>' + getHeartHTML(recipes[i].id); l.appendChild(c); } var lm = document.getElementById('lock-msg'); if (!isPremium && recipes.length >= 5) lm.classList.remove('hidden'); else lm.classList.add('hidden'); }
-    function showDetail(id, source) { currentDetailRecipeId = id; currentDetailSource = source; navigateTo('detail'); showDetailContent(); }
-    function showDetailContent() {
-        var id = currentDetailRecipeId, s = currentDetailSource, r = findRecipeById(id);
-        if (!r) return;
-        var steps = r.instr ? r.instr.split('\n').filter(function(x) { return x.trim(); }) : [];
-        var progressKey = 'progress_' + id;
-        var savedProgress = JSON.parse(localStorage.getItem(progressKey) || '[]');
-        if (savedProgress.length === steps.length) { completedSteps = savedProgress; }
-        else { completedSteps = new Array(steps.length).fill(false); }
-        var doneCount = 0;
-        for (var i = 0; i < completedSteps.length; i++) { if (completedSteps[i]) doneCount++; }
-        var progress = steps.length > 0 ? Math.round((doneCount / steps.length) * 100) : 0;
-        var h = '<div class="detail-header"><h2>' + r.name + '</h2><div class="detail-heart' + (isFavorite(id) ? ' liked' : '') + '" onclick="toggleFavorite(\'' + id + '\', event)">' + (isFavorite(id) ? '❤️' : '🤍') + '</div></div>';
-        h += '<div class="badge">' + (r.time || '') + '</div>';
-        if (steps.length > 0) {
-            h += '<div class="section"><h3>Прогресс (' + progress + '%)</h3><div class="progress-bar"><div class="progress-fill" style="width:' + progress + '%;"></div></div>';
-            for (var j = 0; j < steps.length; j++) {
-                var done = completedSteps[j] || false;
-                h += '<div class="step-check" onclick="toggleStepDetail(' + j + ', \'' + id + '\')"><div class="dot' + (done ? ' done' : '') + '">' + (done ? '✓' : '') + '</div><div class="step-label' + (done ? ' done' : '') + '">' + steps[j].trim().replace(/\s*\[\d+\s*мин\]/, '') + '</div></div>';
-            }
-            h += '</div>';
+// ===== ОСНОВНОЙ КОД =====
+var recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
+var isPremium = JSON.parse(localStorage.getItem('premium') || 'false');
+var favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+var shoppingList = JSON.parse(localStorage.getItem('shoppingList') || '[]');
+var weekPlan = JSON.parse(localStorage.getItem('weekPlan') || '{"mon":null,"tue":null,"wed":null,"thu":null,"fri":null,"sat":null,"sun":null}');
+var isDark = JSON.parse(localStorage.getItem('darkTheme') || 'false');
+var currentScreen = 'main', navigationStack = ['main'];
+var currentDetailRecipeId = null, currentDetailSource = null, currentCategory = 'all';
+var cookingRecipe = null, cookingSteps = [], currentStep = 0;
+var timerSeconds = 0, timerInterval = null, timerRunning = false;
+var pickerDay = null, completedSteps = [];
+
+if (isDark) { document.body.classList.add('dark'); document.getElementById('theme-btn').textContent = '☀️'; }
+else { document.getElementById('theme-btn').textContent = '🌙'; }
+
+function toggleTheme() { 
+    isDark = !isDark; 
+    localStorage.setItem('darkTheme', JSON.stringify(isDark)); 
+    if (isDark) { document.body.classList.add('dark'); document.getElementById('theme-btn').textContent = '☀️'; } 
+    else { document.body.classList.remove('dark'); document.getElementById('theme-btn').textContent = '🌙'; } 
+}
+
+var builtinRecipes = [
+    { id: 'b1', name: "Ленивая овсянка в банке", category: "breakfast", ing: "Овсяные хлопья — 4 ст.л.\nЙогурт натуральный — 150 мл\nМёд — 1 ч.л.\nЯгоды — 50 г", instr: "1. Насыпьте хлопья в банку. [1 мин]\n2. Залейте йогуртом, добавьте мёд. [1 мин]\n3. Выложите ягоды. [1 мин]\n4. Закройте и в холодильник на 6+ часов. [0 мин]\n5. Утром готово!", time: "5 мин + ночь" },
+    { id: 'b2', name: "Сырники за 10 минут", category: "breakfast", ing: "Творог 9% — 200 г\nЯйцо — 1 шт\nМука — 2 ст.л. + для обваливания\nСахар — 1 ст.л.\nВанильный сахар — 1 ч.л.\nМасло растительное — для жарки", instr: "1. Разомните творог. [2 мин]\n2. Добавьте яйцо, сахар, муку. [2 мин]\n3. Сформируйте шарики, обваляйте в муке. [3 мин]\n4. Жарьте по 2-3 мин с каждой стороны. [5 мин]", time: "10 мин" },
+    { id: 'b3', name: "Яичница в хлебе", category: "breakfast", ing: "Хлеб — 2 ломтика\nЯйца — 2 шт\nСыр — 30 г\nМасло сливочное — 10 г", instr: "1. Вырежьте отверстие в хлебе. [1 мин]\n2. Обжарьте хлеб на масле. [1 мин]\n3. Разбейте яйцо в отверстие. [1 мин]\n4. Посыпьте сыром, жарьте 3-4 мин. [4 мин]", time: "7 мин" },
+    { id: 'b4', name: "Сырный суп с курицей", category: "soup", ing: "Куриное филе — 300 г\nКартофель — 3 шт\nПлавленый сыр — 2 шт\nМорковь, лук — по 1 шт", instr: "1. Сварите курицу 15 мин. [15 мин]\n2. Добавьте картофель, 10 мин. [10 мин]\n3. Обжарьте лук и морковь. [4 мин]\n4. Добавьте сыр, помешивая. [3 мин]\n5. Посолите, варите 5 мин. [5 мин]", time: "35 мин" },
+    { id: 'b5', name: "Ленивые голубцы", category: "main", ing: "Фарш — 500 г\nКапуста — 300 г\nРис — 100 г\nТоматная паста — 2 ст.л.", instr: "1. Отварите рис 7 мин. [7 мин]\n2. Смешайте фарш, капусту, рис. [5 мин]\n3. Сформируйте котлеты. [5 мин]\n4. Залейте соусом. [3 мин]\n5. Тушите 30 мин. [30 мин]", time: "45 мин" },
+    { id: 'b6', name: "Курица в сметане", category: "main", ing: "Куриные бёдра — 6 шт\nСметана — 200 г\nЧеснок — 3 зубчика", instr: "1. Натрите бёдра солью и паприкой. [2 мин]\n2. Смешайте сметану с чесноком. [2 мин]\n3. Залейте бёдра. [1 мин]\n4. Запекайте при 180°C 35-40 мин. [35 мин]", time: "40 мин" },
+    { id: 'b7', name: "Цезарь домашний", category: "salad", ing: "Куриная грудка — 1 шт\nСалат Айсберг — 200 г\nПомидоры черри — 100 г\nПармезан — 50 г", instr: "1. Обжарьте курицу, нарежьте. [12 мин]\n2. Порвите салат. [2 мин]\n3. Добавьте помидоры, сухарики. [2 мин]\n4. Заправьте соусом. [2 мин]", time: "20 мин" },
+    { id: 'b8', name: "Шарлотка", category: "dessert", ing: "Яблоки — 4 шт\nЯйца — 3 шт\nМука — 200 г\nСахар — 200 г", instr: "1. Нарежьте яблоки дольками. [5 мин]\n2. Взбейте яйца с сахаром. [5 мин]\n3. Добавьте муку. [2 мин]\n4. Залейте яблоки тестом. [1 мин]\n5. Выпекайте 30 мин при 180°C. [30 мин]", time: "45 мин" },
+    { id: 'b9', name: "Макароны по-флотски", category: "main", ing: "Макароны — 300 г\nФарш — 300 г\nЛук — 1 шт", instr: "1. Отварите макароны. [10 мин]\n2. Обжарьте лук и фарш. [7 мин]\n3. Смешайте. [2 мин]", time: "20 мин" },
+    { id: 'b10', name: "Оладьи на кефире", category: "breakfast", ing: "Кефир — 250 мл\nЯйцо — 1 шт\nМука — 200 г\nСахар — 2 ст.л.\nСода — 0,5 ч.л.", instr: "1. Смешайте кефир, яйцо, сахар. [2 мин]\n2. Добавьте соду, муку. [2 мин]\n3. Жарьте по 2 мин. [10 мин]", time: "15 мин" },
+    { id: 'b11', name: "Греческий салат", category: "salad", ing: "Помидоры — 3 шт\nОгурцы — 2 шт\nФета — 150 г", instr: "1. Нарежьте овощи. [5 мин]\n2. Добавьте сыр и маслины. [2 мин]\n3. Заправьте маслом. [1 мин]", time: "10 мин" },
+    { id: 'b12', name: "Куриный суп", category: "soup", ing: "Курица — 1 шт\nЛапша — 100 г\nКартофель — 2 шт", instr: "1. Сварите курицу 20 мин. [20 мин]\n2. Добавьте картофель, 10 мин. [10 мин]\n3. Добавьте лапшу, 5 мин. [5 мин]", time: "35 мин" },
+    { id: 'b13', name: "Блинчики тонкие", category: "breakfast", ing: "Молоко — 500 мл\nЯйца — 2 шт\nМука — 250 г\nСахар — 1 ст.л.", instr: "1. Взбейте яйца с сахаром. [2 мин]\n2. Добавьте молоко, муку. [3 мин]\n3. Жарьте по 1 мин. [15 мин]", time: "30 мин" },
+    { id: 'b14', name: "Пюре картофельное", category: "main", ing: "Картофель — 1 кг\nМолоко — 200 мл\nМасло — 50 г", instr: "1. Отварите 20 мин. [20 мин]\n2. Разомните. [5 мин]\n3. Добавьте молоко и масло. [3 мин]", time: "30 мин" },
+    { id: 'b15', name: "Гуляш из говядины", category: "main", ing: "Говядина — 500 г\nЛук — 2 шт\nТоматная паста — 2 ст.л.", instr: "1. Обжарьте мясо. [10 мин]\n2. Добавьте лук. [5 мин]\n3. Залейте водой с пастой. [2 мин]\n4. Тушите 1,5 ч. [90 мин]", time: "2 ч" },
+    { id: 'b16', name: "Салат Мимоза", category: "salad", ing: "Консервы рыбные — 1 б.\nЯйца — 4 шт\nСыр — 100 г", instr: "1. Отварите яйца, разделите. [10 мин]\n2. Выложите слоями. [10 мин]\n3. В холодильник на 2 ч. [0 мин]", time: "30 мин + 2 ч" },
+    { id: 'b17', name: "Кекс в кружке", category: "dessert", ing: "Мука — 4 ст.л.\nСахар — 3 ст.л.\nКакао — 2 ст.л.\nЯйцо — 1 шт\nМолоко — 3 ст.л.", instr: "1. Смешайте сухие ингредиенты. [1 мин]\n2. Добавьте яйцо, молоко. [1 мин]\n3. В микроволновку на 2 мин. [2 мин]", time: "5 мин" },
+    { id: 'b18', name: "Домашний лимонад", category: "drink", ing: "Лимоны — 2 шт\nСахар — 100 г\nВода — 1 л", instr: "1. Снимите цедру, выжмите сок. [5 мин]\n2. Сварите сироп. [5 мин]\n3. Смешайте, остудите. [1 мин]", time: "10 мин + охл." },
+    { id: 'b19', name: "Банановые панкейки", category: "breakfast", ing: "Банан — 1 шт\nЯйцо — 1 шт\nМука — 3 ст.л.", instr: "1. Разомните банан. [2 мин]\n2. Добавьте яйцо, муку. [2 мин]\n3. Жарьте по 2 мин. [8 мин]", time: "12 мин" },
+    { id: 'b20', name: "Соус Песто", category: "main", ing: "Базилик — 50 г\nОрехи — 30 г\nПармезан — 50 г\nМасло — 80 мл", instr: "1. В блендер всё. [2 мин]\n2. Измельчите. [3 мин]\n3. Добавьте сыр. [1 мин]", time: "10 мин" }
+];
+
+var substitutes = [
+    { from: "Сметана", to: "Греческий йогурт", note: "1:1" }, { from: "Майонез", to: "Сметана + горчица", note: "2:1" },
+    { from: "Яйцо", to: "Банан", note: "1 яйцо = 1/2 банана" }, { from: "Сливочное масло", to: "Растительное", note: "100 г = 80 мл" },
+    { from: "Молоко", to: "Вода + масло", note: "200 мл = 180 + 20 г" }, { from: "Мука", to: "Овсяная мука", note: "1:1" },
+    { from: "Сахар", to: "Мёд", note: "100 г = 80 г" }, { from: "Творог", to: "Рикотта", note: "1:1" },
+    { from: "Чеснок", to: "Порошок", note: "1 зуб. = 1/4 ч.л." }, { from: "Лимонный сок", to: "Уксус", note: "1 ст.л. = 1 ч.л." },
+    { from: "Разрыхлитель", to: "Сода + уксус", note: "1 ч.л. = 1/2 + 1 ч.л." }, { from: "Пармезан", to: "Твёрдый сыр", note: "1:1" }
+];
+
+function getAllRecipes() { return recipes.concat(builtinRecipes); }
+function findRecipeById(id) { var a = getAllRecipes(); for (var i = 0; i < a.length; i++) { if (a[i].id === id) return a[i]; } return null; }
+function savePlan() { localStorage.setItem('weekPlan', JSON.stringify(weekPlan)); }
+function showPlanner() { navigateTo('planner'); renderPlanner(); }
+function renderPlanner() { var list = document.getElementById('planner-list'); list.innerHTML = ''; var days = ['mon','tue','wed','thu','fri','sat','sun']; var dn = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс']; for (var i = 0; i < days.length; i++) { var d = days[i], rid = weekPlan[d], r = rid ? findRecipeById(rid) : null; var card = document.createElement('div'); card.className = 'plan-card'; card.innerHTML = '<div class="plan-day">' + dn[i] + '</div><div class="plan-recipe' + (r ? '' : ' empty') + '">' + (r ? r.name : 'Не выбрано') + '</div>' + (r ? '<div class="plan-delete" onclick="event.stopPropagation(); removeFromPlan(\'' + d + '\')">✕</div>' : ''); card.onclick = function(day) { return function() { openPicker(day); }; }(d); list.appendChild(card); } }
+function removeFromPlan(day) { weekPlan[day] = null; savePlan(); renderPlanner(); }
+function openPicker(day) { pickerDay = day; document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-picker').classList.add('active'); currentScreen = 'picker'; document.getElementById('picker-search').value = ''; renderPicker(); }
+function closePicker() { document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-planner').classList.add('active'); currentScreen = 'planner'; renderPlanner(); }
+function renderPicker(filter) { var list = document.getElementById('picker-list'), all = getAllRecipes(); list.innerHTML = ''; for (var i = 0; i < all.length; i++) { if (filter && all[i].name.toLowerCase().indexOf(filter) === -1) continue; var card = document.createElement('div'); card.className = 'fridge-result'; card.innerHTML = '<h3>' + all[i].name + '</h3><div style="font-size:13px;color:var(--text-light);">' + (all[i].time || '') + '</div>'; card.onclick = function(rid) { return function() { weekPlan[pickerDay] = rid; savePlan(); closePicker(); }; }(all[i].id); list.appendChild(card); } }
+function filterPicker() { renderPicker(document.getElementById('picker-search').value.toLowerCase()); }
+function showSubstitutes() { navigateTo('substitutes'); renderSubstitutes(); }
+function renderSubstitutes(filter) { var list = document.getElementById('substitutes-list'); list.innerHTML = ''; for (var i = 0; i < substitutes.length; i++) { if (filter && substitutes[i].from.toLowerCase().indexOf(filter) === -1) continue; var div = document.createElement('div'); div.className = 'sub-item'; div.innerHTML = '<h3>' + substitutes[i].from + ' → ' + substitutes[i].to + '</h3><p>' + substitutes[i].note + '</p>'; list.appendChild(div); } }
+function filterSubstitutes() { renderSubstitutes(document.getElementById('sub-search').value.toLowerCase()); }
+function saveShoppingList() { localStorage.setItem('shoppingList', JSON.stringify(shoppingList)); updateMain(); }
+function addToShoppingList(t) { if (!t) return; var lines = t.split('\n'), added = 0; for (var i = 0; i < lines.length; i++) { var l = lines[i].trim(); if (!l) continue; var ex = false; for (var j = 0; j < shoppingList.length; j++) { if (shoppingList[j].text === l) { ex = true; break; } } if (!ex) { shoppingList.push({ text: l, checked: false }); added++; } } if (added > 0) { saveShoppingList(); showToast('✅ +' + added); } else { showToast('Уже в списке'); } }
+function toggleShopItem(i) { shoppingList[i].checked = !shoppingList[i].checked; saveShoppingList(); renderShoppingList(); }
+function deleteShopItem(i) { shoppingList.splice(i, 1); saveShoppingList(); renderShoppingList(); }
+function clearChecked() { shoppingList = shoppingList.filter(function(x) { return !x.checked; }); saveShoppingList(); renderShoppingList(); }
+function clearAllShopping() { if (confirm('Очистить?')) { shoppingList = []; saveShoppingList(); renderShoppingList(); } }
+function showShoppingList() { navigateTo('shopping'); renderShoppingList(); }
+function renderShoppingList() { 
+    var l = document.getElementById('shopping-list');
+    var e = document.getElementById('shop-empty-state');
+    var a = document.getElementById('shop-actions');
+    l.innerHTML = '';
+    if (!shoppingList.length) {
+        e.style.display = 'block';
+        a.style.display = 'none';
+    } else {
+        e.style.display = 'none';
+        a.style.display = 'flex';
+    }
+    for (var i = 0; i < shoppingList.length; i++) {
+        var item = shoppingList[i];
+        var d = document.createElement('div');
+        d.className = 'shop-item' + (item.checked ? ' checked' : '');
+        d.innerHTML = '<div class="shop-checkbox' + (item.checked ? ' done' : '') + '" onclick="toggleShopItem(' + i + ')">' + (item.checked ? '✓' : '') + '</div><div class="shop-text">' + item.text + '</div><div class="shop-delete" onclick="deleteShopItem(' + i + ')">🗑</div>';
+        l.appendChild(d);
+    }
+}
+function showFridge() { navigateTo('fridge'); document.getElementById('fridge-input').value = ''; document.getElementById('fridge-results').innerHTML = ''; document.getElementById('fridge-empty').style.display = 'block'; }
+function searchFridge() { var q = document.getElementById('fridge-input').value.toLowerCase().trim(); var results = document.getElementById('fridge-results'), empty = document.getElementById('fridge-empty'); if (!q) { results.innerHTML = ''; empty.style.display = 'block'; return; } var ui = q.split(',').map(function(s) { return s.trim().toLowerCase(); }).filter(function(s) { return s; }); var all = getAllRecipes(), matched = []; for (var i = 0; i < all.length; i++) { var r = all[i], rt = (r.ing || '').toLowerCase() + ' ' + r.name.toLowerCase(), f = 0; for (var j = 0; j < ui.length; j++) { if (rt.indexOf(ui[j]) !== -1) f++; } if (f > 0) matched.push({ recipe: r, found: f, total: ui.length }); } matched.sort(function(a, b) { return b.found - a.found; }); results.innerHTML = ''; if (!matched.length) { empty.style.display = 'block'; empty.innerHTML = '<div class="icon">😕</div><p>Ничего не найдено</p>'; } else { empty.style.display = 'none'; for (var k = 0; k < matched.length; k++) { var m = matched[k], r = m.recipe, src = r.id.startsWith('b') ? 'builtin' : 'my'; var div = document.createElement('div'); div.className = 'fridge-result'; div.innerHTML = '<h3>' + r.name + '</h3><div class="match">Совпало: ' + m.found + ' из ' + m.total + '</div>'; div.onclick = function(rid, rsrc) { return function() { showDetail(rid, rsrc); }; }(r.id, src); results.appendChild(div); } } }
+function parseStepTime(t) { var m = t.match(/\[(\d+)\s*мин\]/); return m ? { text: t.replace(/\s*\[\d+\s*мин\]/, '').trim(), time: parseInt(m[1]) } : { text: t.trim(), time: 0 }; }
+function startCooking(id, src) { var r = findRecipeById(id); if (!r || !r.instr) { alert('Нет инструкции'); return; } cookingRecipe = r; cookingSteps = r.instr.split('\n').filter(function(s) { return s.trim(); }); currentStep = 0; completedSteps = new Array(cookingSteps.length).fill(false); resetTimer(); document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-cooking').classList.add('active'); currentScreen = 'cooking'; window.scrollTo(0, 0); renderCookingStep(); }
+function goBackFromCooking() { stopTimer(); document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-detail').classList.add('active'); currentScreen = 'detail'; window.scrollTo(0, 0); showDetailContent(); }
+function renderCookingStep() { document.getElementById('cooking-title').textContent = cookingRecipe.name; document.getElementById('step-counter').textContent = 'Шаг ' + (currentStep + 1) + ' из ' + cookingSteps.length; var p = parseStepTime(cookingSteps[currentStep]); document.getElementById('step-text').textContent = p.text; if (p.time > 0 && !timerRunning) { timerSeconds = p.time * 60; document.getElementById('timer-minutes').value = p.time; document.getElementById('timer-seconds').value = 0; updateTimerDisplay(); } updateButtons(); }
+function updateButtons() { var bp = document.getElementById('btn-prev'), bn = document.getElementById('btn-next'), bf = document.getElementById('btn-finish'); bp.style.display = currentStep === 0 ? 'none' : 'block'; bn.style.display = currentStep === cookingSteps.length - 1 ? 'none' : 'block'; bf.style.display = currentStep === cookingSteps.length - 1 ? 'block' : 'none'; if (currentStep === 0 && cookingSteps.length === 1) { bn.style.display = 'none'; bf.style.display = 'block'; } }
+function nextStep() { completedSteps[currentStep] = true; if (currentStep < cookingSteps.length - 1) { currentStep++; resetTimer(); renderCookingStep(); } }
+function prevStep() { if (currentStep > 0) { currentStep--; resetTimer(); renderCookingStep(); } }
+function finishCooking() { stopTimer(); alert('Готово! 🎉'); navigateTo('main'); }
+function updateTimerDisplay() { var m = Math.floor(Math.abs(timerSeconds) / 60), s = Math.abs(timerSeconds) % 60; document.getElementById('cooking-timer').textContent = (timerSeconds < 0 ? '-' : '') + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); }
+function startTimer() { if (timerRunning) return; if (timerSeconds === 0) { var m = parseInt(document.getElementById('timer-minutes').value) || 0, s = parseInt(document.getElementById('timer-seconds').value) || 0; timerSeconds = m * 60 + s; if (timerSeconds <= 0) { alert('Укажите время'); return; } } timerRunning = true; document.getElementById('timer-start').style.display = 'none'; document.getElementById('timer-pause').style.display = 'inline-block'; document.getElementById('cooking-timer').classList.add('running'); timerInterval = setInterval(function() { timerSeconds--; updateTimerDisplay(); if (timerSeconds <= 0) { stopTimer(); showToast('⏰ Время!'); } }, 1000); updateTimerDisplay(); }
+function pauseTimer() { if (!timerRunning) return; timerRunning = false; clearInterval(timerInterval); document.getElementById('timer-start').style.display = 'inline-block'; document.getElementById('timer-pause').style.display = 'none'; document.getElementById('cooking-timer').classList.remove('running'); }
+function resetTimer() { stopTimer(); timerSeconds = 0; document.getElementById('timer-minutes').value = 5; document.getElementById('timer-seconds').value = 0; updateTimerDisplay(); }
+function stopTimer() { timerRunning = false; clearInterval(timerInterval); document.getElementById('timer-start').style.display = 'inline-block'; document.getElementById('timer-pause').style.display = 'none'; }
+function showToast(m) { var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(function() { t.classList.remove('show'); }, 2000); }
+
+function shareRecipe(r) {
+    var text = '🍳 ' + r.name + '\n⏱ ' + (r.time || '') + '\n\n📋 Ингредиенты:\n' + (r.ing || '') + '\n\n📝 Приготовление:\n' + (r.instr || '').replace(/\s*\[\d+\s*мин\]/g, '') + '\n\n📱 Открой в VK: https://vk.com/app54646829#recipe_' + r.id;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() { showToast('📋 Скопировано!'); });
+    } else {
+        var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); showToast('📋 Скопировано!'); } catch(e) {}
+        document.body.removeChild(ta);
+    }
+}
+
+function getAllAvailableRecipes() { var a = []; for (var i = 0; i < recipes.length; i++) a.push({r: recipes[i], source: 'my'}); var m = isPremium ? builtinRecipes.length : 10; for (var j = 0; j < m && j < builtinRecipes.length; j++) a.push({r: builtinRecipes[j], source: 'builtin'}); return a; }
+function randomRecipe() { var a = getAllAvailableRecipes(); if (!a.length) { alert('Нет рецептов.'); return; } var p = a[Math.floor(Math.random() * a.length)], r = p.r; document.getElementById('random-result-container').innerHTML = '<div class="random-result" onclick="showDetail(\'' + r.id + '\', \'' + p.source + '\')"><div class="dice spinning">🎲</div><h3>' + r.name + '</h3><div class="hint">' + (r.time || '') + ' · Нажмите</div></div>'; setTimeout(function() { var d = document.querySelector('#random-result-container .dice'); if (d) d.classList.remove('spinning'); }, 500); }
+function saveData() { localStorage.setItem('recipes', JSON.stringify(recipes)); localStorage.setItem('premium', JSON.stringify(isPremium)); localStorage.setItem('favorites', JSON.stringify(favorites)); saveShoppingList(); savePlan(); }
+function isFavorite(id) { return favorites.indexOf(id) !== -1; }
+function toggleFavorite(id, event) { if (event) event.stopPropagation(); var i = favorites.indexOf(id); if (i === -1) favorites.push(id); else favorites.splice(i, 1); saveData(); updateMain(); if (currentScreen === 'list') showMyRecipes(); if (currentScreen === 'builtin') showBuiltin(); if (currentScreen === 'favorites') showFavorites(); if (currentScreen === 'detail' && currentDetailRecipeId === id) showDetailContent(); }
+function getHeartHTML(id) { var l = isFavorite(id); return '<div class="heart-btn' + (l ? ' liked' : '') + '" onclick="toggleFavorite(\'' + id + '\', event)">' + (l ? '❤️' : '🤍') + '</div>'; }
+function navigateTo(screen) { document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-' + screen).classList.add('active'); currentScreen = screen; navigationStack.push(screen); window.scrollTo(0, 0); if (screen === 'main') updateMain(); if (screen === 'builtin') showBuiltin(); if (screen === 'list') showMyRecipes(); if (screen === 'favorites') showFavorites(); if (screen === 'shopping') renderShoppingList(); if (screen === 'fridge') { document.getElementById('fridge-input').value = ''; document.getElementById('fridge-results').innerHTML = ''; document.getElementById('fridge-empty').style.display = 'block'; } if (screen === 'planner') renderPlanner(); if (screen === 'substitutes') renderSubstitutes(); }
+function goBack() { navigationStack.pop(); var p = navigationStack[navigationStack.length - 1] || 'main'; document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); document.getElementById('screen-' + p).classList.add('active'); currentScreen = p; window.scrollTo(0, 0); if (p === 'main') updateMain(); if (p === 'builtin') showBuiltin(); if (p === 'list') showMyRecipes(); if (p === 'favorites') showFavorites(); if (p === 'shopping') renderShoppingList(); if (p === 'planner') renderPlanner(); if (p === 'substitutes') renderSubstitutes(); }
+function updateMain() { document.getElementById('count').innerText = recipes.length; document.getElementById('fav-count').innerText = favorites.length; document.getElementById('shop-count').innerText = shoppingList.length; if (isPremium) document.getElementById('premium-btn').classList.add('hidden'); }
+function addIngredient(ing) { var f = document.getElementById('ingredients'), c = f.value.trim(); if (c && !c.endsWith('\n')) c += '\n'; f.value = c + ing + ' — '; f.focus(); }
+function saveRecipe() { if (!isPremium && recipes.length >= 5) { alert('Бесплатно 5 рецептов.'); return; } var n = document.getElementById('name').value.trim(); if (!n) { alert('Введи название'); return; } recipes.push({ id: 'r' + Date.now(), name: n, ing: document.getElementById('ingredients').value.trim(), instr: document.getElementById('instructions').value.trim(), time: document.getElementById('time').value.trim() }); saveData(); document.getElementById('name').value = ''; document.getElementById('ingredients').value = ''; document.getElementById('instructions').value = ''; document.getElementById('time').value = ''; alert('Сохранено!'); navigateTo('main'); }
+function showMyRecipes() { navigateTo('list'); document.getElementById('search-my').value = ''; var l = document.getElementById('recipe-list'); l.innerHTML = ''; var e = document.getElementById('empty-state'); if (!recipes.length) e.classList.remove('hidden'); else e.classList.add('hidden'); for (var i = 0; i < recipes.length; i++) { var c = document.createElement('div'); c.className = 'card'; c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + recipes[i].id + '\', \'my\')"><h3>' + recipes[i].name + '</h3><div class="meta"><span>' + (recipes[i].time || '') + '</span></div></div>' + getHeartHTML(recipes[i].id); l.appendChild(c); } var lm = document.getElementById('lock-msg'); if (!isPremium && recipes.length >= 5) lm.classList.remove('hidden'); else lm.classList.add('hidden'); }
+function showDetail(id, source) { currentDetailRecipeId = id; currentDetailSource = source; navigateTo('detail'); showDetailContent(); }
+function showDetailContent() {
+    var id = currentDetailRecipeId, s = currentDetailSource, r = findRecipeById(id);
+    if (!r) return;
+    var steps = r.instr ? r.instr.split('\n').filter(function(x) { return x.trim(); }) : [];
+    var progressKey = 'progress_' + id;
+    var savedProgress = JSON.parse(localStorage.getItem(progressKey) || '[]');
+    if (savedProgress.length === steps.length) { completedSteps = savedProgress; }
+    else { completedSteps = new Array(steps.length).fill(false); }
+    var doneCount = 0;
+    for (var i = 0; i < completedSteps.length; i++) { if (completedSteps[i]) doneCount++; }
+    var progress = steps.length > 0 ? Math.round((doneCount / steps.length) * 100) : 0;
+    var h = '<div class="detail-header"><h2>' + r.name + '</h2><div class="detail-heart' + (isFavorite(id) ? ' liked' : '') + '" onclick="toggleFavorite(\'' + id + '\', event)">' + (isFavorite(id) ? '❤️' : '🤍') + '</div></div>';
+    h += '<div class="badge">' + (r.time || '') + '</div>';
+    if (steps.length > 0) {
+        h += '<div class="section"><h3>Прогресс (' + progress + '%)</h3><div class="progress-bar"><div class="progress-fill" style="width:' + progress + '%;"></div></div>';
+        for (var j = 0; j < steps.length; j++) {
+            var done = completedSteps[j] || false;
+            h += '<div class="step-check" onclick="toggleStepDetail(' + j + ', \'' + id + '\')"><div class="dot' + (done ? ' done' : '') + '">' + (done ? '✓' : '') + '</div><div class="step-label' + (done ? ' done' : '') + '">' + steps[j].trim().replace(/\s*\[\d+\s*мин\]/, '') + '</div></div>';
         }
-        h += '<div class="section"><h3>Ингредиенты</h3>';
-        if (r.ing) { var ings = r.ing.split('\n'); h += '<ul>'; for (var k = 0; k < ings.length; k++) { if (ings[k].trim()) h += '<li>' + ings[k].trim() + '</li>'; } h += '</ul>'; }
         h += '</div>';
-        h += '<div class="detail-actions"><button class="btn btn-small" style="background:var(--blue);color:white;" onclick="shareRecipeByName(\'' + r.name + '\')">📤</button>';
-        h += '<button class="btn btn-small" style="background:var(--green);color:white;" onclick="startCooking(\'' + id + '\', \'' + s + '\')">👨‍🍳 Готовить</button>';
-        h += '<button class="btn btn-small" style="background:var(--blue);color:white;" onclick="addToShoppingListByRecipe(\'' + id + '\', \'' + s + '\')">🧾 В список</button></div>';
-        document.getElementById('detail-content').innerHTML = h;
     }
-    function toggleStepDetail(idx, id) { completedSteps[idx] = !completedSteps[idx]; localStorage.setItem('progress_' + id, JSON.stringify(completedSteps)); showDetailContent(); }
-    function addToShoppingListByRecipe(id, source) { var r = findRecipeById(id); if (r) addToShoppingList(r.ing); }
-    function shareRecipeByName(name) { var r = null, all = getAllRecipes(); for (var i = 0; i < all.length; i++) { if (all[i].name === name) { r = all[i]; break; } } if (r) shareRecipe(r); }
-    function filterBuiltinByCategory(cat, tabEl) { currentCategory = cat; document.querySelectorAll('#category-tabs .tab').forEach(function(t) { t.classList.remove('active'); }); if (tabEl) tabEl.classList.add('active'); renderBuiltinList(); }
-    function getFilteredBuiltin() { var m = isPremium ? builtinRecipes.length : 10, f = []; for (var i = 0; i < builtinRecipes.length; i++) { if (currentCategory !== 'all' && builtinRecipes[i].category !== currentCategory) continue; f.push(builtinRecipes[i]); if (f.length >= m && !isPremium) break; } return f; }
-    function renderBuiltinList() { var l = document.getElementById('builtin-list'); l.innerHTML = ''; var items = getFilteredBuiltin(); for (var i = 0; i < items.length; i++) { var c = document.createElement('div'); c.className = 'card'; c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + items[i].id + '\', \'builtin\')"><h3>' + items[i].name + '</h3><div class="meta"><span>' + items[i].time + '</span></div></div>' + getHeartHTML(items[i].id); l.appendChild(c); } var lock = document.getElementById('builtin-lock'); if (!isPremium && builtinRecipes.length > 10) lock.classList.remove('hidden'); else lock.classList.add('hidden'); }
-    function showBuiltin() { document.getElementById('search-builtin').value = ''; currentCategory = 'all'; document.querySelectorAll('#category-tabs .tab').forEach(function(t) { t.classList.remove('active'); }); var at = document.querySelector('#category-tabs .tab'); if (at) at.classList.add('active'); renderBuiltinList(); }
-    function filterBuiltin() { var q = document.getElementById('search-builtin').value.toLowerCase(); document.querySelectorAll('#builtin-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
-    function showFavorites() { navigateTo('favorites'); document.getElementById('search-fav').value = ''; var l = document.getElementById('favorites-list'); l.innerHTML = ''; var e = document.getElementById('fav-empty-state'); if (!favorites.length) e.classList.remove('hidden'); else e.classList.add('hidden'); var all = recipes.concat(builtinRecipes); for (var i = 0; i < favorites.length; i++) { for (var j = 0; j < all.length; j++) { if (all[j].id === favorites[i]) { var r = all[j], src = j < recipes.length ? 'my' : 'builtin'; var c = document.createElement('div'); c.className = 'card'; c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + r.id + '\', \'' + src + '\')"><h3>' + r.name + '</h3><div class="meta"><span>' + (r.time || '') + '</span></div></div>' + getHeartHTML(r.id); l.appendChild(c); break; } } } }
-    function filterMyRecipes() { var q = document.getElementById('search-my').value.toLowerCase(); document.querySelectorAll('#recipe-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
-    function filterFavorites() { var q = document.getElementById('search-fav').value.toLowerCase(); document.querySelectorAll('#favorites-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
+    h += '<div class="section"><h3>Ингредиенты</h3>';
+    if (r.ing) { var ings = r.ing.split('\n'); h += '<ul>'; for (var k = 0; k < ings.length; k++) { if (ings[k].trim()) h += '<li>' + ings[k].trim() + '</li>'; } h += '</ul>'; }
+    h += '</div>';
+    h += '<div class="detail-actions"><button class="btn btn-small" style="background:var(--blue);color:white;" onclick="shareRecipeByName(\'' + r.name + '\')">📤</button>';
+    h += '<button class="btn btn-small" style="background:var(--green);color:white;" onclick="startCooking(\'' + id + '\', \'' + s + '\')">👨‍🍳 Готовить</button>';
+    h += '<button class="btn btn-small" style="background:var(--blue);color:white;" onclick="addToShoppingListByRecipe(\'' + id + '\', \'' + s + '\')">🧾 В список</button></div>';
+    document.getElementById('detail-content').innerHTML = h;
+}
+function toggleStepDetail(idx, id) { completedSteps[idx] = !completedSteps[idx]; localStorage.setItem('progress_' + id, JSON.stringify(completedSteps)); showDetailContent(); }
+function addToShoppingListByRecipe(id, source) { var r = findRecipeById(id); if (r) addToShoppingList(r.ing); }
+function shareRecipeByName(name) { var r = null, all = getAllRecipes(); for (var i = 0; i < all.length; i++) { if (all[i].name === name) { r = all[i]; break; } } if (r) shareRecipe(r); }
+function filterBuiltinByCategory(cat, tabEl) { currentCategory = cat; document.querySelectorAll('#category-tabs .tab').forEach(function(t) { t.classList.remove('active'); }); if (tabEl) tabEl.classList.add('active'); renderBuiltinList(); }
+function getFilteredBuiltin() { var m = isPremium ? builtinRecipes.length : 10, f = []; for (var i = 0; i < builtinRecipes.length; i++) { if (currentCategory !== 'all' && builtinRecipes[i].category !== currentCategory) continue; f.push(builtinRecipes[i]); if (f.length >= m && !isPremium) break; } return f; }
+function renderBuiltinList() { var l = document.getElementById('builtin-list'); l.innerHTML = ''; var items = getFilteredBuiltin(); for (var i = 0; i < items.length; i++) { var c = document.createElement('div'); c.className = 'card'; c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + items[i].id + '\', \'builtin\')"><h3>' + items[i].name + '</h3><div class="meta"><span>' + items[i].time + '</span></div></div>' + getHeartHTML(items[i].id); l.appendChild(c); } var lock = document.getElementById('builtin-lock'); if (!isPremium && builtinRecipes.length > 10) lock.classList.remove('hidden'); else lock.classList.add('hidden'); }
+function showBuiltin() { document.getElementById('search-builtin').value = ''; currentCategory = 'all'; document.querySelectorAll('#category-tabs .tab').forEach(function(t) { t.classList.remove('active'); }); var at = document.querySelector('#category-tabs .tab'); if (at) at.classList.add('active'); renderBuiltinList(); }
+function filterBuiltin() { var q = document.getElementById('search-builtin').value.toLowerCase(); document.querySelectorAll('#builtin-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
+function showFavorites() { navigateTo('favorites'); document.getElementById('search-fav').value = ''; var l = document.getElementById('favorites-list'); l.innerHTML = ''; var e = document.getElementById('fav-empty-state'); if (!favorites.length) e.classList.remove('hidden'); else e.classList.add('hidden'); var all = recipes.concat(builtinRecipes); for (var i = 0; i < favorites.length; i++) { for (var j = 0; j < all.length; j++) { if (all[j].id === favorites[i]) { var r = all[j], src = j < recipes.length ? 'my' : 'builtin'; var c = document.createElement('div'); c.className = 'card'; c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + r.id + '\', \'' + src + '\')"><h3>' + r.name + '</h3><div class="meta"><span>' + (r.time || '') + '</span></div></div>' + getHeartHTML(r.id); l.appendChild(c); break; } } } }
+function filterMyRecipes() { var q = document.getElementById('search-my').value.toLowerCase(); document.querySelectorAll('#recipe-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
+function filterFavorites() { var q = document.getElementById('search-fav').value.toLowerCase(); document.querySelectorAll('#favorites-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
 
-    function showPayOptions() {
-        var h = '<div style="text-align:center;padding:20px;">';
-        h += '<h3 style="margin-bottom:16px;">Выберите способ оплаты</h3>';
-        h += '<button class="btn" style="background:linear-gradient(135deg,#7C3AED,#9B5DE5);color:white;" onclick="payWithVotes()">🟣 Оплатить голосами ВК — 36 голосов</button>';
-        h += '<button class="btn" style="background:linear-gradient(135deg,#2196F3,#42A5F5);color:white;" onclick="payWithVKPay()">🔵 Оплатить через VK Pay — 250 ₽</button>';
-        h += '<button class="btn" style="background:#f0f0f0;color:var(--text);" onclick="navigateTo(\'main\')">Отмена</button>';
-        h += '</div>';
-        document.getElementById('detail-content').innerHTML = h;
-        document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); });
-        document.getElementById('screen-detail').classList.add('active');
-        currentScreen = 'detail';
-    }
-    function payWithVotes() {
-        if (typeof vkBridge === 'undefined') { alert('Оплата временно недоступна. Попробуйте позже.'); return; }
-        vkBridge.send('VKWebAppOpenInvoice', { app_id: 54646829, action: 'pay-to-service', item_name: 'Безлимитный доступ', item_price: 36, item_description: 'Все 20 рецептов' })
-        .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо!'); navigateTo('main'); } })
-        .catch(function() { alert('Оплата недоступна. Попробуйте позже.'); });
-    }
-    function payWithVKPay() {
-        if (typeof vkBridge === 'undefined') { alert('Оплата временно недоступна. Попробуйте позже.'); return; }
-        vkBridge.send('VKWebAppOpenPayForm', { app_id: 54646829, action: 'transfer-to-user', item_name: 'Безлимитный доступ', item_price: 250, item_description: 'Все 20 рецептов' })
-        .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо!'); navigateTo('main'); } })
-        .catch(function() { alert('Оплата недоступна. Попробуйте позже.'); });
-    }
+function showPayOptions() {
+    var h = '<div style="text-align:center;padding:20px;">';
+    h += '<h3 style="margin-bottom:16px;">Выберите способ оплаты</h3>';
+    h += '<button class="btn" style="background:linear-gradient(135deg,#7C3AED,#9B5DE5);color:white;" onclick="payWithVotes()">🟣 Оплатить голосами ВК — 36 голосов</button>';
+    h += '<button class="btn" style="background:linear-gradient(135deg,#2196F3,#42A5F5);color:white;" onclick="payWithVKPay()">🔵 Оплатить через VK Pay — 250 ₽</button>';
+    h += '<button class="btn" style="background:#f0f0f0;color:var(--text);" onclick="navigateTo(\'main\')">Отмена</button>';
+    h += '</div>';
+    document.getElementById('detail-content').innerHTML = h;
+    document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); });
+    document.getElementById('screen-detail').classList.add('active');
+    currentScreen = 'detail';
+}
+function payWithVotes() {
+    if (typeof vkBridge === 'undefined') { alert('Оплата временно недоступна. Попробуйте позже.'); return; }
+    vkBridge.send('VKWebAppOpenInvoice', { app_id: 54646829, action: 'pay-to-service', item_name: 'Безлимитный доступ', item_price: 36, item_description: 'Все 20 рецептов' })
+    .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо!'); navigateTo('main'); } })
+    .catch(function() { alert('Оплата недоступна. Попробуйте позже.'); });
+}
+function payWithVKPay() {
+    if (typeof vkBridge === 'undefined') { alert('Оплата временно недоступна. Попробуйте позже.'); return; }
+    vkBridge.send('VKWebAppOpenPayForm', { app_id: 54646829, action: 'transfer-to-user', item_name: 'Безлимитный доступ', item_price: 250, item_description: 'Все 20 рецептов' })
+    .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо!'); navigateTo('main'); } })
+    .catch(function() { alert('Оплата недоступна. Попробуйте позже.'); });
+}
 
-    var density = { flour: { glass: 160, tbsp: 10 }, sugar: { glass: 200, tbsp: 13 }, salt: { glass: 320, tbsp: 20 }, butter: { glass: 190, tbsp: 12 }, oil: { glass: 180, tbsp: 12 }, milk: { glass: 200, tbsp: 15 }, water: { glass: 200, tbsp: 15 }, rice: { glass: 180, tbsp: 12 }, buckwheat: { glass: 170, tbsp: 11 } };
-    function convert() { var a = parseFloat(document.getElementById('conv-amount').value) || 0, f = document.getElementById('conv-from').value, p = document.getElementById('conv-product').value, r = document.getElementById('conv-result'); if (a <= 0) { r.textContent = 'Введите кол-во'; return; } var d = density[p]; if (f === 'gram') { r.innerHTML = a + ' г = ' + (a/d.glass).toFixed(2) + ' ст'; } else { var g = a * d[f]; r.innerHTML = a + ' шт = ' + Math.round(g) + ' г'; } }
+var density = { flour: { glass: 160, tbsp: 10 }, sugar: { glass: 200, tbsp: 13 }, salt: { glass: 320, tbsp: 20 }, butter: { glass: 190, tbsp: 12 }, oil: { glass: 180, tbsp: 12 }, milk: { glass: 200, tbsp: 15 }, water: { glass: 200, tbsp: 15 }, rice: { glass: 180, tbsp: 12 }, buckwheat: { glass: 170, tbsp: 11 } };
+function convert() { var a = parseFloat(document.getElementById('conv-amount').value) || 0, f = document.getElementById('conv-from').value, p = document.getElementById('conv-product').value, r = document.getElementById('conv-result'); if (a <= 0) { r.textContent = 'Введите кол-во'; return; } var d = density[p]; if (f === 'gram') { r.innerHTML = a + ' г = ' + (a/d.glass).toFixed(2) + ' ст'; } else { var g = a * d[f]; r.innerHTML = a + ' шт = ' + Math.round(g) + ' г'; } }
 
-    function checkDeepLink() {
-        var hash = window.location.hash;
-        if (hash && hash.startsWith('#recipe_')) {
-            var recipeId = hash.replace('#recipe_', '');
-            var r = findRecipeById(recipeId);
-            if (r) {
-                var source = recipeId.startsWith('b') ? 'builtin' : 'my';
-                setTimeout(function() { showDetail(recipeId, source); }, 500);
-            }
+function checkDeepLink() {
+    var hash = window.location.hash;
+    if (hash && hash.startsWith('#recipe_')) {
+        var recipeId = hash.replace('#recipe_', '');
+        var r = findRecipeById(recipeId);
+        if (r) {
+            var source = recipeId.startsWith('b') ? 'builtin' : 'my';
+            setTimeout(function() { showDetail(recipeId, source); }, 500);
         }
     }
-    checkDeepLink();
-    updateMain();
+}
+checkDeepLink();
+updateMain();
 </script>
 </body>
 </html>
