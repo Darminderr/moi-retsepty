@@ -116,36 +116,35 @@
     <div class="screen" id="screen-substitutes"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🔄 Замена ингредиентов</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="sub-search" placeholder="Поиск..." oninput="filterSubstitutes()"></div><div id="substitutes-list"></div></div>
 
 <script>
-    // ===== САМЫЙ ВАЖНЫЙ ФИКС ДЛЯ iOS =====
-    // Этот код выполняется первым и сразу говорит VK, что всё ок
-    try {
-        if (typeof vkBridge !== 'undefined') {
-            vkBridge.send('VKWebAppInit');
-            vkBridge.send('VKWebAppLoadingCompleted', { ok: true });
-            console.log('✅ VK Bridge: сигнал отправлен');
-        } else {
-            console.log('ℹ️ VK Bridge не найден, загружаем...');
-            var script = document.createElement('script');
-            script.src = 'https://vk.com/js/api/xd_connection.js?2';
-            script.onload = function() {
-                try {
+    // ===== VK BRIDGE ДЛЯ iOS =====
+    (function() {
+        try {
+            if (typeof vkBridge !== 'undefined') {
+                vkBridge.send('VKWebAppInit')
+                    .then(function() {
+                        try { vkBridge.send('VKWebAppLoadingCompleted', { ok: true }); } catch(e) {}
+                        console.log('✅ VK Bridge готов');
+                    })
+                    .catch(function(e) { console.warn('VK init error:', e); });
+            } else {
+                var s = document.createElement('script');
+                s.src = 'https://vk.com/js/api/xd_connection.js?2';
+                s.onload = function() {
                     if (typeof vkBridge !== 'undefined') {
-                        vkBridge.send('VKWebAppInit');
-                        vkBridge.send('VKWebAppLoadingCompleted', { ok: true });
-                        console.log('✅ VK Bridge загружен и сигнал отправлен');
+                        vkBridge.send('VKWebAppInit')
+                            .then(function() {
+                                try { vkBridge.send('VKWebAppLoadingCompleted', { ok: true }); } catch(e) {}
+                                console.log('✅ VK Bridge загружен');
+                            })
+                            .catch(function(e) { console.warn('VK init error:', e); });
                     }
-                } catch(e) {}
-            };
-            document.head.appendChild(script);
-        }
-    } catch(e) {
-        console.warn('⚠️ Ошибка VK:', e);
-    }
+                };
+                document.head.appendChild(s);
+            }
+        } catch(e) { console.warn('VK error:', e); }
+    })();
 
-    // ===== ОСТАЛЬНОЙ КОД =====
-    // Здесь идёт весь твой рабочий код, который был на Android и ПК
-    
-    // Загружаем данные
+    // ===== ОСНОВНОЙ КОД =====
     var recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
     var isPremium = JSON.parse(localStorage.getItem('premium') || 'false');
     var favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -214,7 +213,19 @@
     function clearChecked() { shoppingList = shoppingList.filter(function(x) { return !x.checked; }); saveShoppingList(); renderShoppingList(); }
     function clearAllShopping() { if (confirm('Очистить?')) { shoppingList = []; saveShoppingList(); renderShoppingList(); } }
     function showShoppingList() { navigateTo('shopping'); renderShoppingList(); }
-    function renderShoppingList() { var l = document.getElementById('shopping-list'), e = document.getElementById('shop-empty-state'), a = document.getElementById('shop-actions'); l.innerHTML = ''; if (!shoppingList.length) { e.style.display = 'block'; a.style.display = 'none'; } else { e.style.display = 'none'; a.style.display = 'flex'; } for (var i = 0; i < shoppingList.length; i++) { var item = shoppingList[i]; var d = document.createElement('div'); d.className = 'shop-item' + (item.checked ? ' checked' : ''); d.innerHTML = '<div class="shop-checkbox' + (item.checked ? ' done' : '') + '" onclick="toggleShopItem(' + i + ')">' + (item.checked ? '✓' : '') + '</div><div class="shop-text">' + item.text + '</div><div class="shop-delete" onclick="deleteShopItem(' + i + ')">🗑</div>'; l.appendChild(d); } }
+    function renderShoppingList() { 
+        var l = document.getElementById('shopping-list'), e = document.getElementById('shop-empty-state'), a = document.getElementById('shop-actions'); 
+        l.innerHTML = ''; 
+        if (!shoppingList.length) { e.style.display = 'block'; a.style.display = 'none'; } 
+        else { e.style.display = 'none'; a.style.display = 'flex'; } 
+        for (var i = 0; i < shoppingList.length; i++) { 
+            var item = shoppingList[i]; 
+            var d = document.createElement('div'); 
+            d.className = 'shop-item' + (item.checked ? ' checked' : ''); 
+            d.innerHTML = '<div class="shop-checkbox' + (item.checked ? ' done' : '') + '" onclick="toggleShopItem(' + i + ')">' + (item.checked ? '✓' : '') + '</div><div class="shop-text">' + item.text + '</div><div class="shop-delete" onclick="deleteShopItem(' + i + ')">🗑</div>'; 
+            l.appendChild(d); 
+        } 
+    }
     function showFridge() { navigateTo('fridge'); document.getElementById('fridge-input').value = ''; document.getElementById('fridge-results').innerHTML = ''; document.getElementById('fridge-empty').style.display = 'block'; }
     function searchFridge() { var q = document.getElementById('fridge-input').value.toLowerCase().trim(); var results = document.getElementById('fridge-results'), empty = document.getElementById('fridge-empty'); if (!q) { results.innerHTML = ''; empty.style.display = 'block'; return; } var ui = q.split(',').map(function(s) { return s.trim().toLowerCase(); }).filter(function(s) { return s; }); var all = getAllRecipes(), matched = []; for (var i = 0; i < all.length; i++) { var r = all[i], rt = (r.ing || '').toLowerCase() + ' ' + r.name.toLowerCase(), f = 0; for (var j = 0; j < ui.length; j++) { if (rt.indexOf(ui[j]) !== -1) f++; } if (f > 0) matched.push({ recipe: r, found: f, total: ui.length }); } matched.sort(function(a, b) { return b.found - a.found; }); results.innerHTML = ''; if (!matched.length) { empty.style.display = 'block'; empty.innerHTML = '<div class="icon">😕</div><p>Ничего не найдено</p>'; } else { empty.style.display = 'none'; for (var k = 0; k < matched.length; k++) { var m = matched[k], r = m.recipe, src = r.id.startsWith('b') ? 'builtin' : 'my'; var div = document.createElement('div'); div.className = 'fridge-result'; div.innerHTML = '<h3>' + r.name + '</h3><div class="match">Совпало: ' + m.found + ' из ' + m.total + '</div>'; div.onclick = function(rid, rsrc) { return function() { showDetail(rid, rsrc); }; }(r.id, src); results.appendChild(div); } } }
     function parseStepTime(t) { var m = t.match(/\[(\d+)\s*мин\]/); return m ? { text: t.replace(/\s*\[\d+\s*мин\]/, '').trim(), time: parseInt(m[1]) } : { text: t.trim(), time: 0 }; }
