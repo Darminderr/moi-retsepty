@@ -47,7 +47,6 @@
             transition: background 0.3s, color 0.3s; 
             padding-bottom: 20px;
         }
-        /* VK WebView фикс */
         .vk-webview .btn:active { transform: scale(0.95); }
         .vk-webview .input { font-size: 16px; }
         .vk-webview .toast { bottom: 80px; }
@@ -89,7 +88,7 @@
         .detail-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; } .detail-header h2 { flex: 1; }
         .detail-heart { width: 44px; height: 44px; min-width: 44px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; touch-action: manipulation; } .detail-heart.liked { background: var(--red); border-color: var(--red); color: white; }
         .detail-actions { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
-        .conv-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 12px; flex-wrap: wrap; } .conv-row .input-group { flex: 1; min-width: 120px; margin-bottom: 0; } .conv-btn { background: var(--teal); color: white; padding: 14px 20px; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600; cursor: pointer; height: 48px; touch-action: manipulation; } .conv-result { background: var(--card); border-radius: var(--radius); padding: 16px; margin-top: 12px; box-shadow: var(--shadow); font-size: 18px; font-weight: 700; text-align: center; color: var(--teal); } .conv-table { width: 100%; border-collapse: collapse; margin-top: 16px; } .conv-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 14px; } .conv-table td:last-child { text-align: right; font-weight: 600; color: var(--teal); }
+        .conv-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 12px; flex-wrap: wrap; } .conv-row .input-group { flex: 1; min-width: 120px; margin-bottom: 0; } .conv-btn { background: var(--teal); color: white; padding: 14px 20px; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600; cursor: pointer; height: 48px; touch-action: manipulation; } .conv-result { background: var(--card); border-radius: var(--radius); padding: 16px; margin-top: 12px; box-shadow: var(--shadow); font-size: 18px; font-weight: 700; text-align: center; color: var(--teal); }
         .cooking-container { text-align: center; } .cooking-header { margin-bottom: 24px; } .cooking-header h2 { font-size: 28px; font-weight: 700; } .cooking-header .step-counter { font-size: 14px; color: var(--text-light); margin-top: 4px; } .cooking-step { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); border: 2px solid var(--border); margin-bottom: 20px; min-height: 120px; display: flex; align-items: center; justify-content: center; } .cooking-step .step-text { font-size: 24px; font-weight: 600; line-height: 1.4; } .cooking-timer { font-size: 48px; font-weight: 700; color: var(--orange); margin: 16px 0; } .cooking-timer.running { color: var(--green); } .timer-controls { display: flex; gap: 8px; justify-content: center; align-items: center; margin-bottom: 20px; flex-wrap: wrap; } .timer-input { width: 60px; padding: 10px; border-radius: 10px; border: 2px solid var(--border); text-align: center; font-size: 16px; background: var(--card); color: var(--text); font-family: inherit; -webkit-appearance: none; appearance: none; } .timer-btn { padding: 12px 24px; border-radius: var(--radius); border: none; font-size: 16px; font-weight: 600; cursor: pointer; touch-action: manipulation; } .timer-btn.start { background: var(--green); color: white; } .timer-btn.pause { background: var(--orange); color: white; } .timer-btn.reset { background: #f0f0f0; color: var(--text); } .nav-buttons { display: flex; gap: 10px; margin-top: 16px; } .nav-btn { flex: 1; padding: 16px; border-radius: var(--radius); border: none; font-size: 16px; font-weight: 600; cursor: pointer; touch-action: manipulation; } .nav-btn.prev { background: var(--card); color: var(--text); border: 1px solid var(--border); } .nav-btn.next { background: var(--orange); color: white; } .nav-btn.finish { background: var(--green); color: white; }
         .shop-item, .fridge-result { display: flex; align-items: center; gap: 12px; background: var(--card); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; box-shadow: var(--shadow); border: 1px solid var(--border); cursor: pointer; touch-action: manipulation; } .shop-item.checked { opacity: 0.5; } .shop-item.checked .shop-text { text-decoration: line-through; } .shop-checkbox { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; touch-action: manipulation; } .shop-checkbox.done { background: var(--green); border-color: var(--green); color: white; } .shop-text { flex: 1; font-size: 15px; font-weight: 500; } .shop-delete { color: var(--red); cursor: pointer; font-size: 20px; padding: 4px; touch-action: manipulation; } .shop-actions { display: flex; gap: 8px; margin-top: 16px; } .shop-actions .btn { width: auto; padding: 12px 20px; font-size: 14px; }
         .fridge-result h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; } .fridge-result .match { font-size: 13px; color: var(--green); font-weight: 600; }
@@ -99,14 +98,33 @@
         .step-check { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; cursor: pointer; touch-action: manipulation; } .step-check .dot { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; } .step-check .dot.done { background: var(--green); border-color: var(--green); color: white; } .step-check .step-label { font-size: 14px; color: var(--text-light); } .step-check .step-label.done { text-decoration: line-through; color: #aaa; }
         .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 999; opacity: 0; transition: opacity 0.3s; pointer-events: none; max-width: 90%; } .toast.show { opacity: 1; }
         .select-input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius); font-size: 15px; background: var(--card); font-family: inherit; color: var(--text); -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; }
+        .back-to-top { position: fixed; bottom: 90px; right: 20px; width: 48px; height: 48px; border-radius: 50%; background: var(--orange); color: white; border: none; font-size: 24px; box-shadow: 0 4px 12px rgba(255,107,0,0.4); cursor: pointer; touch-action: manipulation; display: none; z-index: 100; transition: all 0.3s; } .back-to-top:hover { transform: scale(1.1); }
+        .recipe-of-day { background: linear-gradient(135deg, var(--orange), #FF8C42); color: white; border-radius: var(--radius); padding: 20px; margin-bottom: 16px; text-align: center; cursor: pointer; touch-action: manipulation; box-shadow: 0 4px 12px rgba(255,107,0,0.3); } .recipe-of-day .label { font-size: 12px; text-transform: uppercase; opacity: 0.8; letter-spacing: 2px; } .recipe-of-day h3 { font-size: 20px; margin: 8px 0; } .recipe-of-day .hint { font-size: 14px; opacity: 0.9; }
+        .voice-btn { background: var(--purple); color: white; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 20px; cursor: pointer; touch-action: manipulation; display: inline-flex; align-items: center; justify-content: center; }
+        .portion-control { display: flex; align-items: center; gap: 12px; margin: 16px 0; } .portion-control label { font-weight: 600; font-size: 14px; } .portion-control input { width: 60px; padding: 8px; border: 2px solid var(--border); border-radius: 10px; text-align: center; font-size: 16px; background: var(--card); color: var(--text); }
+        .export-import { display: flex; gap: 8px; margin-top: 12px; } .export-import .btn { width: auto; padding: 10px 16px; font-size: 13px; }
     </style>
 </head>
 <body>
     <div class="toast" id="toast"></div>
+    <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
 
     <div class="screen active" id="screen-main">
         <div class="main-top-row"><div class="icon">🍳</div><div class="text"><h1>Мои рецепты</h1><div class="subtitle">Готовь как шеф · Храни идеи</div></div><div class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌙</div></div>
+        
+        <!-- Рецепт дня -->
+        <div class="recipe-of-day" id="recipe-of-day" onclick="openRecipeOfDay()">
+            <div class="label">⭐ Рецепт дня</div>
+            <h3 id="rod-title">Загрузка...</h3>
+            <div class="hint" id="rod-hint">Нажмите, чтобы открыть</div>
+        </div>
+        
         <button class="btn btn-random" onclick="randomRecipe()">🎲 Что приготовить?</button><div id="random-result-container"></div>
+        
+        <!-- Глобальный поиск -->
+        <div class="search-box"><span class="search-icon">🔍</span><input class="input" id="global-search" placeholder="Поиск по всем рецептам..." oninput="globalSearch()"></div>
+        <div id="global-results"></div>
+        
         <button class="btn btn-add" onclick="navigateTo('add')">➕ Новый рецепт</button>
         <button class="btn btn-list" onclick="showMyRecipes()">📖 Мои рецепты <span style="color:var(--orange)" id="count">0</span></button>
         <button class="btn btn-fav" onclick="showFavorites()">❤️ Избранное <span style="color:var(--red)" id="fav-count">0</span></button>
@@ -116,20 +134,160 @@
         <button class="btn btn-shop" onclick="showShoppingList()">🧾 Список покупок <span style="color:var(--blue)" id="shop-count">0</span></button>
         <button class="btn btn-fridge" onclick="showFridge()">🔍 Что в холодильнике?</button>
         <button class="btn btn-sub" onclick="navigateTo('substitutes')">🔄 Замена ингредиентов</button>
+        
+        <!-- Экспорт/Импорт -->
+        <div class="export-import">
+            <button class="btn" style="background:var(--blue);color:white;" onclick="exportRecipes()">📤 Экспорт</button>
+            <button class="btn" style="background:var(--green);color:white;" onclick="document.getElementById('import-file').click()">📥 Импорт</button>
+            <input type="file" id="import-file" accept=".json" style="display:none" onchange="importRecipes(event)">
+        </div>
+        
         <button class="btn btn-premium" id="premium-btn" onclick="showPayOptions()">⭐ Безлимит навсегда — 250 ₽</button>
     </div>
-    <div class="screen" id="screen-add"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:20px;">Новый рецепт</h2><div class="input-group"><label>Название</label><input class="input" id="name" placeholder="Например: Борщ"></div><div class="input-group"><label>Ингредиенты</label><textarea class="input" id="ingredients" placeholder="Картофель — 3 шт&#10;Морковь — 1 шт"></textarea><div class="tags"><span class="tag" onclick="addIngredient('Картофель')">Картофель</span><span class="tag" onclick="addIngredient('Морковь')">Морковь</span><span class="tag" onclick="addIngredient('Лук')">Лук</span><span class="tag" onclick="addIngredient('Чеснок')">Чеснок</span><span class="tag" onclick="addIngredient('Куриное филе')">Курица</span><span class="tag" onclick="addIngredient('Фарш')">Фарш</span><span class="tag" onclick="addIngredient('Сметана')">Сметана</span><span class="tag" onclick="addIngredient('Сыр')">Сыр</span><span class="tag" onclick="addIngredient('Яйца')">Яйца</span><span class="tag" onclick="addIngredient('Мука')">Мука</span><span class="tag" onclick="addIngredient('Сахар')">Сахар</span><span class="tag" onclick="addIngredient('Масло')">Масло</span></div></div><div class="input-group"><label>Приготовление</label><textarea class="input" id="instructions" placeholder="Опишите шаги..."></textarea></div><div class="input-group"><label>Время</label><input class="input" id="time" placeholder="30 минут"></div><button class="btn btn-save" onclick="saveRecipe()">💾 Сохранить</button></div>
-    <div class="screen" id="screen-list"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:4px;">Мои рецепты</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-my" placeholder="Поиск..." oninput="filterMyRecipes()"></div><div id="recipe-list"></div><div class="limit-banner hidden" id="lock-msg">🔒 Бесплатно 5. Купи безлимит!</div><div class="empty-state" id="empty-state"><div class="icon">📝</div><p>Пока нет рецептов</p></div></div>
-    <div class="screen" id="screen-detail"><div class="back-btn" onclick="goBack()">Назад</div><div class="recipe-detail" id="detail-content"></div></div>
-    <div class="screen" id="screen-builtin"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:8px;">🍽 Готовые рецепты</h2><div class="tabs" id="category-tabs"><button class="tab active" onclick="filterBuiltinByCategory('all', this)">Все</button><button class="tab" onclick="filterBuiltinByCategory('breakfast', this)">🍳</button><button class="tab" onclick="filterBuiltinByCategory('soup', this)">🍜</button><button class="tab" onclick="filterBuiltinByCategory('salad', this)">🥗</button><button class="tab" onclick="filterBuiltinByCategory('main', this)">🍖</button><button class="tab" onclick="filterBuiltinByCategory('dessert', this)">🍰</button><button class="tab" onclick="filterBuiltinByCategory('drink', this)">🍹</button></div><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-builtin" placeholder="Поиск..." oninput="filterBuiltin()"></div><div id="builtin-list"></div><div class="limit-banner hidden" id="builtin-lock">🔒 Бесплатно 10. Купи безлимит!</div></div>
-    <div class="screen" id="screen-favorites"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:4px;">❤️ Избранное</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-fav" placeholder="Поиск..." oninput="filterFavorites()"></div><div id="favorites-list"></div><div class="empty-state" id="fav-empty-state"><div class="icon">❤️</div><p>Нет избранных</p></div></div>
-    <div class="screen" id="screen-converter"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:20px;">⚖️ Конвертер мер</h2><div class="conv-row"><div class="input-group"><label>Кол-во</label><input class="input" id="conv-amount" type="text" inputmode="decimal" value="1"></div><div class="input-group"><label>Из</label><select class="select-input" id="conv-from" onchange="convert()"><option value="glass">Стакан</option><option value="tbsp">Ст.ложка</option><option value="tsp">Ч.ложка</option><option value="gram">Граммы</option></select></div></div><div class="conv-row"><div class="input-group"><label>Продукт</label><select class="select-input" id="conv-product" onchange="convert()"><option value="flour">Мука</option><option value="sugar">Сахар</option><option value="salt">Соль</option><option value="butter">Масло слив.</option><option value="oil">Масло раст.</option><option value="milk">Молоко</option><option value="water">Вода</option><option value="rice">Рис</option><option value="buckwheat">Гречка</option></select></div><button class="conv-btn" onclick="convert()">Перевести</button></div><div class="conv-result" id="conv-result">Выберите продукт</div></div>
-    <div class="screen" id="screen-cooking"><div class="back-btn" onclick="stopTimer(); goBackFromCooking()">⬅ Выйти</div><div class="cooking-container"><div class="cooking-header"><h2 id="cooking-title"></h2><div class="step-counter" id="step-counter"></div></div><div class="cooking-step"><div class="step-text" id="step-text"></div></div><div class="cooking-timer" id="cooking-timer">00:00</div><div class="timer-controls"><input type="text" inputmode="numeric" id="timer-minutes" value="5" maxlength="2" class="timer-input" placeholder="Мин"><span>:</span><input type="text" inputmode="numeric" id="timer-seconds" value="0" maxlength="2" class="timer-input" placeholder="Сек"><button class="timer-btn start" id="timer-start" onclick="startTimer()">▶</button><button class="timer-btn pause" id="timer-pause" onclick="pauseTimer()" style="display:none;">⏸</button><button class="timer-btn reset" onclick="resetTimer()">↺</button></div><div class="nav-buttons"><button class="nav-btn prev" id="btn-prev" onclick="prevStep()">⬅ Назад</button><button class="nav-btn next" id="btn-next" onclick="nextStep()">Далее ➡</button><button class="nav-btn finish" id="btn-finish" onclick="finishCooking()" style="display:none;">✅ Готово!</button></div></div></div>
-    <div class="screen" id="screen-shopping"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🧾 Список покупок</h2><div id="shopping-list"></div><div class="empty-state" id="shop-empty-state"><div class="icon">🧾</div><p>Список пуст</p></div><div class="shop-actions" id="shop-actions" style="display:none;"><button class="btn" style="background:#f0f0f0;color:var(--text);" onclick="clearChecked()">🗑 Убрать купленное</button><button class="btn" style="background:var(--red);color:white;" onclick="clearAllShopping()">Очистить</button></div></div>
-    <div class="screen" id="screen-fridge"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:8px;">🔍 Что в холодильнике?</h2><p style="font-size:14px;color:var(--text-light);margin-bottom:16px;">Введите ингредиенты через запятую</p><input class="input" id="fridge-input" placeholder="Например: курица, гречка, лук" oninput="searchFridge()"><div id="fridge-results" style="margin-top:12px;"></div><div class="empty-state" id="fridge-empty"><div class="icon">🔍</div><p>Введите ингредиенты</p></div></div>
-    <div class="screen" id="screen-planner"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">📅 План на неделю</h2><div id="planner-list"></div></div>
-    <div class="screen" id="screen-picker"><div class="back-btn" onclick="closePicker()">⬅ Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:4px;">Выберите рецепт</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="picker-search" placeholder="Поиск..." oninput="filterPicker()"></div><div id="picker-list"></div></div>
-    <div class="screen" id="screen-substitutes"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🔄 Замена ингредиентов</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="sub-search" placeholder="Поиск..." oninput="filterSubstitutes()"></div><div id="substitutes-list"></div></div>
+    
+    <div class="screen" id="screen-add">
+        <div class="back-btn" onclick="navigateTo('main')">Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:20px;">Новый рецепт</h2>
+        <div class="input-group"><label>Название</label><input class="input" id="name" placeholder="Например: Борщ"></div>
+        <div class="input-group">
+            <label>Ингредиенты <button class="voice-btn" onclick="startVoiceInput('ingredients')">🎤</button></label>
+            <textarea class="input" id="ingredients" placeholder="Картофель — 3 шт&#10;Морковь — 1 шт"></textarea>
+            <div class="tags">
+                <span class="tag" onclick="addIngredient('Картофель')">Картофель</span>
+                <span class="tag" onclick="addIngredient('Морковь')">Морковь</span>
+                <span class="tag" onclick="addIngredient('Лук')">Лук</span>
+                <span class="tag" onclick="addIngredient('Чеснок')">Чеснок</span>
+                <span class="tag" onclick="addIngredient('Куриное филе')">Курица</span>
+                <span class="tag" onclick="addIngredient('Фарш')">Фарш</span>
+                <span class="tag" onclick="addIngredient('Сметана')">Сметана</span>
+                <span class="tag" onclick="addIngredient('Сыр')">Сыр</span>
+                <span class="tag" onclick="addIngredient('Яйца')">Яйца</span>
+                <span class="tag" onclick="addIngredient('Мука')">Мука</span>
+                <span class="tag" onclick="addIngredient('Сахар')">Сахар</span>
+                <span class="tag" onclick="addIngredient('Масло')">Масло</span>
+            </div>
+        </div>
+        <div class="input-group"><label>Приготовление <button class="voice-btn" onclick="startVoiceInput('instructions')">🎤</button></label><textarea class="input" id="instructions" placeholder="Опишите шаги..."></textarea></div>
+        <div class="input-group"><label>Время</label><input class="input" id="time" placeholder="30 минут"></div>
+        <div class="input-group"><label>Теги (через запятую)</label><input class="input" id="tags-input" placeholder="#быстро, #пп, #веган"></div>
+        <button class="btn btn-save" onclick="saveRecipe()">💾 Сохранить</button>
+    </div>
+    
+    <div class="screen" id="screen-list">
+        <div class="back-btn" onclick="navigateTo('main')">Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:4px;">Мои рецепты</h2>
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <select class="select-input" id="sort-select" onchange="sortMyRecipes()" style="flex:1;">
+                <option value="name">По названию</option>
+                <option value="time">По времени</option>
+                <option value="favorites">По избранному</option>
+            </select>
+        </div>
+        <div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-my" placeholder="Поиск..." oninput="filterMyRecipes()"></div>
+        <div id="recipe-list"></div>
+        <div class="limit-banner hidden" id="lock-msg">🔒 Бесплатно 5. Купи безлимит!</div>
+        <div class="empty-state" id="empty-state"><div class="icon">📝</div><p>Пока нет рецептов</p></div>
+    </div>
+    
+    <div class="screen" id="screen-detail">
+        <div class="back-btn" onclick="goBack()">Назад</div>
+        <div class="recipe-detail" id="detail-content"></div>
+    </div>
+    
+    <div class="screen" id="screen-builtin">
+        <div class="back-btn" onclick="navigateTo('main')">Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:8px;">🍽 Готовые рецепты</h2>
+        <div class="tabs" id="category-tabs">
+            <button class="tab active" onclick="filterBuiltinByCategory('all', this)">Все</button>
+            <button class="tab" onclick="filterBuiltinByCategory('breakfast', this)">🍳</button>
+            <button class="tab" onclick="filterBuiltinByCategory('soup', this)">🍜</button>
+            <button class="tab" onclick="filterBuiltinByCategory('salad', this)">🥗</button>
+            <button class="tab" onclick="filterBuiltinByCategory('main', this)">🍖</button>
+            <button class="tab" onclick="filterBuiltinByCategory('dessert', this)">🍰</button>
+            <button class="tab" onclick="filterBuiltinByCategory('drink', this)">🍹</button>
+        </div>
+        <div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-builtin" placeholder="Поиск..." oninput="filterBuiltin()"></div>
+        <div id="builtin-list"></div>
+        <div class="limit-banner hidden" id="builtin-lock">🔒 Бесплатно 10. Купи безлимит!</div>
+    </div>
+    
+    <div class="screen" id="screen-favorites">
+        <div class="back-btn" onclick="navigateTo('main')">Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:4px;">❤️ Избранное</h2>
+        <div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-fav" placeholder="Поиск..." oninput="filterFavorites()"></div>
+        <div id="favorites-list"></div>
+        <div class="empty-state" id="fav-empty-state"><div class="icon">❤️</div><p>Нет избранных</p></div>
+    </div>
+    
+    <div class="screen" id="screen-converter">
+        <div class="back-btn" onclick="navigateTo('main')">Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:20px;">⚖️ Конвертер мер</h2>
+        <div class="conv-row"><div class="input-group"><label>Кол-во</label><input class="input" id="conv-amount" type="text" inputmode="decimal" value="1"></div><div class="input-group"><label>Из</label><select class="select-input" id="conv-from" onchange="convert()"><option value="glass">Стакан</option><option value="tbsp">Ст.ложка</option><option value="tsp">Ч.ложка</option><option value="gram">Граммы</option></select></div></div>
+        <div class="conv-row"><div class="input-group"><label>Продукт</label><select class="select-input" id="conv-product" onchange="convert()"><option value="flour">Мука</option><option value="sugar">Сахар</option><option value="salt">Соль</option><option value="butter">Масло слив.</option><option value="oil">Масло раст.</option><option value="milk">Молоко</option><option value="water">Вода</option><option value="rice">Рис</option><option value="buckwheat">Гречка</option></select></div><button class="conv-btn" onclick="convert()">Перевести</button></div>
+        <div class="conv-result" id="conv-result">Выберите продукт</div>
+    </div>
+    
+    <div class="screen" id="screen-cooking">
+        <div class="back-btn" onclick="stopTimer(); goBackFromCooking()">⬅ Выйти</div>
+        <div class="cooking-container">
+            <div class="cooking-header"><h2 id="cooking-title"></h2><div class="step-counter" id="step-counter"></div></div>
+            <div class="cooking-step"><div class="step-text" id="step-text"></div></div>
+            <div class="cooking-timer" id="cooking-timer">00:00</div>
+            <div class="timer-controls">
+                <input type="text" inputmode="numeric" id="timer-minutes" value="5" maxlength="2" class="timer-input" placeholder="Мин"><span>:</span>
+                <input type="text" inputmode="numeric" id="timer-seconds" value="0" maxlength="2" class="timer-input" placeholder="Сек">
+                <button class="timer-btn start" id="timer-start" onclick="startTimer()">▶</button>
+                <button class="timer-btn pause" id="timer-pause" onclick="pauseTimer()" style="display:none;">⏸</button>
+                <button class="timer-btn reset" onclick="resetTimer()">↺</button>
+                <button class="timer-btn" style="background:var(--purple);color:white;" onclick="speakStep()">🔊</button>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" id="btn-prev" onclick="prevStep()">⬅ Назад</button>
+                <button class="nav-btn next" id="btn-next" onclick="nextStep()">Далее ➡</button>
+                <button class="nav-btn finish" id="btn-finish" onclick="finishCooking()" style="display:none;">✅ Готово!</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="screen" id="screen-shopping">
+        <div class="back-btn" onclick="navigateTo('main')">Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🧾 Список покупок</h2>
+        <div id="shopping-list"></div>
+        <div class="empty-state" id="shop-empty-state"><div class="icon">🧾</div><p>Список пуст</p></div>
+        <div class="shop-actions" id="shop-actions" style="display:none;">
+            <button class="btn" style="background:#f0f0f0;color:var(--text);" onclick="clearChecked()">🗑 Убрать купленное</button>
+            <button class="btn" style="background:var(--red);color:white;" onclick="clearAllShopping()">Очистить</button>
+        </div>
+    </div>
+    
+    <div class="screen" id="screen-fridge">
+        <div class="back-btn" onclick="navigateTo('main')">Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:8px;">🔍 Что в холодильнике?</h2>
+        <p style="font-size:14px;color:var(--text-light);margin-bottom:16px;">Введите ингредиенты через запятую</p>
+        <input class="input" id="fridge-input" placeholder="Например: курица, гречка, лук" oninput="searchFridge()">
+        <div id="fridge-results" style="margin-top:12px;"></div>
+        <div class="empty-state" id="fridge-empty"><div class="icon">🔍</div><p>Введите ингредиенты</p></div>
+    </div>
+    
+    <div class="screen" id="screen-planner">
+        <div class="back-btn" onclick="navigateTo('main')">Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">📅 План на неделю</h2>
+        <div id="planner-list"></div>
+    </div>
+    
+    <div class="screen" id="screen-picker">
+        <div class="back-btn" onclick="closePicker()">⬅ Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:4px;">Выберите рецепт</h2>
+        <div class="search-box"><span class="search-icon">🔍</span><input class="input" id="picker-search" placeholder="Поиск..." oninput="filterPicker()"></div>
+        <div id="picker-list"></div>
+    </div>
+    
+    <div class="screen" id="screen-substitutes">
+        <div class="back-btn" onclick="navigateTo('main')">Назад</div>
+        <h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🔄 Замена ингредиентов</h2>
+        <div class="search-box"><span class="search-icon">🔍</span><input class="input" id="sub-search" placeholder="Поиск..." oninput="filterSubstitutes()"></div>
+        <div id="substitutes-list"></div>
+    </div>
 
 <script>
 // ===== ПРОВЕРКА НА VK WEBVIEW =====
@@ -141,7 +299,51 @@ if (isVKWebView) {
     console.log('🔵 Запущено внутри ВК');
 }
 
-// ===== SAFE STORAGE (fix для iOS) =====
+// ===== VK BRIDGE - САМАЯ ПРОСТАЯ ИНИЦИАЛИЗАЦИЯ =====
+(function() {
+    try {
+        if (typeof vkBridge !== 'undefined') {
+            vkBridge.send('VKWebAppInit')
+                .then(function() {
+                    console.log('✅ VK Bridge готов');
+                    try {
+                        vkBridge.send('VKWebAppLoadingCompleted', { ok: true });
+                    } catch(e) {}
+                })
+                .catch(function(e) {
+                    console.warn('⚠️ VKWebAppInit error:', e);
+                });
+        } else {
+            console.log('⚠️ VK Bridge не найден, загружаем...');
+            var script = document.createElement('script');
+            script.src = 'https://vk.com/js/api/xd_connection.js?2';
+            script.onload = function() {
+                try {
+                    if (typeof vkBridge !== 'undefined') {
+                        vkBridge.send('VKWebAppInit')
+                            .then(function() {
+                                console.log('✅ VK Bridge загружен');
+                                try {
+                                    vkBridge.send('VKWebAppLoadingCompleted', { ok: true });
+                                } catch(e) {}
+                            })
+                            .catch(function(e) {
+                                console.warn('⚠️ VKWebAppInit error:', e);
+                            });
+                    }
+                } catch(e) {}
+            };
+            script.onerror = function() {
+                console.warn('⚠️ Не удалось загрузить VK Bridge');
+            };
+            document.head.appendChild(script);
+        }
+    } catch(e) {
+        console.warn('⚠️ VK init error:', e);
+    }
+})();
+
+// ===== SAFE STORAGE =====
 function safeSet(key, value) {
     try {
         localStorage.setItem(key, value);
@@ -150,9 +352,7 @@ function safeSet(key, value) {
         try {
             sessionStorage.setItem(key, value);
             return true;
-        } catch(e2) {
-            return false;
-        }
+        } catch(e2) { return false; }
     }
 }
 function safeGet(key) {
@@ -160,86 +360,14 @@ function safeGet(key) {
         var val = localStorage.getItem(key);
         if (val !== null) return val;
     } catch(e) {}
-    try {
-        return sessionStorage.getItem(key);
-    } catch(e) {
-        return null;
-    }
+    try { return sessionStorage.getItem(key); } catch(e) { return null; }
 }
 function safeGetJSON(key, fallback) {
     try {
         var val = safeGet(key);
         return val ? JSON.parse(val) : fallback;
-    } catch(e) {
-        return fallback;
-    }
+    } catch(e) { return fallback; }
 }
-
-// ===== VK BRIDGE (полный фикс для iOS внутри ВК) =====
-var vkBridgeReady = false;
-var vkBridgeAttempts = 0;
-
-function initVKBridge() {
-    if (typeof vkBridge !== 'undefined') {
-        try {
-            vkBridge.send('VKWebAppInit')
-                .then(function(data) {
-                    vkBridgeReady = true;
-                    console.log('✅ VK Bridge готов');
-                })
-                .catch(function(e) {
-                    console.warn('⚠️ VK Bridge init error:', e);
-                    retryVKBridge();
-                });
-        } catch(e) {
-            console.warn('⚠️ VK Bridge exception:', e);
-            retryVKBridge();
-        }
-    } else {
-        console.log('🔄 VK Bridge не найден, загружаем...');
-        loadVKBridgeScript();
-    }
-}
-
-function loadVKBridgeScript() {
-    if (document.querySelector('script[src*="vk-bridge"]')) return;
-    var script = document.createElement('script');
-    script.src = 'https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js';
-    script.onload = function() {
-        setTimeout(function() {
-            if (typeof vkBridge !== 'undefined') {
-                vkBridge.send('VKWebAppInit')
-                    .then(function() { 
-                        vkBridgeReady = true; 
-                        console.log('✅ VK Bridge загружен и готов');
-                    })
-                    .catch(function() { retryVKBridge(); });
-            } else {
-                retryVKBridge();
-            }
-        }, 300);
-    };
-    script.onerror = function() {
-        console.warn('⚠️ Не удалось загрузить VK Bridge');
-        retryVKBridge();
-    };
-    document.head.appendChild(script);
-}
-
-function retryVKBridge() {
-    vkBridgeAttempts++;
-    if (vkBridgeAttempts < 5) {
-        console.log('🔄 Попытка инициализации VK Bridge #' + vkBridgeAttempts);
-        setTimeout(initVKBridge, 500 * vkBridgeAttempts);
-    } else {
-        console.warn('⚠️ VK Bridge не инициализирован после ' + vkBridgeAttempts + ' попыток');
-    }
-}
-
-// Запускаем инициализацию
-setTimeout(initVKBridge, 100);
-setTimeout(function() { if (!vkBridgeReady) initVKBridge(); }, 1000);
-setTimeout(function() { if (!vkBridgeReady) initVKBridge(); }, 3000);
 
 // ===== DATA =====
 var recipes = safeGetJSON('recipes', []);
@@ -253,6 +381,7 @@ var currentDetailRecipeId = null, currentDetailSource = null, currentCategory = 
 var cookingRecipe = null, cookingSteps = [], currentStep = 0;
 var timerSeconds = 0, timerInterval = null, timerRunning = false;
 var pickerDay = null, completedSteps = [];
+var recipeOfDayId = null;
 
 if (isDark) { document.body.classList.add('dark'); document.getElementById('theme-btn').textContent = '☀️'; }
 else { document.getElementById('theme-btn').textContent = '🌙'; }
@@ -264,27 +393,28 @@ function toggleTheme() {
     else { document.body.classList.remove('dark'); document.getElementById('theme-btn').textContent = '🌙'; } 
 }
 
+// ===== ВСТРОЕННЫЕ РЕЦЕПТЫ =====
 var builtinRecipes = [
-    { id: 'b1', name: "Ленивая овсянка в банке", category: "breakfast", ing: "Овсяные хлопья — 4 ст.л.\nЙогурт натуральный — 150 мл\nМёд — 1 ч.л.\nЯгоды — 50 г", instr: "1. Насыпьте хлопья в банку. [1 мин]\n2. Залейте йогуртом, добавьте мёд. [1 мин]\n3. Выложите ягоды. [1 мин]\n4. Закройте и в холодильник на 6+ часов. [0 мин]\n5. Утром готово!", time: "5 мин + ночь" },
-    { id: 'b2', name: "Сырники за 10 минут", category: "breakfast", ing: "Творог 9% — 200 г\nЯйцо — 1 шт\nМука — 2 ст.л. + для обваливания\nСахар — 1 ст.л.\nВанильный сахар — 1 ч.л.\nМасло растительное — для жарки", instr: "1. Разомните творог. [2 мин]\n2. Добавьте яйцо, сахар, муку. [2 мин]\n3. Сформируйте шарики, обваляйте в муке. [3 мин]\n4. Жарьте по 2-3 мин с каждой стороны. [5 мин]", time: "10 мин" },
-    { id: 'b3', name: "Яичница в хлебе", category: "breakfast", ing: "Хлеб — 2 ломтика\nЯйца — 2 шт\nСыр — 30 г\nМасло сливочное — 10 г", instr: "1. Вырежьте отверстие в хлебе. [1 мин]\n2. Обжарьте хлеб на масле. [1 мин]\n3. Разбейте яйцо в отверстие. [1 мин]\n4. Посыпьте сыром, жарьте 3-4 мин. [4 мин]", time: "7 мин" },
-    { id: 'b4', name: "Сырный суп с курицей", category: "soup", ing: "Куриное филе — 300 г\nКартофель — 3 шт\nПлавленый сыр — 2 шт\nМорковь, лук — по 1 шт", instr: "1. Сварите курицу 15 мин. [15 мин]\n2. Добавьте картофель, 10 мин. [10 мин]\n3. Обжарьте лук и морковь. [4 мин]\n4. Добавьте сыр, помешивая. [3 мин]\n5. Посолите, варите 5 мин. [5 мин]", time: "35 мин" },
-    { id: 'b5', name: "Ленивые голубцы", category: "main", ing: "Фарш — 500 г\nКапуста — 300 г\nРис — 100 г\nТоматная паста — 2 ст.л.", instr: "1. Отварите рис 7 мин. [7 мин]\n2. Смешайте фарш, капусту, рис. [5 мин]\n3. Сформируйте котлеты. [5 мин]\n4. Залейте соусом. [3 мин]\n5. Тушите 30 мин. [30 мин]", time: "45 мин" },
-    { id: 'b6', name: "Курица в сметане", category: "main", ing: "Куриные бёдра — 6 шт\nСметана — 200 г\nЧеснок — 3 зубчика", instr: "1. Натрите бёдра солью и паприкой. [2 мин]\n2. Смешайте сметану с чесноком. [2 мин]\n3. Залейте бёдра. [1 мин]\n4. Запекайте при 180°C 35-40 мин. [35 мин]", time: "40 мин" },
-    { id: 'b7', name: "Цезарь домашний", category: "salad", ing: "Куриная грудка — 1 шт\nСалат Айсберг — 200 г\nПомидоры черри — 100 г\nПармезан — 50 г", instr: "1. Обжарьте курицу, нарежьте. [12 мин]\n2. Порвите салат. [2 мин]\n3. Добавьте помидоры, сухарики. [2 мин]\n4. Заправьте соусом. [2 мин]", time: "20 мин" },
-    { id: 'b8', name: "Шарлотка", category: "dessert", ing: "Яблоки — 4 шт\nЯйца — 3 шт\nМука — 200 г\nСахар — 200 г", instr: "1. Нарежьте яблоки дольками. [5 мин]\n2. Взбейте яйца с сахаром. [5 мин]\n3. Добавьте муку. [2 мин]\n4. Залейте яблоки тестом. [1 мин]\n5. Выпекайте 30 мин при 180°C. [30 мин]", time: "45 мин" },
-    { id: 'b9', name: "Макароны по-флотски", category: "main", ing: "Макароны — 300 г\nФарш — 300 г\nЛук — 1 шт", instr: "1. Отварите макароны. [10 мин]\n2. Обжарьте лук и фарш. [7 мин]\n3. Смешайте. [2 мин]", time: "20 мин" },
-    { id: 'b10', name: "Оладьи на кефире", category: "breakfast", ing: "Кефир — 250 мл\nЯйцо — 1 шт\nМука — 200 г\nСахар — 2 ст.л.\nСода — 0,5 ч.л.", instr: "1. Смешайте кефир, яйцо, сахар. [2 мин]\n2. Добавьте соду, муку. [2 мин]\n3. Жарьте по 2 мин. [10 мин]", time: "15 мин" },
-    { id: 'b11', name: "Греческий салат", category: "salad", ing: "Помидоры — 3 шт\nОгурцы — 2 шт\nФета — 150 г", instr: "1. Нарежьте овощи. [5 мин]\n2. Добавьте сыр и маслины. [2 мин]\n3. Заправьте маслом. [1 мин]", time: "10 мин" },
-    { id: 'b12', name: "Куриный суп", category: "soup", ing: "Курица — 1 шт\nЛапша — 100 г\nКартофель — 2 шт", instr: "1. Сварите курицу 20 мин. [20 мин]\n2. Добавьте картофель, 10 мин. [10 мин]\n3. Добавьте лапшу, 5 мин. [5 мин]", time: "35 мин" },
-    { id: 'b13', name: "Блинчики тонкие", category: "breakfast", ing: "Молоко — 500 мл\nЯйца — 2 шт\nМука — 250 г\nСахар — 1 ст.л.", instr: "1. Взбейте яйца с сахаром. [2 мин]\n2. Добавьте молоко, муку. [3 мин]\n3. Жарьте по 1 мин. [15 мин]", time: "30 мин" },
-    { id: 'b14', name: "Пюре картофельное", category: "main", ing: "Картофель — 1 кг\nМолоко — 200 мл\nМасло — 50 г", instr: "1. Отварите 20 мин. [20 мин]\n2. Разомните. [5 мин]\n3. Добавьте молоко и масло. [3 мин]", time: "30 мин" },
-    { id: 'b15', name: "Гуляш из говядины", category: "main", ing: "Говядина — 500 г\nЛук — 2 шт\nТоматная паста — 2 ст.л.", instr: "1. Обжарьте мясо. [10 мин]\n2. Добавьте лук. [5 мин]\n3. Залейте водой с пастой. [2 мин]\n4. Тушите 1,5 ч. [90 мин]", time: "2 ч" },
-    { id: 'b16', name: "Салат Мимоза", category: "salad", ing: "Консервы рыбные — 1 б.\nЯйца — 4 шт\nСыр — 100 г", instr: "1. Отварите яйца, разделите. [10 мин]\n2. Выложите слоями. [10 мин]\n3. В холодильник на 2 ч. [0 мин]", time: "30 мин + 2 ч" },
-    { id: 'b17', name: "Кекс в кружке", category: "dessert", ing: "Мука — 4 ст.л.\nСахар — 3 ст.л.\nКакао — 2 ст.л.\nЯйцо — 1 шт\nМолоко — 3 ст.л.", instr: "1. Смешайте сухие ингредиенты. [1 мин]\n2. Добавьте яйцо, молоко. [1 мин]\n3. В микроволновку на 2 мин. [2 мин]", time: "5 мин" },
-    { id: 'b18', name: "Домашний лимонад", category: "drink", ing: "Лимоны — 2 шт\nСахар — 100 г\nВода — 1 л", instr: "1. Снимите цедру, выжмите сок. [5 мин]\n2. Сварите сироп. [5 мин]\n3. Смешайте, остудите. [1 мин]", time: "10 мин + охл." },
-    { id: 'b19', name: "Банановые панкейки", category: "breakfast", ing: "Банан — 1 шт\nЯйцо — 1 шт\nМука — 3 ст.л.", instr: "1. Разомните банан. [2 мин]\n2. Добавьте яйцо, муку. [2 мин]\n3. Жарьте по 2 мин. [8 мин]", time: "12 мин" },
-    { id: 'b20', name: "Соус Песто", category: "main", ing: "Базилик — 50 г\nОрехи — 30 г\nПармезан — 50 г\nМасло — 80 мл", instr: "1. В блендер всё. [2 мин]\n2. Измельчите. [3 мин]\n3. Добавьте сыр. [1 мин]", time: "10 мин" }
+    { id: 'b1', name: "Ленивая овсянка в банке", category: "breakfast", ing: "Овсяные хлопья — 4 ст.л.\nЙогурт натуральный — 150 мл\nМёд — 1 ч.л.\nЯгоды — 50 г", instr: "1. Насыпьте хлопья в банку. [1 мин]\n2. Залейте йогуртом, добавьте мёд. [1 мин]\n3. Выложите ягоды. [1 мин]\n4. Закройте и в холодильник на 6+ часов. [0 мин]\n5. Утром готово!", time: "5 мин + ночь", tags: ["#завтрак", "#быстро"] },
+    { id: 'b2', name: "Сырники за 10 минут", category: "breakfast", ing: "Творог 9% — 200 г\nЯйцо — 1 шт\nМука — 2 ст.л. + для обваливания\nСахар — 1 ст.л.\nВанильный сахар — 1 ч.л.\nМасло растительное — для жарки", instr: "1. Разомните творог. [2 мин]\n2. Добавьте яйцо, сахар, муку. [2 мин]\n3. Сформируйте шарики, обваляйте в муке. [3 мин]\n4. Жарьте по 2-3 мин с каждой стороны. [5 мин]", time: "10 мин", tags: ["#завтрак", "#быстро"] },
+    { id: 'b3', name: "Яичница в хлебе", category: "breakfast", ing: "Хлеб — 2 ломтика\nЯйца — 2 шт\nСыр — 30 г\nМасло сливочное — 10 г", instr: "1. Вырежьте отверстие в хлебе. [1 мин]\n2. Обжарьте хлеб на масле. [1 мин]\n3. Разбейте яйцо в отверстие. [1 мин]\n4. Посыпьте сыром, жарьте 3-4 мин. [4 мин]", time: "7 мин", tags: ["#завтрак", "#быстро"] },
+    { id: 'b4', name: "Сырный суп с курицей", category: "soup", ing: "Куриное филе — 300 г\nКартофель — 3 шт\nПлавленый сыр — 2 шт\nМорковь, лук — по 1 шт", instr: "1. Сварите курицу 15 мин. [15 мин]\n2. Добавьте картофель, 10 мин. [10 мин]\n3. Обжарьте лук и морковь. [4 мин]\n4. Добавьте сыр, помешивая. [3 мин]\n5. Посолите, варите 5 мин. [5 мин]", time: "35 мин", tags: ["#суп", "#обед"] },
+    { id: 'b5', name: "Ленивые голубцы", category: "main", ing: "Фарш — 500 г\nКапуста — 300 г\nРис — 100 г\nТоматная паста — 2 ст.л.", instr: "1. Отварите рис 7 мин. [7 мин]\n2. Смешайте фарш, капусту, рис. [5 мин]\n3. Сформируйте котлеты. [5 мин]\n4. Залейте соусом. [3 мин]\n5. Тушите 30 мин. [30 мин]", time: "45 мин", tags: ["#ужин", "#мясо"] },
+    { id: 'b6', name: "Курица в сметане", category: "main", ing: "Куриные бёдра — 6 шт\nСметана — 200 г\nЧеснок — 3 зубчика", instr: "1. Натрите бёдра солью и паприкой. [2 мин]\n2. Смешайте сметану с чесноком. [2 мин]\n3. Залейте бёдра. [1 мин]\n4. Запекайте при 180°C 35-40 мин. [35 мин]", time: "40 мин", tags: ["#ужин", "#мясо"] },
+    { id: 'b7', name: "Цезарь домашний", category: "salad", ing: "Куриная грудка — 1 шт\nСалат Айсберг — 200 г\nПомидоры черри — 100 г\nПармезан — 50 г", instr: "1. Обжарьте курицу, нарежьте. [12 мин]\n2. Порвите салат. [2 мин]\n3. Добавьте помидоры, сухарики. [2 мин]\n4. Заправьте соусом. [2 мин]", time: "20 мин", tags: ["#салат", "#обед"] },
+    { id: 'b8', name: "Шарлотка", category: "dessert", ing: "Яблоки — 4 шт\nЯйца — 3 шт\nМука — 200 г\nСахар — 200 г", instr: "1. Нарежьте яблоки дольками. [5 мин]\n2. Взбейте яйца с сахаром. [5 мин]\n3. Добавьте муку. [2 мин]\n4. Залейте яблоки тестом. [1 мин]\n5. Выпекайте 30 мин при 180°C. [30 мин]", time: "45 мин", tags: ["#десерт", "#выпечка"] },
+    { id: 'b9', name: "Макароны по-флотски", category: "main", ing: "Макароны — 300 г\nФарш — 300 г\nЛук — 1 шт", instr: "1. Отварите макароны. [10 мин]\n2. Обжарьте лук и фарш. [7 мин]\n3. Смешайте. [2 мин]", time: "20 мин", tags: ["#ужин", "#быстро"] },
+    { id: 'b10', name: "Оладьи на кефире", category: "breakfast", ing: "Кефир — 250 мл\nЯйцо — 1 шт\nМука — 200 г\nСахар — 2 ст.л.\nСода — 0,5 ч.л.", instr: "1. Смешайте кефир, яйцо, сахар. [2 мин]\n2. Добавьте соду, муку. [2 мин]\n3. Жарьте по 2 мин. [10 мин]", time: "15 мин", tags: ["#завтрак", "#быстро"] },
+    { id: 'b11', name: "Греческий салат", category: "salad", ing: "Помидоры — 3 шт\nОгурцы — 2 шт\nФета — 150 г", instr: "1. Нарежьте овощи. [5 мин]\n2. Добавьте сыр и маслины. [2 мин]\n3. Заправьте маслом. [1 мин]", time: "10 мин", tags: ["#салат", "#быстро"] },
+    { id: 'b12', name: "Куриный суп", category: "soup", ing: "Курица — 1 шт\nЛапша — 100 г\nКартофель — 2 шт", instr: "1. Сварите курицу 20 мин. [20 мин]\n2. Добавьте картофель, 10 мин. [10 мин]\n3. Добавьте лапшу, 5 мин. [5 мин]", time: "35 мин", tags: ["#суп", "#обед"] },
+    { id: 'b13', name: "Блинчики тонкие", category: "breakfast", ing: "Молоко — 500 мл\nЯйца — 2 шт\nМука — 250 г\nСахар — 1 ст.л.", instr: "1. Взбейте яйца с сахаром. [2 мин]\n2. Добавьте молоко, муку. [3 мин]\n3. Жарьте по 1 мин. [15 мин]", time: "30 мин", tags: ["#завтрак", "#выпечка"] },
+    { id: 'b14', name: "Пюре картофельное", category: "main", ing: "Картофель — 1 кг\nМолоко — 200 мл\nМасло — 50 г", instr: "1. Отварите 20 мин. [20 мин]\n2. Разомните. [5 мин]\n3. Добавьте молоко и масло. [3 мин]", time: "30 мин", tags: ["#гарнир", "#быстро"] },
+    { id: 'b15', name: "Гуляш из говядины", category: "main", ing: "Говядина — 500 г\nЛук — 2 шт\nТоматная паста — 2 ст.л.", instr: "1. Обжарьте мясо. [10 мин]\n2. Добавьте лук. [5 мин]\n3. Залейте водой с пастой. [2 мин]\n4. Тушите 1,5 ч. [90 мин]", time: "2 ч", tags: ["#ужин", "#мясо"] },
+    { id: 'b16', name: "Салат Мимоза", category: "salad", ing: "Консервы рыбные — 1 б.\nЯйца — 4 шт\nСыр — 100 г", instr: "1. Отварите яйца, разделите. [10 мин]\n2. Выложите слоями. [10 мин]\n3. В холодильник на 2 ч. [0 мин]", time: "30 мин + 2 ч", tags: ["#салат", "#праздник"] },
+    { id: 'b17', name: "Кекс в кружке", category: "dessert", ing: "Мука — 4 ст.л.\nСахар — 3 ст.л.\nКакао — 2 ст.л.\nЯйцо — 1 шт\nМолоко — 3 ст.л.", instr: "1. Смешайте сухие ингредиенты. [1 мин]\n2. Добавьте яйцо, молоко. [1 мин]\n3. В микроволновку на 2 мин. [2 мин]", time: "5 мин", tags: ["#десерт", "#быстро"] },
+    { id: 'b18', name: "Домашний лимонад", category: "drink", ing: "Лимоны — 2 шт\nСахар — 100 г\nВода — 1 л", instr: "1. Снимите цедру, выжмите сок. [5 мин]\n2. Сварите сироп. [5 мин]\n3. Смешайте, остудите. [1 мин]", time: "10 мин + охл.", tags: ["#напиток", "#быстро"] },
+    { id: 'b19', name: "Банановые панкейки", category: "breakfast", ing: "Банан — 1 шт\nЯйцо — 1 шт\nМука — 3 ст.л.", instr: "1. Разомните банан. [2 мин]\n2. Добавьте яйцо, муку. [2 мин]\n3. Жарьте по 2 мин. [8 мин]", time: "12 мин", tags: ["#завтрак", "#быстро"] },
+    { id: 'b20', name: "Соус Песто", category: "main", ing: "Базилик — 50 г\nОрехи — 30 г\nПармезан — 50 г\nМасло — 80 мл", instr: "1. В блендер всё. [2 мин]\n2. Измельчите. [3 мин]\n3. Добавьте сыр. [1 мин]", time: "10 мин", tags: ["#соус", "#быстро"] }
 ];
 
 var substitutes = [
@@ -296,7 +426,7 @@ var substitutes = [
     { from: "Разрыхлитель", to: "Сода + уксус", note: "1 ч.л. = 1/2 + 1 ч.л." }, { from: "Пармезан", to: "Твёрдый сыр", note: "1:1" }
 ];
 
-// ===== FUNCTIONS =====
+// ===== ОСНОВНЫЕ ФУНКЦИИ =====
 function getAllRecipes() { return recipes.concat(builtinRecipes); }
 function findRecipeById(id) { var a = getAllRecipes(); for (var i = 0; i < a.length; i++) { if (a[i].id === id) return a[i]; } return null; }
 
@@ -310,6 +440,239 @@ function saveData() {
 }
 function saveShoppingList() { safeSet('shoppingList', JSON.stringify(shoppingList)); updateMain(); }
 
+// ===== РЕЦЕПТ ДНЯ =====
+function updateRecipeOfDay() {
+    var all = getAllRecipes();
+    if (!all.length) {
+        document.getElementById('rod-title').textContent = 'Нет рецептов';
+        document.getElementById('rod-hint').textContent = 'Добавьте свой первый рецепт!';
+        return;
+    }
+    var saved = safeGet('recipeOfDay');
+    var rod = saved ? JSON.parse(saved) : null;
+    if (!rod || !findRecipeById(rod.id)) {
+        var random = all[Math.floor(Math.random() * all.length)];
+        rod = { id: random.id, date: new Date().toDateString() };
+        safeSet('recipeOfDay', JSON.stringify(rod));
+    }
+    recipeOfDayId = rod.id;
+    var r = findRecipeById(rod.id);
+    if (r) {
+        document.getElementById('rod-title').textContent = r.name;
+        document.getElementById('rod-hint').textContent = (r.time || '') + ' · Нажмите, чтобы открыть';
+    }
+}
+function openRecipeOfDay() {
+    if (recipeOfDayId) {
+        var src = recipeOfDayId.startsWith('b') ? 'builtin' : 'my';
+        showDetail(recipeOfDayId, src);
+    }
+}
+
+// ===== ГЛОБАЛЬНЫЙ ПОИСК =====
+function globalSearch() {
+    var q = document.getElementById('global-search').value.toLowerCase().trim();
+    var container = document.getElementById('global-results');
+    container.innerHTML = '';
+    if (!q) return;
+    var all = getAllRecipes();
+    var results = [];
+    for (var i = 0; i < all.length; i++) {
+        var r = all[i];
+        var text = (r.name + ' ' + (r.ing || '') + ' ' + (r.tags || []).join(' ')).toLowerCase();
+        if (text.indexOf(q) !== -1) {
+            var src = r.id.startsWith('b') ? 'builtin' : 'my';
+            results.push({ recipe: r, source: src });
+        }
+    }
+    if (!results.length) {
+        container.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><p>Ничего не найдено</p></div>';
+        return;
+    }
+    for (var j = 0; j < results.length && j < 5; j++) {
+        var item = results[j];
+        var card = document.createElement('div');
+        card.className = 'fridge-result';
+        card.innerHTML = '<h3>' + item.recipe.name + '</h3><div style="font-size:13px;color:var(--text-light);">' + (item.recipe.time || '') + '</div>';
+        card.onclick = function(rid, src) { return function() { showDetail(rid, src); }; }(item.recipe.id, item.source);
+        container.appendChild(card);
+    }
+    if (results.length > 5) {
+        var more = document.createElement('div');
+        more.className = 'fridge-result';
+        more.innerHTML = '<h3 style="color:var(--orange);">+ ещё ' + (results.length - 5) + ' рецептов</h3>';
+        more.onclick = function() { navigateTo('builtin'); };
+        container.appendChild(more);
+    }
+}
+
+// ===== СОРТИРОВКА =====
+function sortMyRecipes() {
+    var sort = document.getElementById('sort-select').value;
+    var sorted = recipes.slice();
+    if (sort === 'name') {
+        sorted.sort(function(a, b) { return a.name.localeCompare(b.name); });
+    } else if (sort === 'time') {
+        sorted.sort(function(a, b) { return (a.time || '').localeCompare(b.time || ''); });
+    } else if (sort === 'favorites') {
+        sorted.sort(function(a, b) {
+            var fa = favorites.indexOf(a.id) !== -1 ? 1 : 0;
+            var fb = favorites.indexOf(b.id) !== -1 ? 1 : 0;
+            return fb - fa;
+        });
+    }
+    renderRecipeList(sorted);
+}
+function renderRecipeList(list) {
+    var l = document.getElementById('recipe-list');
+    l.innerHTML = '';
+    var e = document.getElementById('empty-state');
+    if (!list.length) { e.classList.remove('hidden'); return; }
+    e.classList.add('hidden');
+    for (var i = 0; i < list.length; i++) {
+        var c = document.createElement('div');
+        c.className = 'card';
+        c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + list[i].id + '\', \'my\')"><h3>' + list[i].name + '</h3><div class="meta"><span>' + (list[i].time || '') + '</span>' + ((list[i].tags || []).length ? '<span>#' + (list[i].tags || []).join(' #') + '</span>' : '') + '</div></div>' + getHeartHTML(list[i].id);
+        l.appendChild(c);
+    }
+}
+
+// ===== ГОЛОСОВОЙ ВВОД =====
+function startVoiceInput(fieldId) {
+    var field = document.getElementById(fieldId);
+    if (!field) return;
+    if (!window.webkitSpeechRecognition && !window.SpeechRecognition) {
+        showToast('🎤 Голосовой ввод не поддерживается');
+        return;
+    }
+    var SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+    var recognition = new SpeechRecognition();
+    recognition.lang = 'ru-RU';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    showToast('🎤 Слушаю...');
+    recognition.onresult = function(event) {
+        var text = event.results[0][0].transcript;
+        var current = field.value.trim();
+        if (current && !current.endsWith('\n')) current += '\n';
+        field.value = current + text;
+        showToast('✅ Добавлено: ' + text);
+    };
+    recognition.onerror = function() {
+        showToast('❌ Не удалось распознать');
+    };
+    recognition.start();
+}
+
+// ===== ОЗВУЧКА ШАГОВ =====
+function speakStep() {
+    var text = document.getElementById('step-text').textContent;
+    if (!text) return;
+    if (!window.speechSynthesis) {
+        showToast('🔊 Озвучка не поддерживается');
+        return;
+    }
+    var utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ru-RU';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+    showToast('🔊 Говорю...');
+}
+
+// ===== ЭКСПОРТ/ИМПОРТ =====
+function exportRecipes() {
+    var data = {
+        recipes: recipes,
+        favorites: favorites,
+        shoppingList: shoppingList,
+        weekPlan: weekPlan,
+        premium: isPremium
+    };
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'moi-retsepty-backup.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('📤 Экспортировано!');
+}
+function importRecipes(event) {
+    var file = event.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            var data = JSON.parse(e.target.result);
+            if (data.recipes) recipes = data.recipes;
+            if (data.favorites) favorites = data.favorites;
+            if (data.shoppingList) shoppingList = data.shoppingList;
+            if (data.weekPlan) weekPlan = data.weekPlan;
+            if (data.premium !== undefined) isPremium = data.premium;
+            saveData();
+            updateMain();
+            showToast('📥 Импортировано!');
+            navigateTo('main');
+        } catch(err) {
+            showToast('❌ Ошибка импорта');
+        }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+}
+
+// ===== КАЛЬКУЛЯТОР ПОРЦИЙ =====
+function showPortionControl(recipeId) {
+    var r = findRecipeById(recipeId);
+    if (!r || !r.ing) return;
+    var div = document.createElement('div');
+    div.className = 'portion-control';
+    div.innerHTML = '<label>Порций:</label><input type="text" inputmode="numeric" id="portion-input" value="1" min="0.5" step="0.5"><button class="btn btn-small" style="background:var(--orange);color:white;margin:0;" onclick="scaleRecipe(\'' + recipeId + '\')">Пересчитать</button>';
+    var container = document.getElementById('detail-content');
+    var section = container.querySelector('.section:first-child');
+    if (section) section.after(div);
+}
+function scaleRecipe(recipeId) {
+    var r = findRecipeById(recipeId);
+    if (!r) return;
+    var portions = parseFloat(document.getElementById('portion-input').value.replace(',', '.')) || 1;
+    var lines = (r.ing || '').split('\n');
+    var scaled = [];
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (!line) continue;
+        var match = line.match(/^(.+?)\s*[—–-]\s*([\d.,]+)\s*(.+)$/);
+        if (match) {
+            var amount = parseFloat(match[2].replace(',', '.')) * portions;
+            scaled.push(match[1] + ' — ' + (amount % 1 === 0 ? Math.round(amount) : amount.toFixed(1)) + ' ' + match[3]);
+        } else {
+            scaled.push(line);
+        }
+    }
+    var newIng = scaled.join('\n');
+    var container = document.getElementById('detail-content');
+    var sections = container.querySelectorAll('.section');
+    for (var j = 0; j < sections.length; j++) {
+        if (sections[j].querySelector('h3') && sections[j].querySelector('h3').textContent === 'Ингредиенты') {
+            var ul = sections[j].querySelector('ul');
+            if (ul) {
+                ul.innerHTML = '';
+                var ings = newIng.split('\n');
+                for (var k = 0; k < ings.length; k++) {
+                    if (ings[k].trim()) {
+                        var li = document.createElement('li');
+                        li.textContent = ings[k].trim();
+                        ul.appendChild(li);
+                    }
+                }
+            }
+            break;
+        }
+    }
+    showToast('✅ Пересчитано на ' + portions + ' порц.');
+}
+
+// ===== ПЛАНИРОВЩИК =====
 function showPlanner() { navigateTo('planner'); renderPlanner(); }
 function renderPlanner() { 
     var list = document.getElementById('planner-list'); 
@@ -342,6 +705,7 @@ function renderPicker(filter) {
 }
 function filterPicker() { renderPicker(document.getElementById('picker-search').value.toLowerCase()); }
 
+// ===== ЗАМЕНА ИНГРЕДИЕНТОВ =====
 function showSubstitutes() { navigateTo('substitutes'); renderSubstitutes(); }
 function renderSubstitutes(filter) { 
     var list = document.getElementById('substitutes-list'); 
@@ -356,6 +720,7 @@ function renderSubstitutes(filter) {
 }
 function filterSubstitutes() { renderSubstitutes(document.getElementById('sub-search').value.toLowerCase()); }
 
+// ===== СПИСОК ПОКУПОК =====
 function addToShoppingList(t) { 
     if (!t) return; 
     var lines = t.split('\n'), added = 0; 
@@ -389,6 +754,8 @@ function renderShoppingList() {
         l.appendChild(d); 
     } 
 }
+
+// ===== ХОЛОДИЛЬНИК =====
 function showFridge() { navigateTo('fridge'); document.getElementById('fridge-input').value = ''; document.getElementById('fridge-results').innerHTML = ''; document.getElementById('fridge-empty').style.display = 'block'; }
 function searchFridge() { 
     var q = document.getElementById('fridge-input').value.toLowerCase().trim(); 
@@ -416,6 +783,7 @@ function searchFridge() {
     } } 
 }
 
+// ===== ГОТОВКА =====
 function parseStepTime(t) { var m = t.match(/\[(\d+)\s*мин\]/); return m ? { text: t.replace(/\s*\[\d+\s*мин\]/, '').trim(), time: parseInt(m[1]) } : { text: t.trim(), time: 0 }; }
 function startCooking(id, src) { 
     var r = findRecipeById(id); 
@@ -471,7 +839,7 @@ function resetTimer() { stopTimer(); timerSeconds = 0; document.getElementById('
 function stopTimer() { timerRunning = false; clearInterval(timerInterval); document.getElementById('timer-start').style.display = 'inline-block'; document.getElementById('timer-pause').style.display = 'none'; }
 function showToast(m) { var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(function() { t.classList.remove('show'); }, 2500); }
 
-// ===== CLIPBOARD FIX для iOS и VK =====
+// ===== КЛИПБОРД И ШЕРИНГ =====
 function fallbackCopy(text) {
     var ta = document.createElement('textarea');
     ta.value = text;
@@ -493,21 +861,11 @@ function fallbackCopy(text) {
 
 function shareRecipe(r) {
     var text = '🍳 ' + r.name + '\n⏱ ' + (r.time || '') + '\n\n📋 Ингредиенты:\n' + (r.ing || '') + '\n\n📝 Приготовление:\n' + (r.instr || '').replace(/\s*\[\d+\s*мин\]/g, '') + '\n\n📱 #рецепты #вкусно';
-    
-    // Пробуем через VK Bridge (шеринг внутри ВК)
     if (typeof vkBridge !== 'undefined' && vkBridgeReady) {
-        vkBridge.send('VKWebAppShare', { 
-            link: 'https://vk.com/app54646829', 
-            text: text 
-        })
-        .then(function() { 
-            showToast('📤 Поделились!'); 
-        })
-        .catch(function() { 
-            fallbackCopy(text); 
-        });
+        vkBridge.send('VKWebAppShare', { link: 'https://vk.com/app54646829', text: text })
+            .then(function() { showToast('📤 Поделились!'); })
+            .catch(function() { fallbackCopy(text); });
     } else {
-        // Если VK Bridge не готов — копируем
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text)
                 .then(function() { showToast('📋 Скопировано!'); })
@@ -518,6 +876,7 @@ function shareRecipe(r) {
     }
 }
 
+// ===== ОСНОВНЫЕ ФУНКЦИИ ПРИЛОЖЕНИЯ =====
 function getAllAvailableRecipes() { 
     var a = []; 
     for (var i = 0; i < recipes.length; i++) a.push({r: recipes[i], source: 'my'}); 
@@ -539,11 +898,12 @@ function getHeartHTML(id) { var l = isFavorite(id); return '<div class="heart-bt
 
 function navigateTo(screen) { 
     document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); 
-    document.getElementById('screen-' + screen).classList.add('active'); 
+    var target = document.getElementById('screen-' + screen);
+    if (target) target.classList.add('active'); 
     currentScreen = screen; 
     navigationStack.push(screen); 
     window.scrollTo(0, 0); 
-    if (screen === 'main') updateMain(); 
+    if (screen === 'main') { updateMain(); updateRecipeOfDay(); }
     if (screen === 'builtin') showBuiltin(); 
     if (screen === 'list') showMyRecipes(); 
     if (screen === 'favorites') showFavorites(); 
@@ -556,10 +916,11 @@ function goBack() {
     navigationStack.pop(); 
     var p = navigationStack[navigationStack.length - 1] || 'main'; 
     document.querySelectorAll('.screen').forEach(function(el) { el.classList.remove('active'); }); 
-    document.getElementById('screen-' + p).classList.add('active'); 
+    var target = document.getElementById('screen-' + p);
+    if (target) target.classList.add('active');
     currentScreen = p; 
     window.scrollTo(0, 0); 
-    if (p === 'main') updateMain(); 
+    if (p === 'main') { updateMain(); updateRecipeOfDay(); }
     if (p === 'builtin') showBuiltin(); 
     if (p === 'list') showMyRecipes(); 
     if (p === 'favorites') showFavorites(); 
@@ -573,39 +934,56 @@ function updateMain() {
     document.getElementById('shop-count').innerText = shoppingList.length; 
     if (isPremium) document.getElementById('premium-btn').classList.add('hidden'); 
 }
+
 function addIngredient(ing) { var f = document.getElementById('ingredients'), c = f.value.trim(); if (c && !c.endsWith('\n')) c += '\n'; f.value = c + ing + ' — '; f.focus(); }
+
 function saveRecipe() { 
     if (!isPremium && recipes.length >= 5) { alert('Бесплатно 5 рецептов.'); return; } 
     var n = document.getElementById('name').value.trim(); 
     if (!n) { alert('Введи название'); return; } 
-    recipes.push({ id: 'r' + Date.now(), name: n, ing: document.getElementById('ingredients').value.trim(), instr: document.getElementById('instructions').value.trim(), time: document.getElementById('time').value.trim() }); 
+    var tagsStr = document.getElementById('tags-input').value.trim();
+    var tags = tagsStr ? tagsStr.split(',').map(function(t) { return t.trim(); }).filter(function(t) { return t; }) : [];
+    recipes.push({ 
+        id: 'r' + Date.now(), 
+        name: n, 
+        ing: document.getElementById('ingredients').value.trim(), 
+        instr: document.getElementById('instructions').value.trim(), 
+        time: document.getElementById('time').value.trim(),
+        tags: tags
+    }); 
     saveData(); 
     document.getElementById('name').value = ''; 
     document.getElementById('ingredients').value = ''; 
     document.getElementById('instructions').value = ''; 
     document.getElementById('time').value = ''; 
+    document.getElementById('tags-input').value = '';
     alert('Сохранено!'); 
     navigateTo('main'); 
 }
+
 function showMyRecipes() { 
     navigateTo('list'); 
     document.getElementById('search-my').value = ''; 
-    var l = document.getElementById('recipe-list'); 
-    l.innerHTML = ''; 
-    var e = document.getElementById('empty-state'); 
-    if (!recipes.length) e.classList.remove('hidden'); 
-    else e.classList.add('hidden'); 
-    for (var i = 0; i < recipes.length; i++) { 
-        var c = document.createElement('div'); 
-        c.className = 'card'; 
-        c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + recipes[i].id + '\', \'my\')"><h3>' + recipes[i].name + '</h3><div class="meta"><span>' + (recipes[i].time || '') + '</span></div></div>' + getHeartHTML(recipes[i].id); 
-        l.appendChild(c); 
-    } 
+    var sortSelect = document.getElementById('sort-select');
+    if (sortSelect) sortSelect.value = 'name';
+    renderRecipeList(recipes.slice());
     var lm = document.getElementById('lock-msg'); 
     if (!isPremium && recipes.length >= 5) lm.classList.remove('hidden'); 
     else lm.classList.add('hidden'); 
 }
-function showDetail(id, source) { currentDetailRecipeId = id; currentDetailSource = source; navigateTo('detail'); showDetailContent(); }
+function filterMyRecipes() { 
+    var q = document.getElementById('search-my').value.toLowerCase(); 
+    var filtered = recipes.filter(function(r) { return r.name.toLowerCase().includes(q); });
+    renderRecipeList(filtered);
+}
+
+function showDetail(id, source) { 
+    currentDetailRecipeId = id; 
+    currentDetailSource = source; 
+    navigateTo('detail'); 
+    showDetailContent(); 
+    setTimeout(function() { showPortionControl(id); }, 100);
+}
 function showDetailContent() {
     var id = currentDetailRecipeId, s = currentDetailSource, r = findRecipeById(id);
     if (!r) return;
@@ -619,6 +997,9 @@ function showDetailContent() {
     var progress = steps.length > 0 ? Math.round((doneCount / steps.length) * 100) : 0;
     var h = '<div class="detail-header"><h2>' + r.name + '</h2><div class="detail-heart' + (isFavorite(id) ? ' liked' : '') + '" onclick="toggleFavorite(\'' + id + '\', event)">' + (isFavorite(id) ? '❤️' : '🤍') + '</div></div>';
     h += '<div class="badge">' + (r.time || '') + '</div>';
+    if ((r.tags || []).length) {
+        h += '<div class="meta" style="margin-bottom:12px;">' + (r.tags || []).map(function(t) { return '<span style="background:var(--purple-light);color:var(--purple);padding:2px 8px;border-radius:20px;font-size:12px;">' + t + '</span>'; }).join(' ') + '</div>';
+    }
     if (steps.length > 0) {
         h += '<div class="section"><h3>Прогресс (' + progress + '%)</h3><div class="progress-bar"><div class="progress-fill" style="width:' + progress + '%;"></div></div>';
         for (var j = 0; j < steps.length; j++) {
@@ -638,6 +1019,7 @@ function showDetailContent() {
 function toggleStepDetail(idx, id) { completedSteps[idx] = !completedSteps[idx]; safeSet('progress_' + id, JSON.stringify(completedSteps)); showDetailContent(); }
 function addToShoppingListByRecipe(id, source) { var r = findRecipeById(id); if (r) addToShoppingList(r.ing); }
 function shareRecipeByName(name) { var r = null, all = getAllRecipes(); for (var i = 0; i < all.length; i++) { if (all[i].name === name) { r = all[i]; break; } } if (r) shareRecipe(r); }
+
 function filterBuiltinByCategory(cat, tabEl) { currentCategory = cat; document.querySelectorAll('#category-tabs .tab').forEach(function(t) { t.classList.remove('active'); }); if (tabEl) tabEl.classList.add('active'); renderBuiltinList(); }
 function getFilteredBuiltin() { var m = isPremium ? builtinRecipes.length : 10, f = []; for (var i = 0; i < builtinRecipes.length; i++) { if (currentCategory !== 'all' && builtinRecipes[i].category !== currentCategory) continue; f.push(builtinRecipes[i]); if (f.length >= m && !isPremium) break; } return f; }
 function renderBuiltinList() { 
@@ -647,7 +1029,7 @@ function renderBuiltinList() {
     for (var i = 0; i < items.length; i++) { 
         var c = document.createElement('div'); 
         c.className = 'card'; 
-        c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + items[i].id + '\', \'builtin\')"><h3>' + items[i].name + '</h3><div class="meta"><span>' + items[i].time + '</span></div></div>' + getHeartHTML(items[i].id); 
+        c.innerHTML = '<div class="card-content" onclick="showDetail(\'' + items[i].id + '\', \'builtin\')"><h3>' + items[i].name + '</h3><div class="meta"><span>' + items[i].time + '</span>' + ((items[i].tags || []).length ? '<span>#' + (items[i].tags || []).join(' #') + '</span>' : '') + '</div></div>' + getHeartHTML(items[i].id); 
         l.appendChild(c); 
     } 
     var lock = document.getElementById('builtin-lock'); 
@@ -656,6 +1038,7 @@ function renderBuiltinList() {
 }
 function showBuiltin() { document.getElementById('search-builtin').value = ''; currentCategory = 'all'; document.querySelectorAll('#category-tabs .tab').forEach(function(t) { t.classList.remove('active'); }); var at = document.querySelector('#category-tabs .tab'); if (at) at.classList.add('active'); renderBuiltinList(); }
 function filterBuiltin() { var q = document.getElementById('search-builtin').value.toLowerCase(); document.querySelectorAll('#builtin-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
+
 function showFavorites() { 
     navigateTo('favorites'); 
     document.getElementById('search-fav').value = ''; 
@@ -678,10 +1061,9 @@ function showFavorites() {
         } 
     } 
 }
-function filterMyRecipes() { var q = document.getElementById('search-my').value.toLowerCase(); document.querySelectorAll('#recipe-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
 function filterFavorites() { var q = document.getElementById('search-fav').value.toLowerCase(); document.querySelectorAll('#favorites-list .card').forEach(function(c) { c.style.display = c.querySelector('h3').innerText.toLowerCase().includes(q) ? 'flex' : 'none'; }); }
 
-// ===== PAY =====
+// ===== ОПЛАТА =====
 function showPayOptions() {
     var h = '<div style="text-align:center;padding:20px;">';
     h += '<h3 style="margin-bottom:16px;">Выберите способ оплаты</h3>';
@@ -743,7 +1125,7 @@ function payWithVKPay() {
     });
 }
 
-// ===== CONVERTER =====
+// ===== КОНВЕРТЕР =====
 var density = { flour: { glass: 160, tbsp: 10 }, sugar: { glass: 200, tbsp: 13 }, salt: { glass: 320, tbsp: 20 }, butter: { glass: 190, tbsp: 12 }, oil: { glass: 180, tbsp: 12 }, milk: { glass: 200, tbsp: 15 }, water: { glass: 200, tbsp: 15 }, rice: { glass: 180, tbsp: 12 }, buckwheat: { glass: 170, tbsp: 11 } };
 function convert() { 
     var a = Number(document.getElementById('conv-amount').value.replace(',', '.')) || 0; 
@@ -753,6 +1135,16 @@ function convert() {
     if (f === 'gram') { r.innerHTML = a + ' г = ' + (a/d.glass).toFixed(2) + ' ст'; } 
     else { var g = a * d[f]; r.innerHTML = a + ' шт = ' + Math.round(g) + ' г'; } 
 }
+
+// ===== КНОПКА НАВЕРХ =====
+window.onscroll = function() {
+    var btn = document.getElementById('back-to-top');
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+};
 
 // ===== DEEP LINK =====
 function checkDeepLink() {
@@ -766,8 +1158,13 @@ function checkDeepLink() {
         }
     }
 }
-checkDeepLink();
+
+// ===== ЗАПУСК =====
 updateMain();
+updateRecipeOfDay();
+checkDeepLink();
+
+console.log('🍳 Приложение "Мои рецепты" загружено!');
 </script>
 </body>
 </html>
