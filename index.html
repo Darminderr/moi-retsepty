@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Мои рецепты</title>
+    <!-- VK Bridge — строго синхронно, как требует VK -->
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+    <!-- Инициализация ДО загрузки всего остального, как требует VK -->
+    <script>
+        // Вызываем VKWebAppInit немедленно, как требует документация VK
+        if (typeof vkBridge !== 'undefined') {
+            vkBridge.send('VKWebAppInit', {});
+        }
+    </script>
     <style>
         :root {
             --orange: #FF6B00; --orange-light: #FFF3E6; --green: #4CAF50; --green-light: #E8F5E9;
@@ -74,7 +83,7 @@
         .detail-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; } .detail-header h2 { flex: 1; }
         .detail-heart { width: 44px; height: 44px; min-width: 44px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; } .detail-heart.liked { background: var(--red); border-color: var(--red); color: white; }
         .detail-actions { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
-        .conv-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 12px; flex-wrap: wrap; } .conv-row .input-group { flex: 1; min-width: 120px; margin-bottom: 0; } .conv-btn { background: var(--teal); color: white; padding: 14px 20px; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600; cursor: pointer; height: 48px; } .conv-result { background: var(--card); border-radius: var(--radius); padding: 16px; margin-top: 12px; box-shadow: var(--shadow); font-size: 18px; font-weight: 700; text-align: center; color: var(--teal); } .conv-table { width: 100%; border-collapse: collapse; margin-top: 16px; } .conv-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 14px; } .conv-table td:last-child { text-align: right; font-weight: 600; color: var(--teal); }
+        .conv-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 12px; flex-wrap: wrap; } .conv-row .input-group { flex: 1; min-width: 120px; margin-bottom: 0; } .conv-btn { background: var(--teal); color: white; padding: 14px 20px; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600; cursor: pointer; height: 48px; } .conv-result { background: var(--card); border-radius: var(--radius); padding: 16px; margin-top: 12px; box-shadow: var(--shadow); font-size: 18px; font-weight: 700; text-align: center; color: var(--teal); }
         .cooking-container { text-align: center; } .cooking-header { margin-bottom: 24px; } .cooking-header h2 { font-size: 28px; font-weight: 700; } .cooking-header .step-counter { font-size: 14px; color: var(--text-light); margin-top: 4px; } .cooking-step { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); border: 2px solid var(--border); margin-bottom: 20px; min-height: 120px; display: flex; align-items: center; justify-content: center; } .cooking-step .step-text { font-size: 24px; font-weight: 600; line-height: 1.4; } .cooking-timer { font-size: 48px; font-weight: 700; color: var(--orange); margin: 16px 0; } .cooking-timer.running { color: var(--green); } .timer-controls { display: flex; gap: 8px; justify-content: center; align-items: center; margin-bottom: 20px; flex-wrap: wrap; } .timer-input { width: 60px; padding: 10px; border-radius: 10px; border: 2px solid var(--border); text-align: center; font-size: 16px; background: var(--card); color: var(--text); font-family: inherit; } .timer-btn { padding: 12px 24px; border-radius: var(--radius); border: none; font-size: 16px; font-weight: 600; cursor: pointer; } .timer-btn.start { background: var(--green); color: white; } .timer-btn.pause { background: var(--orange); color: white; } .timer-btn.reset { background: #f0f0f0; color: var(--text); } .nav-buttons { display: flex; gap: 10px; margin-top: 16px; } .nav-btn { flex: 1; padding: 16px; border-radius: var(--radius); border: none; font-size: 16px; font-weight: 600; cursor: pointer; } .nav-btn.prev { background: var(--card); color: var(--text); border: 1px solid var(--border); } .nav-btn.next { background: var(--orange); color: white; } .nav-btn.finish { background: var(--green); color: white; }
         .shop-item, .fridge-result { display: flex; align-items: center; gap: 12px; background: var(--card); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; box-shadow: var(--shadow); border: 1px solid var(--border); cursor: pointer; } .shop-item.checked { opacity: 0.5; } .shop-item.checked .shop-text { text-decoration: line-through; } .shop-checkbox { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; } .shop-checkbox.done { background: var(--green); border-color: var(--green); color: white; } .shop-text { flex: 1; font-size: 15px; font-weight: 500; } .shop-delete { color: var(--red); cursor: pointer; font-size: 20px; padding: 4px; } .shop-actions { display: flex; gap: 8px; margin-top: 16px; } .shop-actions .btn { width: auto; padding: 12px 20px; font-size: 14px; }
         .fridge-result h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; } .fridge-result .match { font-size: 13px; color: var(--green); font-weight: 600; }
@@ -83,7 +92,6 @@
         .progress-bar { width: 100%; height: 8px; background: #e0e0e0; border-radius: 4px; margin: 8px 0; overflow: hidden; } .progress-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 0.3s; }
         .step-check { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; cursor: pointer; } .step-check .dot { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; } .step-check .dot.done { background: var(--green); border-color: var(--green); color: white; } .step-check .step-label { font-size: 14px; color: var(--text-light); } .step-check .step-label.done { text-decoration: line-through; color: #aaa; }
         .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 12px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 999; opacity: 0; transition: opacity 0.3s; pointer-events: none; } .toast.show { opacity: 1; }
-        .select-input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius); font-size: 15px; background: var(--card); font-family: inherit; color: var(--text); -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; }
     </style>
 </head>
 <body>
@@ -108,8 +116,8 @@
     <div class="screen" id="screen-detail"><div class="back-btn" onclick="goBack()">Назад</div><div class="recipe-detail" id="detail-content"></div></div>
     <div class="screen" id="screen-builtin"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:8px;">🍽 Готовые рецепты</h2><div class="tabs" id="category-tabs"><button class="tab active" onclick="filterBuiltinByCategory('all', this)">Все</button><button class="tab" onclick="filterBuiltinByCategory('breakfast', this)">🍳</button><button class="tab" onclick="filterBuiltinByCategory('soup', this)">🍜</button><button class="tab" onclick="filterBuiltinByCategory('salad', this)">🥗</button><button class="tab" onclick="filterBuiltinByCategory('main', this)">🍖</button><button class="tab" onclick="filterBuiltinByCategory('dessert', this)">🍰</button><button class="tab" onclick="filterBuiltinByCategory('drink', this)">🍹</button></div><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-builtin" placeholder="Поиск..." oninput="filterBuiltin()"></div><div id="builtin-list"></div><div class="limit-banner hidden" id="builtin-lock">🔒 Бесплатно 10. Купи безлимит!</div></div>
     <div class="screen" id="screen-favorites"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:4px;">❤️ Избранное</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="search-fav" placeholder="Поиск..." oninput="filterFavorites()"></div><div id="favorites-list"></div><div class="empty-state" id="fav-empty-state"><div class="icon">❤️</div><p>Нет избранных</p></div></div>
-    <div class="screen" id="screen-converter"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:20px;">⚖️ Конвертер мер</h2><div class="conv-row"><div class="input-group"><label>Кол-во</label><input class="input" id="conv-amount" type="text" inputmode="decimal" value="1"></div><div class="input-group"><label>Из</label><select class="select-input" id="conv-from" onchange="convert()"><option value="glass">Стакан</option><option value="tbsp">Ст.ложка</option><option value="tsp">Ч.ложка</option><option value="gram">Граммы</option></select></div></div><div class="conv-row"><div class="input-group"><label>Продукт</label><select class="select-input" id="conv-product" onchange="convert()"><option value="flour">Мука</option><option value="sugar">Сахар</option><option value="salt">Соль</option><option value="butter">Масло слив.</option><option value="oil">Масло раст.</option><option value="milk">Молоко</option><option value="water">Вода</option><option value="rice">Рис</option><option value="buckwheat">Гречка</option></select></div><button class="conv-btn" onclick="convert()">Перевести</button></div><div class="conv-result" id="conv-result">Выберите продукт</div></div>
-    <div class="screen" id="screen-cooking"><div class="back-btn" onclick="stopTimer(); goBackFromCooking()">⬅ Выйти</div><div class="cooking-container"><div class="cooking-header"><h2 id="cooking-title"></h2><div class="step-counter" id="step-counter"></div></div><div class="cooking-step"><div class="step-text" id="step-text"></div></div><div class="cooking-timer" id="cooking-timer">00:00</div><div class="timer-controls"><input type="text" inputmode="numeric" id="timer-minutes" value="5" maxlength="2" class="timer-input" placeholder="Мин"><span>:</span><input type="text" inputmode="numeric" id="timer-seconds" value="0" maxlength="2" class="timer-input" placeholder="Сек"><button class="timer-btn start" id="timer-start" onclick="startTimer()">▶</button><button class="timer-btn pause" id="timer-pause" onclick="pauseTimer()" style="display:none;">⏸</button><button class="timer-btn reset" onclick="resetTimer()">↺</button></div><div class="nav-buttons"><button class="nav-btn prev" id="btn-prev" onclick="prevStep()">⬅ Назад</button><button class="nav-btn next" id="btn-next" onclick="nextStep()">Далее ➡</button><button class="nav-btn finish" id="btn-finish" onclick="finishCooking()" style="display:none;">✅ Готово!</button></div></div></div>
+    <div class="screen" id="screen-converter"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:20px;">⚖️ Конвертер мер</h2><div class="conv-row"><div class="input-group"><label>Кол-во</label><input class="input" id="conv-amount" type="number" value="1" min="0.1" step="0.1"></div><div class="input-group"><label>Из</label><select class="input" id="conv-from" onchange="convert()"><option value="glass">Стакан</option><option value="tbsp">Ст.ложка</option><option value="tsp">Ч.ложка</option><option value="gram">Граммы</option></select></div></div><div class="conv-row"><div class="input-group"><label>Продукт</label><select class="input" id="conv-product" onchange="convert()"><option value="flour">Мука</option><option value="sugar">Сахар</option><option value="salt">Соль</option><option value="butter">Масло слив.</option><option value="oil">Масло раст.</option><option value="milk">Молоко</option><option value="water">Вода</option><option value="rice">Рис</option><option value="buckwheat">Гречка</option></select></div><button class="conv-btn" onclick="convert()">Перевести</button></div><div class="conv-result" id="conv-result">Выберите продукт</div></div>
+    <div class="screen" id="screen-cooking"><div class="back-btn" onclick="stopTimer(); goBackFromCooking()">⬅ Выйти</div><div class="cooking-container"><div class="cooking-header"><h2 id="cooking-title"></h2><div class="step-counter" id="step-counter"></div></div><div class="cooking-step"><div class="step-text" id="step-text"></div></div><div class="cooking-timer" id="cooking-timer">00:00</div><div class="timer-controls"><input type="number" id="timer-minutes" value="5" min="0" max="99" class="timer-input" placeholder="Мин"><span>:</span><input type="number" id="timer-seconds" value="0" min="0" max="59" class="timer-input" placeholder="Сек"><button class="timer-btn start" id="timer-start" onclick="startTimer()">▶</button><button class="timer-btn pause" id="timer-pause" onclick="pauseTimer()" style="display:none;">⏸</button><button class="timer-btn reset" onclick="resetTimer()">↺</button></div><div class="nav-buttons"><button class="nav-btn prev" id="btn-prev" onclick="prevStep()">⬅ Назад</button><button class="nav-btn next" id="btn-next" onclick="nextStep()">Далее ➡</button><button class="nav-btn finish" id="btn-finish" onclick="finishCooking()" style="display:none;">✅ Готово!</button></div></div></div>
     <div class="screen" id="screen-shopping"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🧾 Список покупок</h2><div id="shopping-list"></div><div class="empty-state" id="shop-empty-state"><div class="icon">🧾</div><p>Список пуст</p></div><div class="shop-actions" id="shop-actions" style="display:none;"><button class="btn" style="background:#f0f0f0;color:var(--text);" onclick="clearChecked()">🗑 Убрать купленное</button><button class="btn" style="background:var(--red);color:white;" onclick="clearAllShopping()">Очистить</button></div></div>
     <div class="screen" id="screen-fridge"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:8px;">🔍 Что в холодильнике?</h2><p style="font-size:14px;color:var(--text-light);margin-bottom:16px;">Введите ингредиенты через запятую</p><input class="input" id="fridge-input" placeholder="Например: курица, гречка, лук" oninput="searchFridge()"><div id="fridge-results" style="margin-top:12px;"></div><div class="empty-state" id="fridge-empty"><div class="icon">🔍</div><p>Введите ингредиенты</p></div></div>
     <div class="screen" id="screen-planner"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">📅 План на неделю</h2><div id="planner-list"></div></div>
@@ -117,35 +125,6 @@
     <div class="screen" id="screen-substitutes"><div class="back-btn" onclick="navigateTo('main')">Назад</div><h2 style="font-size:24px;font-weight:700;margin-bottom:16px;">🔄 Замена ингредиентов</h2><div class="search-box"><span class="search-icon">🔍</span><input class="input" id="sub-search" placeholder="Поиск..." oninput="filterSubstitutes()"></div><div id="substitutes-list"></div></div>
 
 <script>
-    // ===== VK BRIDGE ДЛЯ iOS =====
-    (function() {
-        try {
-            if (typeof vkBridge !== 'undefined') {
-                vkBridge.send('VKWebAppInit')
-                    .then(function() {
-                        try { vkBridge.send('VKWebAppLoadingCompleted', { ok: true }); } catch(e) {}
-                        console.log('✅ VK Bridge готов');
-                    })
-                    .catch(function(e) { console.warn('VK init error:', e); });
-            } else {
-                var s = document.createElement('script');
-                s.src = 'https://vk.com/js/api/xd_connection.js?2';
-                s.onload = function() {
-                    if (typeof vkBridge !== 'undefined') {
-                        vkBridge.send('VKWebAppInit')
-                            .then(function() {
-                                try { vkBridge.send('VKWebAppLoadingCompleted', { ok: true }); } catch(e) {}
-                                console.log('✅ VK Bridge загружен');
-                            })
-                            .catch(function(e) { console.warn('VK init error:', e); });
-                    }
-                };
-                document.head.appendChild(s);
-            }
-        } catch(e) { console.warn('VK error:', e); }
-    })();
-
-    // ===== ОСНОВНОЙ КОД =====
     var recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
     var isPremium = JSON.parse(localStorage.getItem('premium') || 'false');
     var favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -160,13 +139,7 @@
 
     if (isDark) { document.body.classList.add('dark'); document.getElementById('theme-btn').textContent = '☀️'; }
     else { document.getElementById('theme-btn').textContent = '🌙'; }
-
-    function toggleTheme() { 
-        isDark = !isDark; 
-        localStorage.setItem('darkTheme', JSON.stringify(isDark)); 
-        if (isDark) { document.body.classList.add('dark'); document.getElementById('theme-btn').textContent = '☀️'; } 
-        else { document.body.classList.remove('dark'); document.getElementById('theme-btn').textContent = '🌙'; } 
-    }
+    function toggleTheme() { isDark = !isDark; localStorage.setItem('darkTheme', JSON.stringify(isDark)); if (isDark) { document.body.classList.add('dark'); document.getElementById('theme-btn').textContent = '☀️'; } else { document.body.classList.remove('dark'); document.getElementById('theme-btn').textContent = '🌙'; } }
 
     var builtinRecipes = [
         { id: 'b1', name: "Ленивая овсянка в банке", category: "breakfast", ing: "Овсяные хлопья — 4 ст.л.\nЙогурт натуральный — 150 мл\nМёд — 1 ч.л.\nЯгоды — 50 г", instr: "1. Насыпьте хлопья в банку. [1 мин]\n2. Залейте йогуртом, добавьте мёд. [1 мин]\n3. Выложите ягоды. [1 мин]\n4. Закройте и в холодильник на 6+ часов. [0 мин]\n5. Утром готово!", time: "5 мин + ночь" },
