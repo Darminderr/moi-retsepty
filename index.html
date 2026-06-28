@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Мои рецепты</title>
-    <!-- VK Bridge — строго синхронно, как требует VK -->
-    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
-    <!-- Инициализация ДО загрузки всего остального, как требует VK -->
+    <!-- VK Bridge — локально, без внешних зависимостей -->
+    <script src="vk-bridge.js"></script>
     <script>
-        // Вызываем VKWebAppInit немедленно, как требует документация VK
+        // Инициализация строго по требованиям VK — до загрузки всего остального
         if (typeof vkBridge !== 'undefined') {
             vkBridge.send('VKWebAppInit', {});
         }
@@ -290,16 +289,16 @@
         currentScreen = 'detail';
     }
     function payWithVotes() {
-        if (typeof vkBridge === 'undefined') { alert('Оплата временно недоступна. Попробуйте позже.'); return; }
+        if (typeof vkBridge === 'undefined') { alert('Оплата временно недоступна.'); return; }
         vkBridge.send('VKWebAppOpenInvoice', { app_id: 54646829, action: 'pay-to-service', item_name: 'Безлимитный доступ', item_price: 36, item_description: 'Все 20 рецептов' })
         .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо!'); navigateTo('main'); } })
-        .catch(function() { alert('Оплата недоступна. Попробуйте позже.'); });
+        .catch(function() { alert('Оплата недоступна.'); });
     }
     function payWithVKPay() {
-        if (typeof vkBridge === 'undefined') { alert('Оплата временно недоступна. Попробуйте позже.'); return; }
+        if (typeof vkBridge === 'undefined') { alert('Оплата временно недоступна.'); return; }
         vkBridge.send('VKWebAppOpenPayForm', { app_id: 54646829, action: 'transfer-to-user', item_name: 'Безлимитный доступ', item_price: 250, item_description: 'Все 20 рецептов' })
         .then(function(data) { if (data && data.result) { isPremium = true; saveData(); alert('Спасибо!'); navigateTo('main'); } })
-        .catch(function() { alert('Оплата недоступна. Попробуйте позже.'); });
+        .catch(function() { alert('Оплата недоступна.'); });
     }
 
     var density = { flour: { glass: 160, tbsp: 10 }, sugar: { glass: 200, tbsp: 13 }, salt: { glass: 320, tbsp: 20 }, butter: { glass: 190, tbsp: 12 }, oil: { glass: 180, tbsp: 12 }, milk: { glass: 200, tbsp: 15 }, water: { glass: 200, tbsp: 15 }, rice: { glass: 180, tbsp: 12 }, buckwheat: { glass: 170, tbsp: 11 } };
