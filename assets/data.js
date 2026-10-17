@@ -786,5 +786,5 @@ var APP_LINK = 'https://vk.com/app' + APP_ID;
 
 /* Ссылка на сообщество приложения ВКонтакте — канал поддержки (требование п. 2.4.1 правил).
    Создайте сообщество (бесплатно) и подставьте ссылку, например 'https://vk.com/moi_retsepty'. */
-var SUPPORT_URL = 'https://vk.com/app' + APP_ID;
+var SUPPORT_URL = 'https://vk.ru/club242375306' + APP_ID;
 
